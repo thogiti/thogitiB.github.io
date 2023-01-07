@@ -1,0 +1,30 @@
+# On every push this script is executed
+on: push
+name: Build and deploy GH Pages
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3.0.0
+      - name: build_and_deploy
+        uses: shalzz/zola-deploy-action@v0.16.1
+        env:
+          # Target branch
+          PAGES_BRANCH: gh-pages
+          # Provide personal access token
+          TOKEN: ${{ secrets.TOKEN }}
+          # Or if publishing to the same repo, use the automatic token
+          #TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Install aspell
+        run: sudo apt-get install aspell
+
+      - name: Spellcheck
+        run: bash ci/spellcheck.sh list
+
