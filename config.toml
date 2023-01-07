@@ -1,0 +1,48 @@
+base_url = "https://thogiti.github.io/"
+compile_sass = true
+generate_feed = true
+build_search_index = false
+title = "Dare to Know"
+
+theme = "tale-zola"
+
+taxonomies = [
+    { name = "tags" },
+]
+
+[markdown]
+highlight_code = true 
+highlight_theme = "base16-atelierdune-light"
+
+[extra]
+author = "0xnagu"
+github = "https://github.com/thogiti"
+email = "0xnagu@gmail.com"
+katex = true
+
+[[extra.menu]]
+name = "Blog"
+url = ""
+
+[[extra.menu]]
+name = "Tags"
+url = "tags"
+
+[[extra.menu]]
+name = "About"
+url = "about"
+
+[extra.seo]
+image = "assets/favicon.jpg"
+image_height = 0 
+image_width = 0
+og_locale = "en_US"
+
+[extra.seo.twitter]
+site = "thogiti"
+creator = "thogiti"
+
+[extra.footer]
+start_year = "2022"
+end_year = "2022"
+info = ""

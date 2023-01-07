@@ -1,0 +1,134 @@
+@import '../themes/tale-zola/sass/tale/variables';
+@import '../themes/tale-zola/sass/tale/base';
+@import '_code.scss';
+@import 'fonts.css';
+@import '../themes/tale-zola/sass/tale/post';
+@import '../themes/tale-zola/sass/tale/footnote';
+@import '../themes/tale-zola/sass/tale/syntax';
+@import '../themes/tale-zola/sass/tale/layout';
+@import '../themes/tale-zola/sass/tale/pagination';
+@import '../themes/tale-zola/sass/tale/catalogue';
+@import '../themes/tale-zola/sass/tale/404';
+@import '../themes/tale-zola/sass/tale/tags';
+@import '../themes/tale-zola/sass/custom';
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css");
+
+:root {
+  /* Used for: block comment, hr, ... */
+  --border-color: #00000000;
+
+  /* Fonts */
+  --text-font: 'Inter';
+  --header-font: 'Inter';
+  --code-font: 'Jetbrains Mono';
+}
+
+html {
+  background-color: #00000000;
+  color: #00000000;
+  font-family: 'Inter';
+  line-height: 1.6em;
+}
+
+.content {
+  max-width: 944px;
+  margin: 0 auto;
+  padding: 0 24px;
+  word-wrap: break-word;
+}
+
+.post-title {
+  font-family: "Unbounded-Bold";
+  font-size: 30px;
+  text-align: left;
+}
+
+.post-info {
+  font-family: "Unbounded-Regular";
+  text-align: left;
+}
+
+.post-line {
+  margin: {
+    top:1rem;
+    bottom:1rem;
+    left:1rem;
+  }
+}
+
+h1 {
+  font-family: "Unbounded-Medium";
+  font-size: 25px;
+}
+
+h2 {
+  font-family: "Unbounded-Medium";
+  font-size: 25px;
+}
+
+.catalogue-title {
+  font-family: "Unbounded-Bold";
+  font-size: 30px;
+}
+
+.catalogue-time {
+  font-family: "Unbounded-Regular";
+}
+
+.nav a {
+  font-family: "Unbounded-Medium";
+}
+
+.pagination .top {
+  font-family: "Unbounded-Medium";
+}
+
+.tags-header-title {
+  font-family: "Unbounded-Bold";
+  font-size: 25px;
+}
+
+.tags-item-label a {
+  font-family: "Unbounded-Bold";
+  font-size: 20px;
+}
+
+
+
+footer {
+  font-family: "Unbounded-Medium";
+}
+
+.post-preview {
+  h3.post-title {
+    margin-bottom: 0;
+    font-size: 25px;
+    text-align: left;
+  }
+
+  .summary {
+    margin-top: 0.8rem;
+  }
+
+  margin-bottom: 2rem;
+}
+
+@media all and (min-width:640px) {
+  html {
+    font-size: 16.5px;
+  }
+}
+
+@media all and (min-width:720px) {
+  html {
+    font-size: 17px;
+  }
+}
+
+@media all and (min-width:960px) {
+  html {
+    font-size: 18px;
+  }
+}

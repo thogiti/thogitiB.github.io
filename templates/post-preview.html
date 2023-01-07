@@ -1,0 +1,33 @@
+{% macro post_preview(post) %}
+ <div class="post-preview">
+    <h3 class="post-title"><a href="{{ post.permalink }}">{{ post.title }}</a></h3>
+    <small>
+      {{ post.date| date(format="%B %d, %Y") }} - {{ post.word_count }} words - {{ post.reading_time }} mins
+    </small>
+    <div class="summary" type="text/html">
+      {% if post.summary -%}
+        {{ post.summary | safe }}
+      {% else %}
+        {{ post.content | truncate(length=300) | safe }}
+      {%- endif %}
+      <a href="{{ post.permalink }}">read more</a>
+    </div>
+ </div>
+{% endmacro input %}
+
+{% macro page(page) -%}
+<a href="{{ page.permalink | safe }}" class="catalogue-item">
+  <div>
+    <time datetime="{{ page.date }}" class="catalogue-time">{{ page.date | date(format=config.extra.timeformat | default(value="%B %e, %Y")) }}</time>
+    <h1 class="catalogue-title">{{ page.title }}</h1>
+    <div class="catalogue-line"></div>
+    <p>
+      {%- if page.summary -%}
+      {{ page.summary | striptags | safe }}
+      {% else -%}
+      {{ page.content | striptags | truncate(length=280) | safe }}
+      {%- endif -%}
+    </p>
+  </div>
+</a>
+{%- endmacro %}

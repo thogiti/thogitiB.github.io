@@ -1,0 +1,47 @@
+{% extends "tale-zola/templates/index.html" %}
+
+{% import "post-preview.html" as post_macros %}
+
+{% if page.extra.katex or section.extra.katex or config.extra.katex %}
+  {% include 'templates/katex.html' %}
+{% endif %}
+
+
+{% block description %}Fedor Sakharov's blog{% endblock description %}
+
+{#
+{% block content %}
+    <div class="post-list">
+        {% for year, posts in section.pages | group_by(attribute="year") %}
+            <h2>{{ year }}</h2>
+
+            <ul>
+            {% for post in posts %}
+                {{ post_macros::post_preview(post=post) }}
+            {% endfor %}
+            </ul>
+        {% endfor %}
+    </div>
+{% endblock content %}
+#}
+
+{% block content %}
+{% if paginator.pages %}
+	<div class="catalogue">
+		{% for page in paginator.pages -%}
+			{{ post_macros::page(page=page) }}
+		{%- endfor %}
+	</div>
+	<div class="pagination">
+		{% if paginator.previous -%}
+			<a href="{{ paginator.previous | safe }}" class="left arrow">&#8592;</a>
+		{%- endif %}
+		{% if paginator.previous or paginator.next -%}
+			<span>{{ paginator.current_index }}</span>
+		{%- endif %}
+		{% if paginator.next -%}
+			<a href="{{ paginator.next | safe }}" class="right arrow">&#8594;</a>
+		{%- endif %}
+	</div>
+{% endif %}
+{% endblock content %}
