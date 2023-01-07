@@ -61,4 +61,3 @@ Blockchain
 Ethereum
 ZK Proofs
 Plonk
-
