@@ -219,9 +219,9 @@ Aurora is a non-interactive zero-knowledge proof protocol designed to verify the
 
 The protocol works as follows:
 
-    1. The parties encrypt their data using a public key.
-    2. Each party generates a proof of correctness for their computation on the encrypted data.
-    3. The verifier checks the proofs to ensure that the computations were performed correctly without revealing any information about the data.
+* The parties encrypt their data using a public key.
+* Each party generates a proof of correctness for their computation on the encrypted data.
+* The verifier checks the proofs to ensure that the computations were performed correctly without revealing any information about the data.
 
 Aurora achieves zero-knowledge properties through a combination of homomorphic encryption, zero-knowledge proofs, and other advanced cryptographic techniques.
     
