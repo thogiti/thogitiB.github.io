@@ -19,6 +19,7 @@ author = "0xnagu"
 github = "https://github.com/thogiti"
 email = "0xnagu@gmail.com"
 katex = true
+katex_enable = true
 
 [[extra.menu]]
 name = "Blog"
