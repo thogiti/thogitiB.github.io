@@ -104,7 +104,11 @@ The protocol works as follows:
 If the equation holds, the verifier is convinced that the prover knows the witness value $\s$ without revealing it.
 
 
-some math markdown here
+some math markdown here:
+
+$\sqrt{3x-1}+(1+x)^2$
+
+$$\sqrt{3x-1}+(1+x)^2$$
 
 ```math
 \sqrt{3}
@@ -121,29 +125,29 @@ Bulletproofs are particularly useful in scenarios where computational resources 
 
 The protocol works as follows:
 
-    1. Range proof setup:
+1. Range proof setup:
 
-    The prover and verifier agree on a range of values that the prover wants to prove, such as the range of a secret value or the range of a transaction amount in a cryptocurrency system. They also agree on a security parameter that determines the soundness and efficiency of the proof.
+The prover and verifier agree on a range of values that the prover wants to prove, such as the range of a secret value or the range of a transaction amount in a cryptocurrency system. They also agree on a security parameter that determines the soundness and efficiency of the proof.
 
-    2. Pedersen commitment:
+2. Pedersen commitment:
 
-    The prover commits to a value that lies within the range, using a Pedersen commitment scheme that combines the value with a randomly chosen blinding factor. The commitment consists of two group elements, C = aG + bH, where G and H are generators of a prime order group, a is the value to be committed, and b is the blinding factor.
+The prover commits to a value that lies within the range, using a Pedersen commitment scheme that combines the value with a randomly chosen blinding factor. The commitment consists of two group elements, C = aG + bH, where G and H are generators of a prime order group, a is the value to be committed, and b is the blinding factor.
 
-    3. Polynomial construction:
+3. Polynomial construction:
 
-    The prover constructs a polynomial that represents the commitment value, using techniques such as Lagrange interpolation or polynomial division. The polynomial has a degree that is logarithmic in the size of the range.
+The prover constructs a polynomial that represents the commitment value, using techniques such as Lagrange interpolation or polynomial division. The polynomial has a degree that is logarithmic in the size of the range.
 
-    4. Inner product argument:
+4. Inner product argument:
 
-    The prover constructs an inner product argument that proves the knowledge of two vectors, consisting of the coefficients of the polynomial and the blinding factors. The argument consists of a constant number of group elements, regardless of the size of the vectors.
+The prover constructs an inner product argument that proves the knowledge of two vectors, consisting of the coefficients of the polynomial and the blinding factors. The argument consists of a constant number of group elements, regardless of the size of the vectors.
 
-    5. Range proof verification:
+5. Range proof verification:
 
-    The verifier checks whether the commitment value lies within the agreed range, using a combination of range tests and linear equations that depend on the inner product argument. The range tests ensure that the committed value is non-negative and within the specified range, while the linear equations ensure that the commitment value is constructed correctly.
+The verifier checks whether the commitment value lies within the agreed range, using a combination of range tests and linear equations that depend on the inner product argument. The range tests ensure that the committed value is non-negative and within the specified range, while the linear equations ensure that the commitment value is constructed correctly.
 
-    6. Recursive proof composition:
+6. Recursive proof composition:
 
-    To prove the validity of multiple range proofs, the prover and verifier can recursively compose the inner product arguments and the range tests, by constructing a Merkle tree of the proofs and their associated commitments, and using a single proof and commitment pair as input to the next round.
+To prove the validity of multiple range proofs, the prover and verifier can recursively compose the inner product arguments and the range tests, by constructing a Merkle tree of the proofs and their associated commitments, and using a single proof and commitment pair as input to the next round.
 
 If all checks pass, the verifier is convinced that the prover knows a value within the agreed range, without revealing any information about the value or the blinding factor. Bulletproofs achieve zero-knowledge properties by using polynomial constructions and inner product arguments that hide the committed value and the blinding factor, and by using recursive proof composition to reduce the size of the proofs and commitments. The protocol is widely used in privacy-preserving applications, such as ring signatures and confidential transactions in cryptocurrency systems.
 
