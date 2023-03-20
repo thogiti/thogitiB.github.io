@@ -27,7 +27,7 @@ The protocol works as follows:
 
 1. Commitment:
 
-The prover randomly selects a secret value r from the finite field and computes a commitment $$C = g^r$$, where g is a generator of the group. The prover sends $$C$$ to the verifier.
+The prover randomly selects a secret value r from the finite field and computes a commitment $$C = g^r$$, where $g$ is a generator of the group. The prover sends $$C$$ to the verifier.
 
 2. Challenge:
 
@@ -39,9 +39,9 @@ The prover computes the response value $$s = r + ex$$, where $$x$$ is the privat
 
 4. Verification:
 
-The verifier checks the validity of the proof by computing $$C' = g^s * y^(-e)$$, where $$y$$ is the public key corresponding to the secret key x. If $$C' = C$$, the proof is considered valid.
+The verifier checks the validity of the proof by computing $$C' = g^s * y^(-e)$$, where $$y$$ is the public key corresponding to the secret key $x$ . If $$C' = C$$ , the proof is considered valid.
 
-The Schnorr protocol is a non-interactive zero-knowledge proof, meaning that it requires only one message exchange between the prover and verifier. The proof demonstrates that the prover knows the secret key $$x$$ corresponding to a public key $$y$$, without revealing any information about $$x$$. The protocol is used in various applications, such as digital signatures and authentication schemes.
+The Schnorr protocol is a non-interactive zero-knowledge proof, meaning that it requires only one message exchange between the prover and verifier. The proof demonstrates that the prover knows the secret key $$x$$  corresponding to a public key $$y$$ , without revealing any information about $$x$$ . The protocol is used in various applications, such as digital signatures and authentication schemes.
 
 In summary, the Schnorr zero-knowledge proof protocol works by the prover committing to a secret value, the verifier selecting a random challenge, the prover responding with a value that incorporates both the challenge and the secret, and the verifier checking the validity of the proof using the commitment, the response, and the public key.
 
