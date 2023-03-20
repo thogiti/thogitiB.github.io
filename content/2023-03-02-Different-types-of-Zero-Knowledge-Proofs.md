@@ -27,7 +27,7 @@ The protocol works as follows:
 
 1. Commitment:
 
-The prover randomly selects a secret value r from the finite field and computes a commitment $$\C = g^r$$, where g is a generator of the group. The prover sends $$\C$$ to the verifier.
+The prover randomly selects a secret value r from the finite field and computes a commitment $$C = g^r$$, where g is a generator of the group. The prover sends $$C$$ to the verifier.
 
 2. Challenge:
 
@@ -35,13 +35,13 @@ The verifier selects a random challenge value e from the finite field and sends 
 
 3. Response:
 
-The prover computes the response value $$\s = r + ex$$, where $$\x$$ is the private key corresponding to a public key $$\y = xg$$. The prover sends $$\s$$ to the verifier.
+The prover computes the response value $$s = r + ex$$, where $$x$$ is the private key corresponding to a public key $$y = xg$$. The prover sends $$s$$ to the verifier.
 
 4. Verification:
 
-The verifier checks the validity of the proof by computing $$\C' = g^s * y^(-e)$$, where $$\y$$ is the public key corresponding to the secret key x. If $$\C' = C$$, the proof is considered valid.
+The verifier checks the validity of the proof by computing $$C' = g^s * y^(-e)$$, where $$y$$ is the public key corresponding to the secret key x. If $$C' = C$$, the proof is considered valid.
 
-The Schnorr protocol is a non-interactive zero-knowledge proof, meaning that it requires only one message exchange between the prover and verifier. The proof demonstrates that the prover knows the secret key x corresponding to a public key y, without revealing any information about x. The protocol is used in various applications, such as digital signatures and authentication schemes.
+The Schnorr protocol is a non-interactive zero-knowledge proof, meaning that it requires only one message exchange between the prover and verifier. The proof demonstrates that the prover knows the secret key $$x$$ corresponding to a public key $$y$$, without revealing any information about $$x$$. The protocol is used in various applications, such as digital signatures and authentication schemes.
 
 In summary, the Schnorr zero-knowledge proof protocol works by the prover committing to a secret value, the verifier selecting a random challenge, the prover responding with a value that incorporates both the challenge and the secret, and the verifier checking the validity of the proof using the commitment, the response, and the public key.
 
@@ -95,20 +95,13 @@ The Fiat-Shamir transform is a non-interactive zero-knowledge proof that enables
 
 The protocol works as follows:
 
-1. The prover selects a random number r and calculates a commitment value $\c = H(s || r)$, where s is the witness value.
-2. The prover sends $\c$ to the verifier.
-3. The verifier generates a challenge value $\e = H(c)$ and sends it to the prover.
-4. The prover calculates the response value $\z = r + e*s$ and sends $\z$ to the verifier.
-5. The verifier checks that $\c = H(s || (z - e * commitment_value))$, where $\commitment_value$ is a publicly known value.
+1. The prover selects a random number r and calculates a commitment value $$c = H(s || r)$$, where s is the witness value.
+2. The prover sends $$c$$ to the verifier.
+3. The verifier generates a challenge value $$e = H(c)$$ and sends it to the prover.
+4. The prover calculates the response value $$z = r + e*s$$ and sends $$z$$ to the verifier.
+5. The verifier checks that $$c = H(s || (z - e * commitment_value))$$, where $$commitment_value$$ is a publicly known value.
 
-If the equation holds, the verifier is convinced that the prover knows the witness value $\s$ without revealing it.
-
-
-some math markdown here:
-
-$\sqrt{3x-1}+(1+x)^2$
-
-$$\sqrt{3x-1}+(1+x)^2$$
+If the equation holds, the verifier is convinced that the prover knows the witness value $$s$$ without revealing it.
 
 
 ## Bulletproofs
@@ -125,7 +118,7 @@ The prover and verifier agree on a range of values that the prover wants to prov
 
 2. Pedersen commitment:
 
-The prover commits to a value that lies within the range, using a Pedersen commitment scheme that combines the value with a randomly chosen blinding factor. The commitment consists of two group elements, C = aG + bH, where G and H are generators of a prime order group, a is the value to be committed, and b is the blinding factor.
+The prover commits to a value that lies within the range, using a Pedersen commitment scheme that combines the value with a randomly chosen blinding factor. The commitment consists of two group elements, $C = aG + bH$, where $G$ and $H$ are generators of a prime order group, $a$ is the value to be committed, and $b$ is the blinding factor.
 
 3. Polynomial construction:
 
@@ -193,29 +186,29 @@ The protocol works as follows:
 
 1. Setup:
 
-The prover and verifier agree on a set of elliptic curve parameters, including a prime order group $\G$ and a pairing function $\e$ that maps elements from $\G$ to the multiplicative group of a finite field. They also agree on a public statement that the prover wants to prove, such as the validity of a transaction or the possession of a private key.
+The prover and verifier agree on a set of elliptic curve parameters, including a prime order group $G$ and a pairing function $e$ that maps elements from $G$ to the multiplicative group of a finite field. They also agree on a public statement that the prover wants to prove, such as the validity of a transaction or the possession of a private key.
 
 2. Key generation:
 
-The prover generates a private key and a corresponding public key. The public key consists of two group elements, $\P$ and $\Q$, such that $\Q = kP$ for some secret scalar $\k$.
+The prover generates a private key and a corresponding public key. The public key consists of two group elements, $P$ and $Q$, such that $Q = kP$ for some secret scalar $k$.
 
 3. Commitment:
 
-The prover commits to a witness value that satisfies the public statement, such as a transaction input and output or a private key value. The commitment consists of two group elements, $\C$ and $\D$, such that $\C = rP + W$ and $\D = rQ$, where $\r$ is a randomly chosen scalar and $\W$ is the witness value.
+The prover commits to a witness value that satisfies the public statement, such as a transaction input and output or a private key value. The commitment consists of two group elements, $C$ and $D$, such that $C = rP + W$ and $D = rQ$, where $r$ is a randomly chosen scalar and $W$ is the witness value.
 
 4. Challenge:
 
-The verifier generates a random challenge value, $\c$, from a secure hash function applied to the public parameters and the commitment values, $\c = H(G, e, P, Q, C, D)$.
+The verifier generates a random challenge value, $c$, from a secure hash function applied to the public parameters and the commitment values, $c = H(G, e, P, Q, C, D)$.
 
 5. Response:
 
-The prover calculates a response value, $\s$, based on the challenge value and the private key, $\s = r + kc$, where $\k$ is the private key scalar.
+The prover calculates a response value, $s$, based on the challenge value and the private key, $s = r + kc$, where $k$ is the private key scalar.
 
 6. Verification:
 
 The verifier checks whether the commitment and response values satisfy the public statement, by verifying the following equations:
 
-$$\e(C, P) = e(D, Q) + e(sP + cW, P)$$
+$e(C, P) = e(D, Q) + e(sP + cW, P)$
 
 This equation ensures that the commitment values are valid and that the response value corresponds to the private key scalar and witness value. If the equation holds, the verifier is convinced that the prover knows the private key and the witness value, without revealing any information about them.
 
