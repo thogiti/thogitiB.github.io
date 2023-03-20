@@ -25,21 +25,21 @@ The Schnorr protocol is an interactive zero-knowledge proof that enables the pro
 
 The protocol works as follows:
 
-    1. Commitment:
+1. Commitment:
 
-    The prover randomly selects a secret value r from the finite field and computes a commitment $\C = g^r$, where g is a generator of the group. The prover sends $\C$ to the verifier.
+The prover randomly selects a secret value r from the finite field and computes a commitment $$\C = g^r$$, where g is a generator of the group. The prover sends $$\C$$ to the verifier.
 
-    2. Challenge:
+2. Challenge:
 
-    The verifier selects a random challenge value e from the finite field and sends it to the prover.
+The verifier selects a random challenge value e from the finite field and sends it to the prover.
 
-    3. Response:
+3. Response:
 
-    The prover computes the response value $\s = r + ex$, where $\x$ is the private key corresponding to a public key $\y = xg$. The prover sends $\s$ to the verifier.
+The prover computes the response value $$\s = r + ex$$, where $$\x$$ is the private key corresponding to a public key $$\y = xg$$. The prover sends $$\s$$ to the verifier.
 
-    4. Verification:
+4. Verification:
 
-    The verifier checks the validity of the proof by computing $\C' = g^s * y^(-e)$, where $\y$ is the public key corresponding to the secret key x. If $\C' = C$, the proof is considered valid.
+The verifier checks the validity of the proof by computing $$\C' = g^s * y^(-e)$$, where $$\y$$ is the public key corresponding to the secret key x. If $$\C' = C$$, the proof is considered valid.
 
 The Schnorr protocol is a non-interactive zero-knowledge proof, meaning that it requires only one message exchange between the prover and verifier. The proof demonstrates that the prover knows the secret key x corresponding to a public key y, without revealing any information about x. The protocol is used in various applications, such as digital signatures and authentication schemes.
 
@@ -51,33 +51,33 @@ The Zcash protocol is an interactive zero-knowledge proof that allows users to p
 
 The protocol works as follows:
 
-    1. Circuit setup:
+1. Circuit setup:
 
-    The prover and verifier agree on a public Boolean circuit that represents the computation that the prover wants to prove. The circuit is transformed into an arithmetic circuit over a finite field, using techniques such as universal circuit constructions.
+The prover and verifier agree on a public Boolean circuit that represents the computation that the prover wants to prove. The circuit is transformed into an arithmetic circuit over a finite field, using techniques such as universal circuit constructions.
 
-    2. Input and output encoding:
+2. Input and output encoding:
 
-    The prover encodes the input and output values of the circuit as elements of the finite field, using techniques such as binary encoding or representation as elliptic curve points. The encoding ensures that the input and output values can be processed by the arithmetic circuit.
+The prover encodes the input and output values of the circuit as elements of the finite field, using techniques such as binary encoding or representation as elliptic curve points. The encoding ensures that the input and output values can be processed by the arithmetic circuit.
 
-    3. Constraint system generation:
+3. Constraint system generation:
 
-    The prover generates a constraint system that enforces the constraints of the circuit on the input and output values, using techniques such as the Rank 1 Constraint System (R1CS). The constraint system consists of a set of equations that relate the input and output values to intermediate values computed by the circuit.
+The prover generates a constraint system that enforces the constraints of the circuit on the input and output values, using techniques such as the Rank 1 Constraint System (R1CS). The constraint system consists of a set of equations that relate the input and output values to intermediate values computed by the circuit.
 
-    4. Public parameters generation:
+4. Public parameters generation:
 
-    The prover generates a set of public parameters that enable the verifier to check the validity of the proof, without revealing any information about the input and output values. The public parameters consist of a set of group elements and auxiliary data that encode the constraints of the constraint system.
+The prover generates a set of public parameters that enable the verifier to check the validity of the proof, without revealing any information about the input and output values. The public parameters consist of a set of group elements and auxiliary data that encode the constraints of the constraint system.
 
-    5. Proving key generation:
+5. Proving key generation:
 
-    The prover generates a proving key that enables them to construct a proof of correctness for any input and output values that satisfy the constraint system. The proving key consists of a set of group elements that encode the witness values of the constraint system, which are the values that satisfy the constraints.
+The prover generates a proving key that enables them to construct a proof of correctness for any input and output values that satisfy the constraint system. The proving key consists of a set of group elements that encode the witness values of the constraint system, which are the values that satisfy the constraints.
 
-    6. Proof construction:
+6. Proof construction:
 
-    The prover constructs a proof of correctness for the input and output values, using the proving key and the public parameters. The proof consists of a set of group elements that encode the intermediate values of the constraint system, and a set of auxiliary data that enable the verifier to check the consistency of the proof.
+The prover constructs a proof of correctness for the input and output values, using the proving key and the public parameters. The proof consists of a set of group elements that encode the intermediate values of the constraint system, and a set of auxiliary data that enable the verifier to check the consistency of the proof.
 
-    7. Proof verification:
+7. Proof verification:
 
-    The verifier checks the validity of the proof, using the public parameters and the proof. The verification process involves checking the consistency of the intermediate values, the satisfiability of the constraints, and the knowledge of the witness values.
+The verifier checks the validity of the proof, using the public parameters and the proof. The verification process involves checking the consistency of the intermediate values, the satisfiability of the constraints, and the knowledge of the witness values.
 
 If the proof is valid, the verifier is convinced that the prover knows the witness values of the constraint system and has performed the computation correctly, without revealing any information about the witness values or the input and output values. Zcash achieves zero-knowledge properties by using the R1CS constraint system and public key cryptography to encode the constraints and the witness values, and by using efficient cryptographic primitives such as the Groth16 proof system to construct and verify the proofs. The protocol is used in the Zcash cryptocurrency system to enable private transactions that hide the sender, recipient, and amount of the transaction.
  
@@ -95,11 +95,11 @@ The Fiat-Shamir transform is a non-interactive zero-knowledge proof that enables
 
 The protocol works as follows:
 
-    1. The prover selects a random number r and calculates a commitment value $\c = H(s || r)$, where s is the witness value.
-    2. The prover sends $\c$ to the verifier.
-    3. The verifier generates a challenge value $\e = H(c)$ and sends it to the prover.
-    4. The prover calculates the response value $\z = r + e*s$ and sends $\z$ to the verifier.
-    5. The verifier checks that $\c = H(s || (z - e * commitment_value))$, where $\commitment_value$ is a publicly known value.
+1. The prover selects a random number r and calculates a commitment value $\c = H(s || r)$, where s is the witness value.
+2. The prover sends $\c$ to the verifier.
+3. The verifier generates a challenge value $\e = H(c)$ and sends it to the prover.
+4. The prover calculates the response value $\z = r + e*s$ and sends $\z$ to the verifier.
+5. The verifier checks that $\c = H(s || (z - e * commitment_value))$, where $\commitment_value$ is a publicly known value.
 
 If the equation holds, the verifier is convinced that the prover knows the witness value $\s$ without revealing it.
 
@@ -110,12 +110,6 @@ $\sqrt{3x-1}+(1+x)^2$
 
 $$\sqrt{3x-1}+(1+x)^2$$
 
-```math
-\sqrt{3}
-
-c = H(s || (z - e * commitment_value))
-
-```
 
 ## Bulletproofs
 
@@ -197,33 +191,33 @@ Groth16 is a non-interactive zero-knowledge proof protocol that is commonly used
 
 The protocol works as follows:
 
-    1. Setup:
+1. Setup:
 
-    The prover and verifier agree on a set of elliptic curve parameters, including a prime order group $\G$ and a pairing function $\e$ that maps elements from $\G$ to the multiplicative group of a finite field. They also agree on a public statement that the prover wants to prove, such as the validity of a transaction or the possession of a private key.
+The prover and verifier agree on a set of elliptic curve parameters, including a prime order group $\G$ and a pairing function $\e$ that maps elements from $\G$ to the multiplicative group of a finite field. They also agree on a public statement that the prover wants to prove, such as the validity of a transaction or the possession of a private key.
 
-    2. Key generation:
+2. Key generation:
 
-    The prover generates a private key and a corresponding public key. The public key consists of two group elements, $\P$ and $\Q$, such that $\Q = kP$ for some secret scalar $\k$.
+The prover generates a private key and a corresponding public key. The public key consists of two group elements, $\P$ and $\Q$, such that $\Q = kP$ for some secret scalar $\k$.
 
-    3. Commitment:
+3. Commitment:
 
-    The prover commits to a witness value that satisfies the public statement, such as a transaction input and output or a private key value. The commitment consists of two group elements, $\C$ and $\D$, such that $\C = rP + W$ and $\D = rQ$, where $\r$ is a randomly chosen scalar and $\W$ is the witness value.
+The prover commits to a witness value that satisfies the public statement, such as a transaction input and output or a private key value. The commitment consists of two group elements, $\C$ and $\D$, such that $\C = rP + W$ and $\D = rQ$, where $\r$ is a randomly chosen scalar and $\W$ is the witness value.
 
-    4. Challenge:
+4. Challenge:
 
-    The verifier generates a random challenge value, $\c$, from a secure hash function applied to the public parameters and the commitment values, $\c = H(G, e, P, Q, C, D)$.
+The verifier generates a random challenge value, $\c$, from a secure hash function applied to the public parameters and the commitment values, $\c = H(G, e, P, Q, C, D)$.
 
-    5. Response:
+5. Response:
 
-    The prover calculates a response value, $\s$, based on the challenge value and the private key, $\s = r + kc$, where $\k$ is the private key scalar.
+The prover calculates a response value, $\s$, based on the challenge value and the private key, $\s = r + kc$, where $\k$ is the private key scalar.
 
-    6. Verification:
+6. Verification:
 
-    The verifier checks whether the commitment and response values satisfy the public statement, by verifying the following equations:
+The verifier checks whether the commitment and response values satisfy the public statement, by verifying the following equations:
 
-    $\e(C, P) = e(D, Q) + e(sP + cW, P)$
+$$\e(C, P) = e(D, Q) + e(sP + cW, P)$$
 
-    This equation ensures that the commitment values are valid and that the response value corresponds to the private key scalar and witness value. If the equation holds, the verifier is convinced that the prover knows the private key and the witness value, without revealing any information about them.
+This equation ensures that the commitment values are valid and that the response value corresponds to the private key scalar and witness value. If the equation holds, the verifier is convinced that the prover knows the private key and the witness value, without revealing any information about them.
 
 Groth16 achieves zero-knowledge properties by using the pairing function to hide the witness value in the commitment value, and by using the random challenge value to prevent the prover from reusing a previous response value. This protocol is widely used in privacy-preserving applications, such as anonymous credential systems and private transactions in cryptocurrency systems.
 
@@ -233,9 +227,9 @@ Aurora is a non-interactive zero-knowledge proof protocol designed to verify the
 
 The protocol works as follows:
 
-* The parties encrypt their data using a public key.
-* Each party generates a proof of correctness for their computation on the encrypted data.
-* The verifier checks the proofs to ensure that the computations were performed correctly without revealing any information about the data.
+1. The parties encrypt their data using a public key.
+2. Each party generates a proof of correctness for their computation on the encrypted data.
+3. The verifier checks the proofs to ensure that the computations were performed correctly without revealing any information about the data.
 
 Aurora achieves zero-knowledge properties through a combination of homomorphic encryption, zero-knowledge proofs, and other advanced cryptographic techniques.
     
