@@ -45,7 +45,6 @@ The Schnorr protocol is a non-interactive zero-knowledge proof, meaning that it 
 
 In summary, the Schnorr zero-knowledge proof protocol works by the prover committing to a secret value, the verifier selecting a random challenge, the prover responding with a value that incorporates both the challenge and the secret, and the verifier checking the validity of the proof using the commitment, the response, and the public key.
 
-It is well known that if $ax^2 + bx + c = 0$, then $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$.
 
 ## Zcash Protocol
 
@@ -97,13 +96,13 @@ The Fiat-Shamir transform is a non-interactive zero-knowledge proof that enables
 
 The protocol works as follows:
 
-1. The prover selects a random number r and calculates a commitment value $$c = H(s || r)$$, where s is the witness value.
-2. The prover sends $$c$$ to the verifier.
-3. The verifier generates a challenge value $$e = H(c)$$ and sends it to the prover.
-4. The prover calculates the response value $$z = r + e*s$$ and sends $$z$$ to the verifier.
-5. The verifier checks that $$c = H(s || (z - e * commitment_value))$$, where $$commitment_value$$ is a publicly known value.
+1. The prover selects a random number $r$ and calculates a commitment value $c = H(s || r)$, where $s$ is the witness value.
+2. The prover sends $c$ to the verifier.
+3. The verifier generates a challenge value $e = H(c)$ and sends it to the prover.
+4. The prover calculates the response value $z = r + e*s$ and sends $z$ to the verifier.
+5. The verifier checks that $c = H(s || (z - e * commitment_value))$, where $commitment_value$ is a publicly known value.
 
-If the equation holds, the verifier is convinced that the prover knows the witness value $$s$$ without revealing it.
+If the equation holds, the verifier is convinced that the prover knows the witness value $s$ without revealing it.
 
 
 ## Bulletproofs
