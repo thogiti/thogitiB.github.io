@@ -103,6 +103,9 @@ The protocol works as follows:
 
 If the equation holds, the verifier is convinced that the prover knows the witness value $\s$ without revealing it.
 
+
+some math markdown here
+
 ```math
 \sqrt{3}
 
