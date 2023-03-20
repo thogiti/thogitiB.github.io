@@ -103,6 +103,13 @@ The protocol works as follows:
 
 If the equation holds, the verifier is convinced that the prover knows the witness value $\s$ without revealing it.
 
+```math
+\sqrt{3}
+
+c = H(s || (z - e * commitment_value))
+
+```
+
 ## Bulletproofs
 
 Bulletproofs are non-interactive zero-knowledge proofs that are used to verify the validity of range proofs in cryptocurrency transactions. A range proof is a proof that a secret value lies within a certain range.
