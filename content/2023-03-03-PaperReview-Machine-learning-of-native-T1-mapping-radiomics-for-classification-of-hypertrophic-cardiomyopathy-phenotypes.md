@@ -55,10 +55,12 @@ The study comprised two arms, with the first arm comprised of 20 CMR scans with 
 
 Study Arm 2 included a total of 152 consecutive patients undergoing a CMR scan (period 2019–2020) and native T1 mapping as follows: individuals without evidence of structural heart disease on CMR (n = 30), patients with left ventricular hypertrophy (LVH, i.e. increased wall thickness ≥ 12 mm or increased LV mass index) of various causes (athletes, valvular heart disease, hypertension etc., n = 30), patients with known HCM (n = 61) and patients with known cardiac amyloidosis (n = 28). 
 
-The complete data pipeline, data sampling and ML workflow can be found ![here](https://github.com/thogiti/thogiti.github.io/blob/master/content/images/20230303/ML_workflow_and_data_sampling.jpeg)
+The complete data pipeline, data sampling and ML workflow can be found ![here](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230303/ML_workflow_and_data_sampling.jpeg)
 
 
-[here](https://github.com/thogiti/thogiti.github.io/blob/master/content/images/20230303/ML_workflow_and_data_sampling.jpeg)
+[here](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230303/ML_workflow_and_data_sampling.jpeg)
+
+
 
 ### [Data Extraction and Analysis](#data-extraction-and-analysis)
 
