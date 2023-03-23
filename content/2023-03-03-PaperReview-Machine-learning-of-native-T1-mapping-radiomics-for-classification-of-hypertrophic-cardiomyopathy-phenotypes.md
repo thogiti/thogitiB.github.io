@@ -10,6 +10,7 @@ tags = ["AI", "ML", "AI for Cardiomyopathy", "ML for Cardiomyopathy", "Cardiomyo
 The paper presents a machine learning approach for classification of hypertrophic cardiomyopathy phenotypes using native T1 mapping radiomics.
 
 # [Citation of the Paper](#citation-of-the-paper)
+
 Antonopoulos, A.S., Boutsikou, M., Simantiris, S. et al. Machine learning of native T1 mapping radiomics for classification of hypertrophic cardiomyopathy phenotypes. Sci Rep 11, 23596 (2021). https://doi.org/10.1038/s41598-021-02971-z
 
 
@@ -49,11 +50,16 @@ Overall, the introduction provides a detailed background and rationale for the s
 ## [Methods used in this paper](#methods-used-in-this-paper)
 
 ### [Study Population](#study-population)
+
 The study comprised two arms, with the first arm comprised of 20 CMR scans with available native T1 mapping randomly selected by their archive, which served for the purpose of stability assessment (i.e., inter-observer variability) of extracted radiomic features from T1 maps, which were included in further analysis in Study Arm 2. 
 
 Study Arm 2 included a total of 152 consecutive patients undergoing a CMR scan (period 2019–2020) and native T1 mapping as follows: individuals without evidence of structural heart disease on CMR (n = 30), patients with left ventricular hypertrophy (LVH, i.e. increased wall thickness ≥ 12 mm or increased LV mass index) of various causes (athletes, valvular heart disease, hypertension etc., n = 30), patients with known HCM (n = 61) and patients with known cardiac amyloidosis (n = 28). 
 
+The complete data pipeline, data sampling and ML workflow can be found [!here](//static/assets/images/20230303/ML%20workflow%20and%20data%20sampling.png)
+
+
 ### [Data Extraction and Analysis](#data-extraction-and-analysis)
+
 They extracted a total of 850 radiomic features from T1 maps by cardiac magnetic resonance (CMR) and explored their value in disease classification. They applied principal component analysis and unsupervised clustering in exploratory analysis, and then machine learning for feature selection of the best radiomic features that maximized the diagnostic value for cardiac disease classification.
 
 They used the following steps to process the data:
