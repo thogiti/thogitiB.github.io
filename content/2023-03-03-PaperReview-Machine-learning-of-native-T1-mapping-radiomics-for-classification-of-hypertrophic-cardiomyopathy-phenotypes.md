@@ -15,6 +15,7 @@ Antonopoulos, A.S., Boutsikou, M., Simantiris, S. et al. Machine learning of nat
 
 # [FAQs](#faqs)
 
+
 ## [Explain Abstract of this paper in simple terms](#explain-abstract-of-this-paper-in-simple-terms)
 
 The paper explores the use of machine learning techniques to classify hypertrophic cardiomyopathy (HCM) phenotypes using radiomic features of the left ventricle. Radiomic features are mathematical representations of the texture and intensity of medical images. The study found that these features are useful in identifying different HCM phenotypes, which may have important implications for diagnosis and treatment of the disease.
