@@ -52,6 +52,8 @@ The authors used a logistic regression model as the reference model, which inclu
 
 The performance of the machine learning models was evaluated using measures such as sensitivity, specificity, and the area under the receiver-operating-characteristic curve (AUC-ROC). The results showed that all four machine learning models outperformed the reference model in predicting adverse cardiac events in patients with HCM. The elastic net regression model had the highest AUC-ROC of 0.93, compared to 0.79 for the reference model. The authors concluded that machine learning methods have the potential to enhance risk stratification and improve patient outcomes in HCM.
 
+
+
 ### [Study Population](#study-population)
 
 The study population in this paper consisted of 183 adults with hypertrophic cardiomyopathy (HCM). The study design was a prospective cohort study, which followed up the patients for a median of 2.2 years to evaluate the use of machine learning methods for predicting adverse cardiac events in patients with HCM.
@@ -62,13 +64,23 @@ The data extraction in this paper involved collecting clinical and demographic d
 
 The analysis in this paper involved the use of machine learning methods to develop predictive models for adverse cardiac events in patients with HCM. The authors used a logistic regression model as the reference model and developed four machine learning models using different algorithms, including elastic net regression, support vector machines, random forest, and gradient boosting. The performance of the models was evaluated using measures such as sensitivity, specificity, and the area under the receiver-operating-characteristic curve (AUC-ROC).
 
+
+The baseline clinical characteristics can be found ![clinical characteristics](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230304/Baseline_clinical_characteristics.jpeg)
+
+
 ## [Results of the paper](#results-of-the-paper)
 
 The results of the paper showed that all four machine learning models outperformed the reference model in predicting adverse cardiac events in patients with HCM. The elastic net regression model had the highest AUC-ROC of 0.93, compared to 0.79 for the reference model. The sensitivity and specificity of the elastic net regression model were 88% and 84%, respectively. The majority of the outcome events (85%) were heart transplants. The authors concluded that machine learning methods have the potential to enhance risk stratification and improve patient outcomes in HCM.
 
+The predictive performance analysis can be found ![predictive performance analysis](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230304/Predictive_performance_of_ML_models.jpeg)
+
+
 ## [Conclusions from the paper](#conclusions-from-the-paper)
 
 The paper concluded that machine learning methods have the potential to improve risk stratification and predict adverse cardiac events in patients with hypertrophic cardiomyopathy (HCM). The study found that the machine learning models outperformed the conventional logistic regression model in predicting adverse cardiac events. The elastic net regression model had the highest predictive accuracy, with an AUC-ROC of 0.93, sensitivity of 88%, and specificity of 84%. The authors suggest that these modern machine learning methods may enhance identification of high-risk HCM subpopulations and improve patient outcomes.
+
+The confusion matrix can be found ![confusion matrix](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230304/Confusion_matrix.jpeg)
+
 
 ## [Limitations of this paper](#limitations-of-this-paper)
 
@@ -144,6 +156,8 @@ Overall, these improvements to the study design could help to further advance th
 
 In this research paper, the criteria for variable selection were based on a combination of random forest classification and a priori knowledge. The random forest classification method was used to identify the most important predictors of adverse cardiac events in patients with HCM, while a priori knowledge was used to select additional predictors that are known to be clinically relevant in HCM. Specifically, the authors identified 20 predictive characteristics based on these criteria, which were then used to develop the machine learning models. Overall, the combination of random forest classification and a priori knowledge allowed for the selection of a comprehensive set of predictors that are both statistically significant and clinically relevant for predicting adverse cardiac events in patients with HCM.
 
+The top predictors can be found ![top predictor features](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230304/Top_predictor_features.jpeg)
+
 ## [Can you explain the process of variable selection in more detail, and how it impacted the results of the study?](#can-you-explain-the-process-of-variable-selection-in-more-detail-and-how-it-impacted-the-results-of-the-study)
 
 In this study, the authors used a combination of random forest classification and a priori knowledge to select the variables that were most predictive of adverse cardiac events in patients with hypertrophic cardiomyopathy (HCM). Random forest classification is a machine learning method that can identify the most important predictors of an outcome by constructing a large number of decision trees and aggregating their results. A priori knowledge refers to existing knowledge about the disease and its risk factors that can be used to guide variable selection.
@@ -166,6 +180,8 @@ The machine learning models outperformed the reference model in predicting adver
 
 These findings have implications for clinical practice as they suggest that machine learning methods may be useful in identifying high-risk subpopulations of patients with hypertrophic cardiomyopathy. This could help clinicians to tailor treatment plans and interventions to individual patients based on their predicted risk of adverse events. However, further research is needed to validate these findings and to determine the optimal use of machine learning methods in clinical practice.
 
+The decision curve analysis of the models can be found ![decision curve analysis of the models](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230304/Decision_curve_analysis.jpeg)
+
 
 ## [Can you explain the difference between sensitivity and specificity in the context of the predictive accuracy of the reference model and the machine learning models?](#can-you-explain-the-difference-between-sensitivity-and-specificity-in-the-context-of-the-predictive-accuracy-of-the-reference-model-and-the-machine-learning-models)
 
@@ -175,6 +191,9 @@ Here is the difference between sensitivity and specificity in the context of the
 - Specificity is the proportion of true negative cases that are correctly identified by the model. In the context of this paper, specificity refers to the proportion of patients who did not experience an adverse cardiac event and were correctly identified as low-risk by the model.
 
 The machine learning models had higher sensitivity and specificity compared to the reference model, indicating that they were better at correctly identifying both high-risk and low-risk patients. This suggests that the machine learning models may be more effective at predicting adverse cardiac events in patients with hypertrophic cardiomyopathy compared to conventional risk stratification methods.
+
+The sensitivity analysis of the ML models can be found ![sensitivity analysis](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230304/Sensitivity_Performance_of_ML_models.jpeg)
+
 
 ## [How long was the median follow-up period for the cohort of adults with hypertrophic cardiomyopathy, and what was the percentage of patients who developed an outcome event during this period?](#how-long-was-the-median-follow-up-period-for-the-cohort-of-adults-with-hypertrophic-cardiomyopathy-and-what-was-the-percentage-of-patients-who-developed-an-outcome-event-during-this-period)
 
@@ -195,6 +214,9 @@ The data sampling in this study was conducted using a prospective cohort design.
 - Availability of clinical and laboratory data at the time of enrollment
 
 Patients with a history of heart transplantation or septal myectomy were excluded from the cohort. Overall, 183 patients with HCM were included in the study.
+
+The primary outcome events modeled can be found ![primary outcome events](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230304/Primary_outcome_events.jpeg)
+
 
 ## [Can these modern machine learning methods be applied to other cardiovascular diseases to enhance risk stratification?](#can-these-modern-machine-learning-methods-be-applied-to-other-cardiovascular-diseases-to-enhance-risk-stratification)
 
