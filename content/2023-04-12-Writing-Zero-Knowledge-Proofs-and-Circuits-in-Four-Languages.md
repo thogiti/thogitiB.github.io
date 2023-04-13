@@ -14,7 +14,7 @@ A.B = a1*b1 + a2*b2 + ... + aN*bN
 ```
 # Process Flow of a Zero Knowledge Proof
 
-The below diagram describes a typical process flow in creating a Zero Knowledge Proof system. ![Zero Knowledge Proof Process Flow](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230313/zkp-process-flow-diagram-2023-04-13-150046.jpeg)
+The below diagram describes a typical process flow in creating a Zero Knowledge Proof system. ![Zero Knowledge Proof Process Flow](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230313/zkp-process-flow-diagram-2023-04-13-150046.png)
 
 
 # Circom Circuit - Dotproduct of Two Vectors
