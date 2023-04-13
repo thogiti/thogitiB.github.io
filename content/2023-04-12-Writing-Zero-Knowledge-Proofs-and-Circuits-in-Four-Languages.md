@@ -17,7 +17,8 @@ A.B = a1*b1 + a2*b2 + ... + aN*bN
 The below diagram describes a typical process flow in creating a Zero Knowledge Proof system. ![Zero Knowledge Proof Process Flow](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230313/zkp-process-flow-diagram-2023-04-13-150046.png)
 
 
-# [Circom Circuit - Dotproduct of Two Vectors](#circom-circuit---dotproduct-of-two-vectors)
+# [Circom Circuit for Dotproduct of Two Vectors](#circom-circuit-for-dotproduct-of-two-vectors)
+In this example we will investigate how to write a Circom circuit for the dotproduct of two vectors, create a Zero Knowledge Proof and verify the proof with zero knowledge.
 
 ## [Circom Setup and Installation](#circom-setup-and-installation)
 
@@ -121,8 +122,12 @@ In the above code, we define the two input signals `A` and `B` of size `4`, and 
 
 # [Halo2 Circuit - Dotproduct of Two Vectors](#halo2-circuit---dotproduct-of-two-vectors)
 
+In this example we will investigate how to write a Halo2 circuit for the dotproduct of two vectors, create a Zero Knowledge Proof and verify the proof with zero knowledge.
+
+
 ## [Halo2 Setup and Installation](#halo2-setup-and-installation)
 
+Halo2 requires the latest Rust. You can find more about developing using Halo2 at the official [halo2 documentation](https://zcash.github.io/halo2/index.html).
 
 ## [Implementing Halo2 Circuit for the Dotproduct of Two Vectors](#implementing-halo2-circuit-for-the-dotproduct-of-two-vectors)
 
