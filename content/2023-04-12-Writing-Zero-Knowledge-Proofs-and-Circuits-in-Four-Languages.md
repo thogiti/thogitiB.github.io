@@ -7,17 +7,20 @@ tags = ["zk", "ZKP", "Writing Zero Knowledge Proofs", "ZKP dotproduct", " Dotpro
 
 # Overview
 
-We will implement dot product of two vectors of size N using Zero Knowledge Proofs in Circom, Halo2, Noir. According to ![k12.libretexts.org](https://k12.libretexts.org/Bookshelves/Mathematics/Precalculus/07%3A_Vectors/7.04%3A_Dot_Product_and_Angle_Between_Two_Vectors), the dot product of two vectors A and B of size N is given by:
+We will implement dot product of two vectors of size N using Zero Knowledge Proofs in Circom, Halo2, Noir. According to [k12.libretexts.org](https://k12.libretexts.org/Bookshelves/Mathematics/Precalculus/07%3A_Vectors/7.04%3A_Dot_Product_and_Angle_Between_Two_Vectors), the dot product of two vectors A and B of size N is given by:
 
 ```
 A.B = a1*b1 + a2*b2 + ... + aN*bN
 ```
 
+$A.B = a1*b1 + a2*b2 + ... + aN*bN$
+
+
 # Circom Circuit - Dotproduct of Two Vectors
 
 To implement this in Circom, we can follow the steps below:
 
-1. Define the two vectors A and B of size N.
+1. Define the two vectors $A$ and $B$ of size $N$.
 2. Define a variable to store the dot product.
 3. Calculate the dot product by multiplying the corresponding components of A and B and adding them together.
 4. Output the dot product.
