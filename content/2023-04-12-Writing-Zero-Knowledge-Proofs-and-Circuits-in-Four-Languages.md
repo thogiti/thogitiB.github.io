@@ -48,10 +48,10 @@ You can install <code>snarkjs</code> with the following command:
 
 
 You can install `snarkjs` with the following command:
-```npm install -g snarkjs```
+```shell
+npm install -g snarkjs
 
-You can install ```snarkjs``` with the following command:
-```npm install -g snarkjs```
+```
 
 
 ## Implementation
