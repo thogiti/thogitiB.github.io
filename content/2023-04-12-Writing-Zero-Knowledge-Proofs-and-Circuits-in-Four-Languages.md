@@ -13,7 +13,7 @@ We will implement dot product of two vectors of size N using Zero Knowledge Proo
 A.B = a1*b1 + a2*b2 + ... + aN*bN
 ```
 
-$A.B = a1*b1 + a2*b2 + ... + aN*bN$
+$$ A.B = a1*b1 + a2*b2 + ... + aN*bN $$
 
 
 # Circom Circuit - Dotproduct of Two Vectors
@@ -180,7 +180,10 @@ We define the input signals a and b using meta.advice_column(), which creates a 
 
 We constrain the input signals to the values provided using meta.enable_constant(), which constrains the advice column to a constant value. We then constrain the multiplication signals using meta.multiply(), which constrains the product of the corresponding components of a and b to the corresponding multiplication signal. We then constrain the addition signals using meta.add(), which constrains the sum of the corresponding multiplication signals to the corresponding addition signal. Finally, we constrain the output signal to the last addition signal using meta.copy(), and constrain it to the value provided using meta.constrain_equal().
 
-To use this circuit, we can instantiate it with the values for a and b, and an empty vector for result. We can then create a proof using Prover::prove(), and verify the proof using Verifier::verify(). Here's an example:
+To use this circuit, we can instantiate it with the values for `a` and `b`, and an empty vector for `result`. We can then create a proof using `Prover::prove()`, and verify the proof using `Verifier::verify()`. Here's an example:
+
+To use this circuit, we can instantiate it with the values for $a$ and $b$, and an empty vector for $result$. We can then create a proof using $ Prover::prove() $, and verify the proof using $ Verifier::verify() $. Here's an example:
+
 
 ```rust
 
