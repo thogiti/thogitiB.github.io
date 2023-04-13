@@ -24,33 +24,35 @@ The complete and latest documentation for installing the Circom ecosystem can be
 ### Install dependencies
 
 The Circom compiler is written in Rust. To have Rust available in your system, you can install <code>rustup</code>. If you’re using Linux or macOS, open a terminal and enter the following command:
+```shell
+curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+```
 
-<code>curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh</code>
-
-You also need the latest version of <code>Node.js</code> (or <code>yarn</code>). You can install them from [here](https://nodejs.org/en/download).
+You also need the latest version of `Node.js` (or <code>yarn</code>). You can install them from [here](https://nodejs.org/en/download).
 
 ### Install circom
 First, clone the circom repository: 
-<code>git clone https://github.com/iden3/circom.git</code>
+```shell
+git clone https://github.com/iden3/circom.git
+```
 
 Enter the circom directory and use the cargo build to compile:
-<code>cargo build --release</code>
+```shell
+cargo build --release
+```
 
-The installation takes around 3 minutes to be completed. When the command successfully finishes, it generates the circom binary in the directory target/release. You can install this binary as follows:
-<code>cargo install --path circom</code>
+The installation takes around 3 minutes to be completed. When the command successfully finishes, it generates the circom binary in the directory `target/release`. You can install this binary as follows:
+```shell
+cargo install --path circom
+```
 
 The previous command will install the circom binary in the directory <code>$HOME/.cargo/bin</code>. 
 
 ### Install snarkjs 
 
-You can install <code>snarkjs</code> with the following command:
-<code>npm install -g snarkjs</code>
-
-
 You can install `snarkjs` with the following command:
 ```shell
 npm install -g snarkjs
-
 ```
 
 
