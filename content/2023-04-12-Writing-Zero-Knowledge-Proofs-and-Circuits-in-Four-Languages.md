@@ -17,6 +17,18 @@ A.B = a1*b1 + a2*b2 + ... + aN*bN
 The below diagram describes a typical process flow in creating a Zero Knowledge Proof system. ![Zero Knowledge Proof Process Flow](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230313/zkp-process-flow-diagram-2023-04-13-150046.png)
 
 
+To create zero-knowledge proofs and circuits using different libraries like Circom, Noir, and Halo2, follow these steps:
+
+1. Define the problem: Identify the problem you want to prove using zero-knowledge proofs. For instance, prove that you are a member of top 100 Uniswap liquidity provider without revealing any info or that you identified a critical bug in a smart contract without revealing your info.
+2. Choose the appropriate ZKP library: Select the library that suits your needs, such as Circom, Noir, or Halo2 or others. Each library has its own set of features and trade-offs:
+    * Circom: A domain-specific language (DSL) designed for creating circuits in a simple and intuitive way. It's useful for creating zk-SNARK circuits. For more details on Circom, visit the [official documentation](https://docs.circom.io/).
+    * Noir: A high-level, general-purpose language for creating zero-knowledge proofs. It's easy to understand and has a growing ecosystem. For more details on Noir, visit the [official documentation](https://noir-lang.org/).
+    * Halo2: A library for constructing zk-SNARKs without a trusted setup, providing a more secure and efficient alternative to some other libraries. For more details on Halo2, visit the [official documentation](https://zcash.github.io/halo2/index.html).
+3. Create the circuit: Design the circuit that represents the problem using the chosen library. This involves defining the inputs, outputs, and constraints that must be satisfied for the proof to be valid.
+4. Generate the proof: Using the library's tools, generate the zero-knowledge proof that demonstrates the statement is true without revealing any additional information.
+5. Verify the proof: Implement the verification process to ensure that the proof is valid and the statement is true, without learning any additional information.
+
+
 # [Circom Circuit for Dotproduct of Two Vectors](#circom-circuit-for-dotproduct-of-two-vectors)
 In this example we will investigate how to write a Circom circuit for the dotproduct of two vectors, create a Zero Knowledge Proof and verify the proof with zero knowledge.
 
