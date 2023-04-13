@@ -120,7 +120,7 @@ template Main() {
 In the above code, we define the two input signals `A` and `B` of size `4`, and an output signal `result`. We then instantiate the `DotProduct` template with a size of `4`, and connect its `A` and `B` signals to the corresponding input signals. We also connect its `result` signal to our output signal. Finally, we print the `result` signal.
 
 
-# [Halo2 Circuit - Dotproduct of Two Vectors](#halo2-circuit---dotproduct-of-two-vectors)
+# [Halo2 Circuit for Dotproduct of Two Vectors](#halo2-circuit-for-dotproduct-of-two-vectors)
 
 In this example we will investigate how to write a Halo2 circuit for the dotproduct of two vectors, create a Zero Knowledge Proof and verify the proof with zero knowledge.
 
