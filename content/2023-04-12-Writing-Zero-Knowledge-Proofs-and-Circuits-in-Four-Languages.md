@@ -59,7 +59,7 @@ npm install -g snarkjs
 ```
 
 
-## [Implementing Circom Circuit for the Dotproduct of Two Vectors](#implementing-circom-circuit)
+## [Implementing Circom Circuit for the Dotproduct of Two Vectors](#implementing-circom-circuit-for-the-dotproduct-of-two-vectors)
 
 To implement the dotproduct of two vectors in Circom, we can follow the steps below:
 
@@ -124,7 +124,7 @@ In the above code, we define the two input signals `A` and `B` of size `4`, and 
 ## [Halo2 Setup and Installation](#halo2-setup-and-installation)
 
 
-## [Implementing Halo2 Circuit for the Dotproduct of Two Vectors](#implementing-halo2-circuit)
+## [Implementing Halo2 Circuit for the Dotproduct of Two Vectors](#implementing-halo2-circuit-for-the-dotproduct-of-two-vectors)
 
 To implement the dotproduct of two vectors in Halo2, we first need to define our circuit in Halo2. Here is the code for this:
 
@@ -277,7 +277,7 @@ In this code, we define the input signals `a` and `b` and the output signal `res
 
 Note that in this example, we use `MockProver` to generate a proof and verify it. In a real-world application, we would use a trusted setup to generate the proving and verifying keys, and use those keys to generate and verify proofs. We would also need to ensure that the inputs and outputs of the circuit are properly encrypted and decrypted to prevent information leakage. However, these details are beyond the scope of this example.
 
-## [What is a trusted setup and why is it necessary in a real-world application?](#what-is-a-trusted-setup)
+## [What is a trusted setup and why is it necessary in a real-world application?](#what-is-a-trusted-setup-and-why-is-it-necessary-in-a-real-world-application)
 
 A trusted setup is a process used in some zero-knowledge proof systems, including Halo2, to generate the proving and verifying keys that are used to generate and verify proofs. The trusted setup involves a group of trusted individuals or entities who collectively generate and destroy a secret value that is used to generate the keys. The secret value is destroyed after the keys are generated, so that no one can learn it and use it to generate fake proofs.
 
@@ -290,5 +290,4 @@ Once the trusted setup is complete, the proving and verifying keys are distribut
 In summary, a trusted setup is a process used to generate the proving and verifying keys for a zero-knowledge proof system, and is necessary in a real-world application to ensure that the keys are generated in a way that is secure and unbiased.
 
 
-# [Noir Circuit - Dotproduct of Two Vectors](#noir-circuit---dotproduct-of-two-vectors)
 
