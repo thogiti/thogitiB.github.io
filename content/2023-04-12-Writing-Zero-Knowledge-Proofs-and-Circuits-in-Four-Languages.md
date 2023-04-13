@@ -7,7 +7,7 @@ tags = ["zk", "ZKP", "Writing Zero Knowledge Proofs", "ZKP dotproduct", " Dotpro
 
 # Overview
 
-We will implement dot product of two vectors of size N using Zero Knowledge Proofs in Circom, Halo2, Noir. According to [k12.libretexts.org](https://k12.libretexts.org/Bookshelves/Mathematics/Precalculus/07%3A_Vectors/7.04%3A_Dot_Product_and_Angle_Between_Two_Vectors), the dot product of two vectors A and B of size N is given by:
+We will implement dot product of two vectors of size $N$ using Zero Knowledge Proofs in Circom, Halo2, Noir. According to [k12.libretexts.org](https://k12.libretexts.org/Bookshelves/Mathematics/Precalculus/07%3A_Vectors/7.04%3A_Dot_Product_and_Angle_Between_Two_Vectors), the dot product of two vectors $A$ and $B$ of size $N$ is given by:
 
 ```
 A.B = a1*b1 + a2*b2 + ... + aN*bN
@@ -16,7 +16,39 @@ A.B = a1*b1 + a2*b2 + ... + aN*bN
 
 # Circom Circuit - Dotproduct of Two Vectors
 
-To implement this in Circom, we can follow the steps below:
+## Setup and Installation
+
+The complete and latest documentation for installing the Circom ecosystem can be found [here](https://docs.circom.io/getting-started/installation/). The older versions of Circom can be also installed from the [old circom repository](https://github.com/iden3/circom_old).
+
+
+### Install dependencies
+
+The Circom compiler is written in Rust. To have Rust available in your system, you can install <code>rustup</code>. If you’re using Linux or macOS, open a terminal and enter the following command:
+
+<code>curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh</code>
+
+You also need the latest version of <code>Node.js</code> (or <code>yarn</code>). You can install them from [here](https://nodejs.org/en/download).
+
+### Install circom
+First, clone the circom repository: 
+<code>git clone https://github.com/iden3/circom.git</code>
+
+Enter the circom directory and use the cargo build to compile:
+<code>cargo build --release</code>
+
+The installation takes around 3 minutes to be completed. When the command successfully finishes, it generates the circom binary in the directory target/release. You can install this binary as follows:
+<code>cargo install --path circom</code>
+
+The previous command will install the circom binary in the directory <code>$HOME/.cargo/bin</code>. 
+
+### Install snarkjs 
+
+You can install <code>snarkjs</code> with the following command:
+<code>npm install -g snarkjs</code>
+
+## Implementation
+
+To implement the dotproduct of two vectors in Circom, we can follow the steps below:
 
 1. Define the two vectors $A$ and $B$ of size $N$.
 2. Define a variable to store the dot product.
@@ -141,7 +173,8 @@ impl<'a> Circuit<SimpleFloorPlanner> for DotProduct<'a> {
             meta.enable_constant(b[i], value.into())?;
         }
 
-        // Constrain the multiplication signals to the product of the corresponding components of A and B
+        // Constrain the multiplication signals to the product 
+        // of the corresponding components of A and B
         for i in 0..N {
             meta.multiply(
                 Rotation::prev(),
@@ -150,7 +183,8 @@ impl<'a> Circuit<SimpleFloorPlanner> for DotProduct<'a> {
             )?;
         }
 
-        // Constrain the addition signals to the sum of the corresponding multiplication signals
+        // Constrain the addition signals to the sum of the 
+        // corresponding multiplication signals
         for i in 0..N - 1 {
             meta.add(
                 Rotation::cur(),
@@ -179,9 +213,9 @@ impl<'a> Circuit<SimpleFloorPlanner> for DotProduct<'a> {
 
 In this code, we define our circuit struct $DotProduct$, which contains the input signals $a$ and $b$, and an output signal $result$. We also implement the $Circuit$ trait for our circuit, which defines how the circuit should be constructed and constrained.
 
-We define the input signals $a$ and $b$ using $meta.advice_column()$, which creates a new advice column in the circuit. We also define the intermediate signals $mul$ and $add$, which will be used to perform the multiplication and addition operations. Finally, we define the output signal $result$.
+We define the input signals $a$ and $b$ using $meta.advice\_column()$, which creates a new advice column in the circuit. We also define the intermediate signals $mul$ and $add$, which will be used to perform the multiplication and addition operations. Finally, we define the output signal $result$.
 
-We constrain the input signals to the values provided using $meta.enable_constant()$, which constrains the advice column to a constant value. We then constrain the multiplication signals using $meta.multiply()$, which constrains the product of the corresponding components of $a$ and $b$ to the corresponding multiplication signal. We then constrain the addition signals using $meta.add()$, which constrains the sum of the corresponding multiplication signals to the corresponding addition signal. Finally, we constrain the output signal to the last addition signal using $meta.copy()$, and constrain it to the value provided using $meta.constrain_equal()$.
+We constrain the input signals to the values provided using $meta.enable_constant()$, which constrains the advice column to a constant value. We then constrain the multiplication signals using $meta.multiply()$, which constrains the product of the corresponding components of $a$ and $b$ to the corresponding multiplication signal. We then constrain the addition signals using $meta.add()$, which constrains the sum of the corresponding multiplication signals to the corresponding addition signal. Finally, we constrain the output signal to the last addition signal using $meta.copy()$, and constrain it to the value provided using $meta.constrain\_equal()$.
 
 To use this circuit, we can instantiate it with the values for $a$ and $b$, and an empty vector for $result$. We can then create a proof using $ Prover::prove() $, and verify the proof using $ Verifier::verify() $. Here's an example:
 
