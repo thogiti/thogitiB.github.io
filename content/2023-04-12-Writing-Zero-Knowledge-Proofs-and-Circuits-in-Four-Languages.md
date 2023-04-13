@@ -13,13 +13,6 @@ We will implement dot product of two vectors of size N using Zero Knowledge Proo
 A.B = a1*b1 + a2*b2 + ... + aN*bN
 ```
 
-$\A.B = a1*b1 + a2*b2 + ... + aN*bN$
-
-
-```math
-A.B = a1*b1 + a2*b2 + ... + aN*bN
-```
-
 
 # Circom Circuit - Dotproduct of Two Vectors
 
@@ -27,7 +20,7 @@ To implement this in Circom, we can follow the steps below:
 
 1. Define the two vectors $A$ and $B$ of size $N$.
 2. Define a variable to store the dot product.
-3. Calculate the dot product by multiplying the corresponding components of A and B and adding them together.
+3. Calculate the dot product by multiplying the corresponding components of $A$ and $B$ and adding them together.
 4. Output the dot product.
 
 Here's what the code would look like in Circom:
@@ -55,13 +48,13 @@ template DotProduct(N: number) {
 
 ```
 
-In the above code, we define two input signals `A` and `B` of size `N`, which represent the two vectors. We also define an output signal result, which will store the dot product.
+In the above code, we define two input signals $A$ and $B$ of size $N$, which represent the two vectors. We also define an output signal $result$, which will store the dot product.
 
-We then define two components, `multiply` and `add`. The `multiply` component multiplies the corresponding components of `A` and `B`, while the `add` component adds them together. We use a loop to connect the outputs of the `multiply` components to the inputs of the `add` components. We also use a loop to connect the outputs of the `add` components to each other, until we reach the final output signal `result`.
+We then define two components, $multiply$ and $add$. The $multiply$ component multiplies the corresponding components of $A$ and $B$, while the $add$ component adds them together. We use a loop to connect the outputs of the $multiply$ components to the inputs of the $add$ components. We also use a loop to connect the outputs of the $add$ components to each other, until we reach the final output signal $result$.
 
-To use this template, we can simply instantiate it and provide values for the `A` and `B` signals:
+To use this template, we can simply instantiate it and provide values for the $A$ and $B$ signals:
 
-```python
+```circom
 
 template Main() {
     signal A[4] = [3, -5, 4, 2];
@@ -78,10 +71,15 @@ template Main() {
 
 ```
 
-In the above code, we define the two input signals `A` and `B` of size `4`, and an output signal `result`. We then instantiate the `DotProduct` template with a size of `4`, and connect its `A` and `B` signals to the corresponding input signals. We also connect its `result` signal to our output signal. Finally, we print the `result` signal.
+In the above code, we define the two input signals $A$ and $B$ of size $4$, and an output signal $result$. We then instantiate the $DotProduct$ template with a size of $4$, and connect its $A$ and $B$ signals to the corresponding input signals. We also connect its $result$ signal to our output signal. Finally, we print the $result$ signal.
 
 
 # Halo2 Circuit - Dotproduct of Two Vectors
+
+## Setup and Installation
+
+
+## Implementation
 
 To implement the dotproduct of two vectors in Halo2, we first need to define our circuit in Halo2. Here is the code for this:
 
@@ -179,13 +177,11 @@ impl<'a> Circuit<SimpleFloorPlanner> for DotProduct<'a> {
 
 ```
 
-In this code, we define our circuit struct DotProduct, which contains the input signals a and b, and an output signal result. We also implement the Circuit trait for our circuit, which defines how the circuit should be constructed and constrained.
+In this code, we define our circuit struct $DotProduct$, which contains the input signals $a$ and $b$, and an output signal $result$. We also implement the $Circuit$ trait for our circuit, which defines how the circuit should be constructed and constrained.
 
-We define the input signals a and b using meta.advice_column(), which creates a new advice column in the circuit. We also define the intermediate signals mul and add, which will be used to perform the multiplication and addition operations. Finally, we define the output signal result.
+We define the input signals $a$ and $b$ using $meta.advice_column()$, which creates a new advice column in the circuit. We also define the intermediate signals $mul$ and $add$, which will be used to perform the multiplication and addition operations. Finally, we define the output signal $result$.
 
-We constrain the input signals to the values provided using meta.enable_constant(), which constrains the advice column to a constant value. We then constrain the multiplication signals using meta.multiply(), which constrains the product of the corresponding components of a and b to the corresponding multiplication signal. We then constrain the addition signals using meta.add(), which constrains the sum of the corresponding multiplication signals to the corresponding addition signal. Finally, we constrain the output signal to the last addition signal using meta.copy(), and constrain it to the value provided using meta.constrain_equal().
-
-To use this circuit, we can instantiate it with the values for `a` and `b`, and an empty vector for `result`. We can then create a proof using `Prover::prove()`, and verify the proof using `Verifier::verify()`. Here's an example:
+We constrain the input signals to the values provided using $meta.enable_constant()$, which constrains the advice column to a constant value. We then constrain the multiplication signals using $meta.multiply()$, which constrains the product of the corresponding components of $a$ and $b$ to the corresponding multiplication signal. We then constrain the addition signals using $meta.add()$, which constrains the sum of the corresponding multiplication signals to the corresponding addition signal. Finally, we constrain the output signal to the last addition signal using $meta.copy()$, and constrain it to the value provided using $meta.constrain_equal()$.
 
 To use this circuit, we can instantiate it with the values for $a$ and $b$, and an empty vector for $result$. We can then create a proof using $ Prover::prove() $, and verify the proof using $ Verifier::verify() $. Here's an example:
 
@@ -230,9 +226,9 @@ fn main() {
 
 ```
 
-In this code, we define the input signals a and b and the output signal result. We then instantiate the DotProduct circuit with these values. We create a proof using MockProver::run(), which simulates the circuit execution and generates a proof. We then verify the proof using Verifier::new() and verify(). Finally, we print the result.
+In this code, we define the input signals $a$ and $b$ and the output signal $result$. We then instantiate the $DotProduct$ circuit with these values. We create a proof using $MockProver::run()$, which simulates the circuit execution and generates a proof. We then verify the proof using $Verifier::new()$ and $verify()$. Finally, we print the $result$.
 
-Note that in this example, we use MockProver to generate a proof and verify it. In a real-world application, we would use a trusted setup to generate the proving and verifying keys, and use those keys to generate and verify proofs. We would also need to ensure that the inputs and outputs of the circuit are properly encrypted and decrypted to prevent information leakage. However, these details are beyond the scope of this example.
+Note that in this example, we use $MockProver$ to generate a proof and verify it. In a real-world application, we would use a trusted setup to generate the proving and verifying keys, and use those keys to generate and verify proofs. We would also need to ensure that the inputs and outputs of the circuit are properly encrypted and decrypted to prevent information leakage. However, these details are beyond the scope of this example.
 
 ## What is a trusted setup and why is it necessary in a real-world application?
 
