@@ -2,38 +2,38 @@
 title = "Writing Zero Knowledge Proofs and Circuits in Four Different Languages - Dotproduct of Two Vectors"
 
 [taxonomies]
-tags = ["zk", "ZKP", "Writing Zero Knowledge Proofs", "ZKP dotproduct", " Dotproduct of Two Vectors in ZKP", "Circom", "Halo2"]
+tags = ["zk", "ZKP", "Writing Zero Knowledge Proofs", "ZKP dotproduct", " Dotproduct of Two Vectors in ZKP", "Circom", "Halo2", "Noir"]
 +++
 
 # Overview
 
-We will implement dot product of two vectors of size $N$ using Zero Knowledge Proofs (ZKP) in Circom, Halo2, Noir. According to [k12.libretexts.org](https://k12.libretexts.org/Bookshelves/Mathematics/Precalculus/07%3A_Vectors/7.04%3A_Dot_Product_and_Angle_Between_Two_Vectors), the dot product of two vectors $A$ and $B$ of size $N$ is given by:
+We will implement dot product of two vectors of size `N` using Zero Knowledge Proofs (ZKP) in Circom, Halo2, Noir. According to [k12.libretexts.org](https://k12.libretexts.org/Bookshelves/Mathematics/Precalculus/07%3A_Vectors/7.04%3A_Dot_Product_and_Angle_Between_Two_Vectors), the dot product of two vectors `A` and `B` of size `N` is given by:
 
 ```
 A.B = a1*b1 + a2*b2 + ... + aN*bN
 ```
-# Process Flow of a Zero Knowledge Proof
+# [Process Flow of a Zero Knowledge Proof](#process-flow-of-a-zero-knowledge-proof)
 
 The below diagram describes a typical process flow in creating a Zero Knowledge Proof system. ![Zero Knowledge Proof Process Flow](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230313/zkp-process-flow-diagram-2023-04-13-150046.png)
 
 
-# Circom Circuit - Dotproduct of Two Vectors
+# [Circom Circuit - Dotproduct of Two Vectors](#circom-circuit---dotproduct-of-two-vectors)
 
-## Setup and Installation
+## [Circom Setup and Installation](#circom-setup-and-installation)
 
 The complete and latest documentation for installing the Circom ecosystem can be found [here](https://docs.circom.io/getting-started/installation/). The older versions of Circom can be also installed from the [old circom repository](https://github.com/iden3/circom_old).
 
 
-### Install dependencies
+### [Circom Install dependencies](#circom-install-dependencies)
 
-The Circom compiler is written in Rust. To have Rust available in your system, you can install <code>rustup</code>. If you’re using Linux or macOS, open a terminal and enter the following command:
+The Circom compiler is written in Rust. To have Rust available in your system, you can install `rustup`. If you’re using Linux or macOS, open a terminal and enter the following command:
 ```shell
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 ```
 
-You also need the latest version of `Node.js` (or <code>yarn</code>). You can install them from [here](https://nodejs.org/en/download).
+You also need the latest version of `Node.js` (or `yarn`). You can install them from [here](https://nodejs.org/en/download).
 
-### Install circom
+### [Install Circom](#install-circom)
 First, clone the circom repository: 
 ```shell
 git clone https://github.com/iden3/circom.git
@@ -49,9 +49,9 @@ The installation takes around 3 minutes to be completed. When the command succes
 cargo install --path circom
 ```
 
-The previous command will install the circom binary in the directory <code>$HOME/.cargo/bin</code>. 
+The previous command will install the circom binary in the directory `$HOME/.cargo/bin`. 
 
-### Install snarkjs 
+### [Install Snarkjs](#install-snarkjs) 
 
 You can install `snarkjs` with the following command:
 ```shell
@@ -59,13 +59,13 @@ npm install -g snarkjs
 ```
 
 
-## Implementation
+## [Implementing Circom Circuit for the Dotproduct of Two Vectors](#implementing-circom-circuit-for-the-dotproduct-of-two-vectors)
 
 To implement the dotproduct of two vectors in Circom, we can follow the steps below:
 
-1. Define the two vectors $A$ and $B$ of size $N$.
+1. Define the two vectors `A` and `B` of size `N`.
 2. Define a variable to store the dot product.
-3. Calculate the dot product by multiplying the corresponding components of $A$ and $B$ and adding them together.
+3. Calculate the dot product by multiplying the corresponding components of `A` and `B` and adding them together.
 4. Output the dot product.
 
 Here's what the code would look like in Circom:
@@ -93,11 +93,11 @@ template DotProduct(N: number) {
 
 ```
 
-In the above code, we define two input signals $A$ and $B$ of size $N$, which represent the two vectors. We also define an output signal $result$, which will store the dot product.
+In the above code, we define two input signals `A` and `B` of size `N`, which represent the two vectors. We also define an output signal `result`, which will store the dot product.
 
-We then define two components, $multiply$ and $add$. The $multiply$ component multiplies the corresponding components of $A$ and $B$, while the $add$ component adds them together. We use a loop to connect the outputs of the $multiply$ components to the inputs of the $add$ components. We also use a loop to connect the outputs of the $add$ components to each other, until we reach the final output signal $result$.
+We then define two components, `multiply` and `add`. The `multiply` component multiplies the corresponding components of `A` and `B`, while the `add` component adds them together. We use a loop to connect the outputs of the `multiply` components to the inputs of the `add` components. We also use a loop to connect the outputs of the `add` components to each other, until we reach the final output signal `result`.
 
-To use this template, we can simply instantiate it and provide values for the $A$ and $B$ signals:
+To use this template, we can simply instantiate it and provide values for the `A` and `B` signals:
 
 ```circom
 
@@ -116,15 +116,15 @@ template Main() {
 
 ```
 
-In the above code, we define the two input signals $A$ and $B$ of size $4$, and an output signal $result$. We then instantiate the $DotProduct$ template with a size of $4$, and connect its $A$ and $B$ signals to the corresponding input signals. We also connect its $result$ signal to our output signal. Finally, we print the $result$ signal.
+In the above code, we define the two input signals `A` and `B` of size `4`, and an output signal `result`. We then instantiate the `DotProduct` template with a size of `4`, and connect its `A` and `B` signals to the corresponding input signals. We also connect its `result` signal to our output signal. Finally, we print the `result` signal.
 
 
-# Halo2 Circuit - Dotproduct of Two Vectors
+# [Halo2 Circuit - Dotproduct of Two Vectors](#halo2-circuit---dotproduct-of-two-vectors)
 
-## Setup and Installation
+## [Halo2 Setup and Installation](#halo2-setup-and-installation)
 
 
-## Implementation
+## [Implementing Halo2 Circuit for the Dotproduct of Two Vectors](#implementing-halo2-circuit-for-the-dotproduct-of-two-vectors)
 
 To implement the dotproduct of two vectors in Halo2, we first need to define our circuit in Halo2. Here is the code for this:
 
@@ -224,13 +224,13 @@ impl<'a> Circuit<SimpleFloorPlanner> for DotProduct<'a> {
 
 ```
 
-In this code, we define our circuit struct $DotProduct$, which contains the input signals $a$ and $b$, and an output signal $result$. We also implement the $Circuit$ trait for our circuit, which defines how the circuit should be constructed and constrained.
+In this code, we define our circuit struct `DotProduct`, which contains the input signals `a` and `b`, and an output signal `result`. We also implement the `Circuit` trait for our circuit, which defines how the circuit should be constructed and constrained.
 
-We define the input signals $a$ and $b$ using $meta.advice\_column()$, which creates a new advice column in the circuit. We also define the intermediate signals $mul$ and $add$, which will be used to perform the multiplication and addition operations. Finally, we define the output signal $result$.
+We define the input signals `a` and `b` using `meta.advice_column()`, which creates a new advice column in the circuit. We also define the intermediate signals `mul` and `add`, which will be used to perform the multiplication and addition operations. Finally, we define the output signal `result`.
 
-We constrain the input signals to the values provided using $meta.enable_constant()$, which constrains the advice column to a constant value. We then constrain the multiplication signals using $meta.multiply()$, which constrains the product of the corresponding components of $a$ and $b$ to the corresponding multiplication signal. We then constrain the addition signals using $meta.add()$, which constrains the sum of the corresponding multiplication signals to the corresponding addition signal. Finally, we constrain the output signal to the last addition signal using $meta.copy()$, and constrain it to the value provided using $meta.constrain\_equal()$.
+We constrain the input signals to the values provided using `meta.enable_constant()`, which constrains the advice column to a constant value. We then constrain the multiplication signals using `meta.multiply()`, which constrains the product of the corresponding components of `a` and `b` to the corresponding multiplication signal. We then constrain the addition signals using `meta.add()`, which constrains the sum of the corresponding multiplication signals to the corresponding addition signal. Finally, we constrain the output signal to the last addition signal using `meta.copy()`, and constrain it to the value provided using `meta.constrain_equal()`.
 
-To use this circuit, we can instantiate it with the values for $a$ and $b$, and an empty vector for $result$. We can then create a proof using $ Prover::prove() $, and verify the proof using $ Verifier::verify() $. Here's an example:
+To use this circuit, we can instantiate it with the values for `a` and `b`, and an empty vector for `result`. We can then create a proof using ` Prover::prove() `, and verify the proof using ` Verifier::verify() `. Here's an example:
 
 
 ```rust
@@ -273,11 +273,11 @@ fn main() {
 
 ```
 
-In this code, we define the input signals $a$ and $b$ and the output signal $result$. We then instantiate the $DotProduct$ circuit with these values. We create a proof using $MockProver::run()$, which simulates the circuit execution and generates a proof. We then verify the proof using $Verifier::new()$ and $verify()$. Finally, we print the $result$.
+In this code, we define the input signals `a` and `b` and the output signal `result`. We then instantiate the `DotProduct` circuit with these values. We create a proof using `MockProver::run()`, which simulates the circuit execution and generates a proof. We then verify the proof using `Verifier::new()` and `verify()`. Finally, we print the `result`.
 
-Note that in this example, we use $MockProver$ to generate a proof and verify it. In a real-world application, we would use a trusted setup to generate the proving and verifying keys, and use those keys to generate and verify proofs. We would also need to ensure that the inputs and outputs of the circuit are properly encrypted and decrypted to prevent information leakage. However, these details are beyond the scope of this example.
+Note that in this example, we use `MockProver` to generate a proof and verify it. In a real-world application, we would use a trusted setup to generate the proving and verifying keys, and use those keys to generate and verify proofs. We would also need to ensure that the inputs and outputs of the circuit are properly encrypted and decrypted to prevent information leakage. However, these details are beyond the scope of this example.
 
-## What is a trusted setup and why is it necessary in a real-world application?
+## [What is a trusted setup and why is it necessary in a real-world application?](#what-is-a-trusted-setup)
 
 A trusted setup is a process used in some zero-knowledge proof systems, including Halo2, to generate the proving and verifying keys that are used to generate and verify proofs. The trusted setup involves a group of trusted individuals or entities who collectively generate and destroy a secret value that is used to generate the keys. The secret value is destroyed after the keys are generated, so that no one can learn it and use it to generate fake proofs.
 
@@ -290,4 +290,5 @@ Once the trusted setup is complete, the proving and verifying keys are distribut
 In summary, a trusted setup is a process used to generate the proving and verifying keys for a zero-knowledge proof system, and is necessary in a real-world application to ensure that the keys are generated in a way that is secure and unbiased.
 
 
-# Noir Circuit - Dotproduct of Two Vectors
+# [Noir Circuit - Dotproduct of Two Vectors](#noir-circuit---dotproduct-of-two-vectors)
+
