@@ -59,7 +59,7 @@ npm install -g snarkjs
 ```
 
 
-## [Implementing Circom Circuit for the Dotproduct of Two Vectors](#implementing-circom-circuit-for-the-dotproduct-of-two-vectors)
+## [Implementing Circom Circuit for the Dotproduct of Two Vectors](#implementing-circom-circuit)
 
 To implement the dotproduct of two vectors in Circom, we can follow the steps below:
 
@@ -124,7 +124,7 @@ In the above code, we define the two input signals `A` and `B` of size `4`, and 
 ## [Halo2 Setup and Installation](#halo2-setup-and-installation)
 
 
-## [Implementing Halo2 Circuit for the Dotproduct of Two Vectors](#implementing-halo2-circuit-for-the-dotproduct-of-two-vectors)
+## [Implementing Halo2 Circuit for the Dotproduct of Two Vectors](#implementing-halo2-circuit)
 
 To implement the dotproduct of two vectors in Halo2, we first need to define our circuit in Halo2. Here is the code for this:
 
