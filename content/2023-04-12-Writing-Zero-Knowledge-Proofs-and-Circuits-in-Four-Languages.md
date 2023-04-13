@@ -13,7 +13,12 @@ We will implement dot product of two vectors of size N using Zero Knowledge Proo
 A.B = a1*b1 + a2*b2 + ... + aN*bN
 ```
 
-$$ A.B = a1*b1 + a2*b2 + ... + aN*bN $$
+$\A.B = a1*b1 + a2*b2 + ... + aN*bN$
+
+
+```math
+A.B = a1*b1 + a2*b2 + ... + aN*bN
+```
 
 
 # Circom Circuit - Dotproduct of Two Vectors
