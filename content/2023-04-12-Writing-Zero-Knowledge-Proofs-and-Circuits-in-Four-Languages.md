@@ -46,6 +46,14 @@ The previous command will install the circom binary in the directory <code>$HOME
 You can install <code>snarkjs</code> with the following command:
 <code>npm install -g snarkjs</code>
 
+
+You can install `snarkjs` with the following command:
+```npm install -g snarkjs```
+
+You can install ```snarkjs``` with the following command:
+```npm install -g snarkjs```
+
+
 ## Implementation
 
 To implement the dotproduct of two vectors in Circom, we can follow the steps below:
