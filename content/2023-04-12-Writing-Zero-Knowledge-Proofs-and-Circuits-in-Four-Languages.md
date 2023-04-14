@@ -7,11 +7,29 @@ tags = ["zk", "ZKP", "Writing Zero Knowledge Proofs", "ZKP dotproduct", " Dotpro
 
 # Overview
 
-We will implement dot product of two vectors of size `N` using Zero Knowledge Proofs (ZKP) in Circom, Halo2, Noir. According to [k12.libretexts.org](https://k12.libretexts.org/Bookshelves/Mathematics/Precalculus/07%3A_Vectors/7.04%3A_Dot_Product_and_Angle_Between_Two_Vectors), the dot product of two vectors `A` and `B` of size `N` is given by:
+We will implement dot product of two vectors of size `N` using Zero Knowledge Proofs (ZKP) in Circom, Halo2, . According to [k12.libretexts.org](https://k12.libretexts.org/Bookshelves/Mathematics/Precalculus/07%3A_Vectors/7.04%3A_Dot_Product_and_Angle_Between_Two_Vectors), the dot product of two vectors `A` and `B` of size `N` is given by:
 
 ```
 A.B = a1*b1 + a2*b2 + ... + aN*bN
 ```
+
+- [Overview](#overview)
+- [Process Flow of a Zero Knowledge Proof](#process-flow-of-a-zero-knowledge-proof)
+- [Circom Circuit for Dotproduct of Two Vectors](#circom-circuit-for-dotproduct-of-two-vectors)
+  - [Circom Setup and Installation](#circom-setup-and-installation)
+    - [Circom Install dependencies](#circom-install-dependencies)
+    - [Install Circom](#install-circom)
+    - [Install Snarkjs](#install-snarkjs)
+  - [Implementing Circom Circuit for the Dotproduct of Two Vectors](#implementing-circom-circuit-for-the-dotproduct-of-two-vectors)
+- [Halo2 Circuit for Dotproduct of Two Vectors](#halo2-circuit-for-dotproduct-of-two-vectors)
+  - [Halo2 Setup and Installation](#halo2-setup-and-installation)
+  - [Implementing Halo2 Circuit for the Dotproduct of Two Vectors](#implementing-halo2-circuit-for-the-dotproduct-of-two-vectors)
+  - [What is a trusted setup and why is it necessary in a real-world application?](#what-is-a-trusted-setup-and-why-is-it-necessary-in-a-real-world-application)
+- [Noir Circuit for Dotproduct of Two Vectors](#noir-circuit-for-dotproduct-of-two-vectors)
+  - [Installing Noir](#installing-noir)
+  - [Implementing Noir Circuit for the Dotproduct of Two Vectors](#implementing-noir-circuit-for-the-dotproduct-of-two-vectors)
+
+
 # [Process Flow of a Zero Knowledge Proof](#process-flow-of-a-zero-knowledge-proof)
 
 The below diagram describes a typical process flow in creating a Zero Knowledge Proof system. ![Zero Knowledge Proof Process Flow](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230313/zkp-process-flow-diagram-2023-04-13-150046.png)
@@ -19,7 +37,7 @@ The below diagram describes a typical process flow in creating a Zero Knowledge 
 
 To create zero-knowledge proofs and circuits using different libraries like Circom, Noir, and Halo2, follow these steps:
 
-1. Define the problem: Identify the problem you want to prove using zero-knowledge proofs. For instance, prove that you are a member of top 100 Uniswap liquidity provider without revealing any info or that you identified a critical bug in a smart contract without revealing your info.
+1. Define the problem: Identify the problem you want to prove using zero-knowledge proofs. For instance, prove that you are a member of top 100 Uniswap liquidity provider without revealing any additional information or that you identified a critical bug in a smart contract without revealing any additional information.
 2. Choose the appropriate ZKP library: Select the library that suits your needs, such as Circom, Noir, or Halo2 or others. Each library has its own set of features and trade-offs:
     * Circom: A domain-specific language (DSL) designed for creating circuits in a simple and intuitive way. It's useful for creating zk-SNARK circuits. For more details on Circom, visit the [official documentation](https://docs.circom.io/).
     * Noir: A high-level, general-purpose language for creating zero-knowledge proofs. It's easy to understand and has a growing ecosystem. For more details on Noir, visit the [official documentation](https://noir-lang.org/).
@@ -30,7 +48,7 @@ To create zero-knowledge proofs and circuits using different libraries like Circ
 
 
 # [Circom Circuit for Dotproduct of Two Vectors](#circom-circuit-for-dotproduct-of-two-vectors)
-In this example we will investigate how to write a Circom circuit for the dotproduct of two vectors, create a Zero Knowledge Proof and verify the proof with zero knowledge.
+In this example we will investigate how to write a Circom circuit for the dotproduct of two vectors, create a Zero Knowledge Proof and verify the proof withoit revealing any additional information.
 
 ## [Circom Setup and Installation](#circom-setup-and-installation)
 
@@ -134,7 +152,7 @@ In the above code, we define the two input signals `A` and `B` of size `4`, and 
 
 # [Halo2 Circuit for Dotproduct of Two Vectors](#halo2-circuit-for-dotproduct-of-two-vectors)
 
-In this example we will investigate how to write a Halo2 circuit for the dotproduct of two vectors, create a Zero Knowledge Proof and verify the proof with zero knowledge.
+In this example we will investigate how to write a Halo2 circuit for the dotproduct of two vectors, create a Zero Knowledge Proof and verify the proof without revealing any additional information.
 
 
 ## [Halo2 Setup and Installation](#halo2-setup-and-installation)
@@ -306,5 +324,44 @@ Once the trusted setup is complete, the proving and verifying keys are distribut
 
 In summary, a trusted setup is a process used to generate the proving and verifying keys for a zero-knowledge proof system, and is necessary in a real-world application to ensure that the keys are generated in a way that is secure and unbiased.
 
+# [Noir Circuit for Dotproduct of Two Vectors](#noir-circuit-for-dotproduct-of-two-vectors)
 
+In this example we will investigate how to write a Noir circuit for the dotproduct of two vectors, create a Zero Knowledge Proof and verify the proof without revealing any additional information.
+
+For more details about Noir programming language, visit the [official documentation](https://github.com/noir-lang/noir).
+
+## [Installing Noir](#installing-noir)
+
+Noir is a Rust based language. You can visit the official documentation for [installation instructions](https://noir-lang.org/getting_started/nargo/nargo_installation/).
+
+
+## [Implementing Noir Circuit for the Dotproduct of Two Vectors](#implementing-noir-circuit-for-the-dotproduct-of-two-vectors)
+
+To implement the dotproduct of two vectors in Noir, we first need to define our circuit in Noir. Here is the code for this:
+
+```rust
+// Noir does not have a built-in dot product function, so we create one
+fn dot_product(vect_A: [field], vect_B: [field]) -> field {
+    let mut result: field = 0;
+    let N = vect_A.len();
+
+    for i in 0..N {
+        result += vect_A[i] * vect_B[i];
+    }
+
+    return result;
+}
+
+// Example usage
+fn main() {
+    let vect_A: [field] = [1, 2, 3, 4];
+    let vect_B: [field] = [5, 6, 7, 8];
+
+    let result: field = dot_product(vect_A, vect_B);
+
+    // The result should be 70 (1*5 + 2*6 + 3*7 + 4*8)
+    assert_eq!(result, 70);
+}
+
+```
 
