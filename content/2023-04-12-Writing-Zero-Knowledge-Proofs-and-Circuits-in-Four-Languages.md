@@ -365,3 +365,17 @@ fn main() {
 
 ```
 
+1. The `dot_product` function is defined with two input parameters, `vect_A` and `vect_B`, both of which are arrays of fields (a field is a type in Noir representing a finite field element). The function returns a field.
+2. Inside the `dot_product` function, a mutable variable result is initialized with a value of `0`, and the length of `vect_A` is stored in the variable `N`.
+3. A for loop iterates through the indices of both input arrays, from `0` to `N-1`. In each iteration, the corresponding elements of the two arrays are multiplied and added to the `result`.
+4. The `result` is returned as the output of the `dot_product` function.
+5. The main function demonstrates how to use the `dot_product` function. Two arrays, `vect_A` and `vect_B`, are defined, and their dot product is calculated using the `dot_product` function.
+6. Finally, an assertion checks that the `result` is equal to `70`, which is the expected dot product value `(15 + 26 + 37 + 48)`.
+
+The following steps will build the ZKP program and creates proofs and verifies the proof without any additional information.
+
+* Build: `nargo check` 
+* Prove: Enter the inputs in `Prover.toml` and run `nargo prove p -v`. Or, `nargo prove --show-output p` to show println logs. 
+* Verify: `nargo verify p`
+
+
