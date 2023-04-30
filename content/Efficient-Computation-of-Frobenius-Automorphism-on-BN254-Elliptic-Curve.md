@@ -7,13 +7,6 @@ tags = ["zk", "ZKP", "Writing Zero Knowledge Proofs", "Frobenius Automorphism", 
 
 In this blog post, we will explore an efficient method to compute the Frobenius automorphism for the BN254 elliptic curve. The BN254 curve is a pairing-friendly elliptic curve that is widely used in cryptographic applications [hackmd.io/@jpw](https://hackmd.io/@jpw/bn254). We will exploit the fact that $(p−1)/2$ is odd to compute the Frobenius automorphism efficiently.
 
-- [What is Frobenius Automorphism?](#what-is-frobenius-automorphism)
-- [Efficient Computation Using Exponentiation by Squaring](#efficient-computation-using-exponentiation-by-squaring)
-  - [Step 1: Define the prime $p$ and the curve constant $b$](#step-1-define-the-prime-p-and-the-curve-constant-b)
-  - [Step 2: Construct the elliptic curve $E$ over $F\_p$](#step-2-construct-the-elliptic-curve-e-over-f_p)
-  - [Step 3: Frobenius automorphism using exponentiation by squaring technique](#step-3-frobenius-automorphism-using-exponentiation-by-squaring-technique)
-  - [Step 4: Apply the Frobenius automorphism to a point on the curve](#step-4-apply-the-frobenius-automorphism-to-a-point-on-the-curve)
-
 
 # [What is Frobenius Automorphism?](#what-is-frobenius-automorphism)
 
@@ -25,7 +18,7 @@ To compute the Frobenius automorphism efficiently, we will use the exponentiatio
 
 Let's walk through the implementation step by step:
 
-## [Step 1: Define the prime $p$ and the curve constant $b$](#step-1-define-the-prime-and-the-curve-constant)
+## Step 1: Define the prime $p$ and the curve constant $b$
 
 We first define the prime $p$ and the curve constant $b$, which are the parameters for the BN254 elliptic curve.
 
@@ -43,7 +36,7 @@ F_p = GF(p)
 E = EllipticCurve(F_p, [0, b])
 ```
 
-## [Step 3: Frobenius automorphism using exponentiation by squaring technique](#step-3-frobenius-automorphism-using-exponentiation-by-squaring-technique)
+## Step 3: Frobenius automorphism using exponentiation by squaring technique
 
 We define the Frobenius automorphism by using the property of the prime field and the exponentiation by squaring technique. The `exponentiation_by_squaring` function computes the result of $x^n % mod$ efficiently.
 
@@ -64,7 +57,7 @@ def frobenius_on_curve_efficient(P):
     return E.point([x_frob, y_frob])
 ```
 
-## [Step 4: Apply the Frobenius automorphism to a point on the curve](#step-4-apply-the-frobenius-automorphism-to-a-point-on-the-curve)
+## Step 4: Apply the Frobenius automorphism to a point on the curve
 
 Finally, we apply the Frobenius automorphism to a random point $P$ on the elliptic curve.
 
