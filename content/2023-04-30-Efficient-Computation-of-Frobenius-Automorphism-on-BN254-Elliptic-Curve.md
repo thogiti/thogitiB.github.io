@@ -107,3 +107,5 @@ print(f"Point P: {P}")
 print(f"Frobenius(P) (efficient): {frob_P_efficient}")
 
 ```
+
+Here is the link to the github repo which implements the efficient computation of Frobenius Automorphism on BN254 Elliptic Curve, the complete code, explanations and instructions [github.com/thogiti](https://github.com/thogiti/ECC-BN254-Frobenius).
