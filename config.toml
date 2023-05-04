@@ -20,6 +20,7 @@ github = "https://github.com/thogiti"
 email = "0xnagu@gmail.com"
 katex = true
 katex_enable = true
+google_analytics = "G-Z978GXQG0X"
 
 [[extra.menu]]
 name = "Blog"
