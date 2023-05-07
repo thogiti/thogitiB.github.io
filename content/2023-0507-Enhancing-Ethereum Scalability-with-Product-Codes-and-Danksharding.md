@@ -2,7 +2,7 @@
 title = "Enhancing Ethereum Scalability with Product Codes and Danksharding: A Comprehensive Guide"
 
 [taxonomies]
-tags = ["Ethereum", "Danksharding", "Product code", "algebraic coding theory", "sagemath", ]
+tags = ["Ethereum", "Danksharding", "Ethereum's scalability", "Product code", "algebraic coding theory", "sagemath" ]
 +++
 
 This article would provide an in-depth understanding of how product codes from algebraic coding theory can be applied to Danksharding to improve Ethereum's scalability. It would cover the fundamentals of product codes, their application in Danksharding, and the potential benefits for Ethereum's network.
