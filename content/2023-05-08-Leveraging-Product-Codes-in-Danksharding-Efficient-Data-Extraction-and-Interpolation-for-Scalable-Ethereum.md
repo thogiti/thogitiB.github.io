@@ -2,7 +2,7 @@
 title = "Leveraging Product Codes in Danksharding: Efficient Data Extraction and Interpolation for Scalable Ethereum"
 
 [taxonomies]
-tags = ["Ethereum", "Danksharding", "Ethereum's scalability", "Product code", "algebraic coding theory", "Data Extraction", "Data Interpolation", "", "", "sagemath" ]
+tags = ["Ethereum", "Danksharding", "Ethereum scalability", "Product code", "algebraic coding theory", "Data Extraction", "Data Interpolation", "Missing Value Analysis", "Coefficient Extraction", "sagemath" ]
 +++
 
 Danksharding is an innovative approach to scale Ethereum's blockchain, aiming to achieve over 100,000 transactions per second by enabling rollups to add cheaper data to blocks [ethereum.org](https://ethereum.org/en/roadmap/danksharding/). As Ethereum moves towards Proto-Danksharding and eventually full Danksharding [ethereum.org](https://ethereum.org/en/roadmap/), data extraction and interpolation become crucial aspects of the block-building process. 
