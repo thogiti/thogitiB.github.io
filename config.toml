@@ -41,8 +41,14 @@ image_width = 0
 og_locale = "en_US"
 
 [extra.seo.twitter]
-site = "thogiti"
-creator = "thogiti"
+site = "0xnagu"
+creator = "0xnagu"
+
+[extra.social]
+github = "https://github.com/thogiti"
+twitter = "https://twitter.com/0xnagu"
+linkedin = "https://www.linkedin.com/in/0xnagu/"
+email = "john.doe@gmail.com"
 
 [extra.footer]
 start_year = "2022"
