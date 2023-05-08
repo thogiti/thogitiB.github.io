@@ -13,17 +13,22 @@ In this blog post, we will explore the potential of using product codes, a power
 
 
 - [What is Danksharding](#what-is-danksharding)
+- [Implications for Danksharding](#implications-for-danksharding)
 - [Product Codes in Data Extraction and Interpolation](#product-codes-in-data-extraction-and-interpolation)
 - [Generalized Reed-Solomon Codes](#generalized-reed-solomon-codes)
 - [Data Extraction and Data Interpolation in Danksharding](#data-extraction-and-data-interpolation-in-danksharding)
 - [Example of Error Correction Codes in Danksharding](#example-of-error-correction-codes-in-danksharding)
-- [Implications for Danksharding](#implications-for-danksharding)
 - [Conclusion](#conclusion)
 
 # [What is Danksharding](#what-is-danksharding)
 
 Danksharding is a technique used in Ethereum to improve the efficiency and scalability of data storage and retrieval. The core idea behind danksharding is to distribute data across multiple shards, which allows for faster and more efficient access to specific pieces of data. One of the critical aspects of danksharding is ensuring the integrity and reliability of the data stored within the shards. This is where error-correction codes, specifically Generalized Reed-Solomon Codes (GRS), come into play.
 
+# [Implications for Danksharding](#implications-for-danksharding)
+
+As Ethereum moves towards Proto-Danksharding and full Danksharding, the importance of efficient data extraction and interpolation in the block-building process cannot be overstated [coindesk.com](https://www.coindesk.com/layer2/2022/06/08/scaling-ethereum-beyond-the-merge-danksharding/). The use of product codes, as demonstrated in our SageMath example, offers a promising approach for addressing these challenges by harnessing their algebraic properties.
+
+In particular, the error-correcting capabilities of product codes can help ensure the integrity of data in the Ethereum ecosystem, allowing full nodes to present fraud proofs and maintain transparency [alchemy.com](https://www.alchemy.com/overviews/danksharding). Moreover, the structured redundancy provided by product codes can facilitate data availability sampling, a critical requirement for the development of lightweight clients and the proper functioning of Danksharding [ethereum.org](https://ethereum.org/en/roadmap/danksharding/).
 
 # [Product Codes in Data Extraction and Interpolation](#product-codes-in-data-extraction-and-interpolation)
 
@@ -128,11 +133,6 @@ print("Are the decoded received message to the message and the original message 
 
 In this example, we demonstrated the encoding, transmission, and decoding process of data using Generalized Reed-Solomon Codes for error correction which can be used to extract coefficients and estimate missing values or perform error correction in a dataset. By leveraging the algebraic properties of product codes, we can design efficient algorithms for extracting relevant information and interpolating missing values, which are crucial aspects of the block-building process in Danksharding.
 
-# [Implications for Danksharding](#implications-for-danksharding)
-
-As Ethereum moves towards Proto-Danksharding and full Danksharding, the importance of efficient data extraction and interpolation in the block-building process cannot be overstated [coindesk.com](https://www.coindesk.com/layer2/2022/06/08/scaling-ethereum-beyond-the-merge-danksharding/). The use of product codes, as demonstrated in our SageMath example, offers a promising approach for addressing these challenges by harnessing their algebraic properties.
-
-In particular, the error-correcting capabilities of product codes can help ensure the integrity of data in the Ethereum ecosystem, allowing full nodes to present fraud proofs and maintain transparency [alchemy.com](https://www.alchemy.com/overviews/danksharding). Moreover, the structured redundancy provided by product codes can facilitate data availability sampling, a critical requirement for the development of lightweight clients and the proper functioning of Danksharding [ethereum.org](https://ethereum.org/en/roadmap/danksharding/).
 
 # [Conclusion](#conclusion)
 
