@@ -31,7 +31,7 @@ The algebraic properties of product codes, such as linearity, error-correcting c
 
 # [Generalized Reed-Solomon Codes](#generalized-reed-solomon-codes)
 
-Generalized Reed-Solomon Codes, GRS, codes are an extension of Reed-Solomon codes, which are widely used in error-correcting codes. They are particularly useful for data extraction and data interpolation stages in danksharding, as they are capable of correcting errors and filling in missing values in the data blobs [doc.sagemath.org](https://doc.sagemath.org/html/en/reference/coding/sage/coding/grs_code.html).
+Generalized Reed-Solomon Codes, GRS, codes are an extension of Reed-Solomon codes [wikipedia.org](https://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction), which are widely used in error-correcting codes. They are particularly useful for data extraction and data interpolation stages in danksharding, as they are capable of correcting errors and filling in missing values in the data blobs [math.msu.edu](https://users.math.msu.edu/users/halljo/classes/codenotes/GRS.pdf).
 
 # [Data Extraction and Data Interpolation in Danksharding](#data-extraction-and-data-interpolation-in-danksharding)
 
