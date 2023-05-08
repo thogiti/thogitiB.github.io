@@ -61,7 +61,7 @@ C = codes.GeneralizedReedSolomonCode(GF(59).list()[1:41], 3, GF(59).list()[1:41]
 
 ```python
 msg = random_vector(C.base_field(), C.dimension())
-print(msg)
+print("Original message:", msg)
 c = C.encode(msg)
 
 ```
@@ -82,7 +82,7 @@ r = Chan.transmit(c)
 
 ```python
 c_dec = C.decode_to_code(r)
-print(c_dec == c)
+print("Are the decoded received message to the code and the original encoded message equal?",c_dec == c)
 
 ```
 
@@ -92,8 +92,8 @@ print(c_dec == c)
 
 ```python
 m_unenc2 = C.decode_to_message(r)
-print(m_unenc2)
-print(m_unenc2 == msg)
+print("Decoded received message", m_unenc2)
+print("Are the decoded received message to the message and the original message equal?",m_unenc2 == msg)
 
 ```
 
@@ -105,7 +105,7 @@ C = codes.GeneralizedReedSolomonCode(GF(59).list()[1:41], 3, GF(59).list()[1:41]
 
 # Create a random message vector and encode it using the GRS code
 msg = random_vector(C.base_field(), C.dimension())
-print(msg)
+print("Original message:", msg)
 c = C.encode(msg)
 
 # Simulate the transmission of the encoded message with a static error rate of 3
@@ -116,12 +116,13 @@ r = Chan.transmit(c)
 
 # Decode the received message to the code and check if it's equal to the original encoded message
 c_dec = C.decode_to_code(r)
-print(c_dec == c)
+print("Are the decoded received message to the code and the original encoded message equal?",c_dec == c)
 
 # Decode the received message to the original message and check if it's equal to the original message
 m_unenc2 = C.decode_to_message(r)
-print(m_unenc2)
-print(m_unenc2 == msg)
+print("Decoded received message", m_unenc2)
+print("Are the decoded received message to the message and the original message equal?",m_unenc2 == msg)
+
 
 ```
 
