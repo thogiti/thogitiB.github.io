@@ -33,8 +33,8 @@ from sage.all import *
 Now, let's create two simple linear block codes, C1 and C2. We will use Hamming codes for this example:
 
 ```python
-C1 = HammingCode(3, GF(2))
-C2 = HammingCode(4, GF(2))
+C1 = HammingCode(GF(2), 3)
+C2 = HammingCode(GF(2), 4)
 ```
 
 Next, we will create a product code using the Cartesian product of C1 and C2:
