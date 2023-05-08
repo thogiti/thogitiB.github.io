@@ -97,7 +97,7 @@ print(m_unenc2 == msg)
 
 ```
 
-Now, here is the complete code and the link to the github repo [github.com]():
+Now, here is the complete code and the link to the github repo [github.com](https://github.com/thogiti/GeneralizedReedSolomonCodesforDankshardingEthereum):
 
 ```python
 # Create a Generalized Reed-Solomon Code over GF(59) with parameters
