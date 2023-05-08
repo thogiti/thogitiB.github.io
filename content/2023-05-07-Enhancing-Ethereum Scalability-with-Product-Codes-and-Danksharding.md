@@ -13,7 +13,7 @@ Product codes, a concept from algebraic coding theory [en.wikipedia.org](https:/
 
 # [Product Codes in Coding Theory](#product-codes-in-coding-theory)
 
-Product codes are linear block codes that are formed by taking the Cartesian product of two or more simpler linear block codes [en.wikipedia.org](https://en.wikipedia.org/wiki/Coding_theory). They are used to increase the number of errors that can be corrected during data transmission. In the context of Danksharding, product codes could be used to add redundancy to data blobs, allowing for better error detection and correction in case of data corruption or loss.
+Product codes are block codes that are formed by taking the Cartesian product of two or more simpler block codes [en.wikipedia.org](https://en.wikipedia.org/wiki/Coding_theory) such as Hamming codes or Reed-Solomon codes. The resulting code has improved error-correcting capabilities compared to the individual component codes. They are used to increase the number of errors that can be corrected during data transmission. In the context of Danksharding, product codes could be used to add redundancy to data blobs, allowing for better error detection and correction in case of data corruption or loss.
 
 # [Application of Product Codes in Danksharding](#application-of-product-codes-in-danksharding)
 
@@ -25,56 +25,93 @@ Moreover, product codes could also play a role in the coefficient extraction and
 
 To demonstrate the application of product codes in Danksharding, let's create a simple example using SageMath. First, we need to install SageMath and import the required libraries:
 
-```python
-!pip install sagemath
-from sage.all import *
-```
 
-Now, let's create two simple linear block codes, C1 and C2. We will use Hamming codes for this example:
+First, let’s create two Hamming codes over the binary field GF(2). We’ll use codeword lengths of 3 and 7 respectively:
 
 ```python
-C1 = HammingCode(GF(2), 3)
-C2 = HammingCode(GF(2), 4)
-```
-
-Next, we will create a product code using the Cartesian product of C1 and C2:
-
-```python
-C_product = codes.cartesian_product(C1, C2)
-
-```
-Now, let's simulate a data blob that we want to encode using the product code:
-
-```python
-data_blob = random_vector(GF(2), C_product.dimension())
+C1 = codes.HammingCode(GF(2), 2)
+C2 = codes.HammingCode(GF(2), 3)
 
 ```
 
-We will encode the data blob using the product code:
+Next, we’ll combine these two Hamming codes to form a product code:
 
 ```python
+C_product = C1.product_code(C2)
+
+```
+
+Now let’s generate a random data vector of appropriate length and encode it using our product code:
+
+```python
+data_blob = random_vector(C_product.base_field(), C_product.dimension()) 
+
 encoded_blob = C_product.encode(data_blob)
 
 ```
 
-To simulate data corruption or loss, we will introduce errors in the encoded_blob:
+We’ll set the error rate for our communication channel to 3:
 
 ```python
-corrupted_blob = encoded_blob + random_vector(GF(2), len(encoded_blob))
+err = 3
 
 ```
 
-Finally, we will use the product code to decode the corrupted_blob and correct the errors:
+Now we can create a communication channel with a static error rate and transmit our encoded data through it. This will introduce errors in the transmitted data:
+
 
 ```python
-decoded_blob = C_product.decode_to_message(corrupted_blob)
+Chan = channels.StaticErrorRateChannel(C_product.ambient_space(), err)
+corrupted_blob = Chan.transmit(encoded_blob)
 
 ```
 
-Now we can compare the original data_blob with the decoded_blob to ensure that the product code successfully corrected the errors:
+Finally, we can decode the received data using our product code’s decoding algorithm and unencode it to recover the original message:
 
 ```python
-assert data_blob == decoded_blob
+decoded_blob = C_product.decode_to_code(corrupted_blob)
+
+decoded_blob_msg = C_product.unencode(decoded_blob)
+print("Are the messages same? ", decoded_blob_msg == data_blob)
+
+```
+
+Now, here is the complete code and the link to the github repo [github.com](https://github.com/thogiti/ProductCodesDanksharding/blob/main/ProductCodesDanksharding.sage):
+
+```python
+# Create two Hamming codes over the binary field GF(2), with codeword lengths 2^2-1=3 and 2^3-1=7 respectively
+C1 = codes.HammingCode(GF(2), 2)
+C2 = codes.HammingCode(GF(2), 3)
+
+# Combine the two Hamming codes to form a product code
+C_product = C1.product_code(C2)
+
+# Generate a random data vector of appropriate length
+data_blob = random_vector(C_product.base_field(), C_product.dimension()) 
+print("data_blob: ",data_blob)
+
+# Encode the data using the product code
+encoded_blob = C_product.encode(data_blob)
+print("encoded_blob: ",encoded_blob)
+
+# Set the error rate for the communication channel
+err = 3
+
+# Create a communication channel with a static error rate
+Chan = channels.StaticErrorRateChannel(C_product.ambient_space(), err)
+
+# Transmit the encoded data through the channel, introducing errors
+corrupted_blob = Chan.transmit(encoded_blob)
+print("corrupted_blob: ", corrupted_blob)
+
+# Decode the received data using the product code's decoding algorithm
+decoded_blob = C_product.decode_to_code(corrupted_blob)
+print("decoded_blob: ",decoded_blob)
+print("Are the codes same? ", data_blob == decoded_blob)
+
+# Unencode the decoded codeword to recover the original message
+decoded_blob_msg = C_product.unencode(decoded_blob)
+print("Are the messages same? ", decoded_blob_msg == data_blob)
 
 ```
 
