@@ -7,6 +7,11 @@ tags = ["Ethereum", "Danksharding", "Ethereum's scalability", "Product code", "a
 
 This article would provide an in-depth understanding of how product codes from algebraic coding theory can be applied to Danksharding to improve Ethereum's scalability. It would cover the fundamentals of product codes, their application in Danksharding, and the potential benefits for Ethereum's network.
 
+- [Product Codes and Their Relation to Danksharding in Ethereum](#product-codes-and-their-relation-to-danksharding-in-ethereum)
+- [Product Codes in Coding Theory](#product-codes-in-coding-theory)
+- [Application of Product Codes in Danksharding](#application-of-product-codes-in-danksharding)
+- [SageMath Example: Implementing Product Codes](#sagemath-example-implementing-product-codes)
+
 # [Product Codes and Their Relation to Danksharding in Ethereum](#product-codes-and-their-relation-to-danksharding-in-ethereum)
 
 Product codes, a concept from algebraic coding theory [en.wikipedia.org](https://en.wikipedia.org/wiki/Coding_theory), can be utilized to enhance the robustness and fault tolerance of data storage and retrieval in Danksharding [ethereum.org](https://ethereum.org/en/roadmap/danksharding/), a scalability solution for Ethereum. In this article, we will explore the relationship between product codes and Danksharding, and demonstrate how product codes can be applied to this context using SageMath, an open-source mathematics software system.
