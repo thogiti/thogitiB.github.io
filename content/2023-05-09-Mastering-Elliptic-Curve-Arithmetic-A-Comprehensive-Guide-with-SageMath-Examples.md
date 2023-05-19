@@ -1,8 +1,6 @@
 +++
 title = "Mastering Elliptic Curve Arithmetic: A Comprehensive Guide with SageMath Examples"
 
-Mastering-Elliptic-Curve-Arithmetic-A-Comprehensive-Guide-with-SageMath-Examples
-
 [taxonomies]
 tags = ["Ethereum", "Danksharding", "Ethereum scalability", "Point Operations", "Multiscalar Multiplication", "Point Addition", "Point Doubling ", "ECADD", "ECDBL", "ECDH", "ECDSA", "Securing Communications with ECC", "Ensuring Data Integrity with Digital Signatures", "Establishing Secure Connections with ECC", "sagemath" ]
 
