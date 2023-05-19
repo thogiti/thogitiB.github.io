@@ -2,7 +2,7 @@ base_url = "https://thogiti.github.io/"
 compile_sass = true
 generate_feed = true
 build_search_index = false
-title = "Dare to Know"
+title = "Dare to Know | Nagu Thogiti | 0xnagu"
 
 theme = "tale-zola"
 
