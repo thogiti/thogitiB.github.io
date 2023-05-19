@@ -36,7 +36,7 @@ Throughout this blog post, we will cover the following topics:
 - Elliptic curve arithmetic: point addition, doubling, scalar multiplication, and inverse of a point
 - Working with elliptic curves in SageMath: defining, plotting, and finding points on curves
 - Implementing elliptic curve arithmetic in SageMath: code examples for point addition, doubling, scalar multiplication, and inverse of a point
-- Applications of elliptic curve arithmetic: ECC, digital signatures (ECDSA), and key exchange (ECDH)
+- Applications of elliptic curve arithmetic: securing communications (ECC), digital signatures (ECDSA), and key exchange (ECDH), blockchain protocols, zero knowledge proofs (ZKP), zero knowledge machine learning
 
 By the end of this post, you will have a solid foundation in elliptic curve arithmetic and be well-prepared to explore more advanced topics in ECC and its applications in cryptography.
 
