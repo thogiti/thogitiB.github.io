@@ -97,13 +97,18 @@ Elliptic curve arithmetic is the foundation for elliptic curve cryptography. In 
 - Computing the inverse of a point
 - Verifying associativity and commutativity in elliptic curve arithmetic
 
-## Performing Point Addition on Elliptic Curves
+## [Performing Point Addition on Elliptic Curves](#performing-point-addition-on-elliptic-curves)
 
 Point addition is the primary operation in elliptic curve arithmetic. Given two points $P$ and $Q$ on an elliptic curve, their sum $R = P + Q$ is computed as follows:
 
 1. Find the line $L$ that passes through $P$ and $Q$.
 2. Find the third point of intersection $R'$ between $L$ and the elliptic curve.
 3. Reflect $R'$ across the x-axis to obtain $R$.
+
+
+![Point addition on Elliptic Curve ](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230509/point-addition-in-ECC.png)
+
+*A geometrical visualization of a point addition on elliptic curve.*
 
 In SageMath, point addition can be performed using the `+` operator:
 
@@ -117,6 +122,7 @@ R = P + Q
 print (" P+Q = ", R)
 ```
 
+
 ## [Mastering Point Doubling Techniques](#mastering-point-doubling-techniques)
 
 Point doubling is a special case of point addition where $P = Q$. In this case, the line $L$ is the tangent to the curve at point $P$. The process for computing $R = 2P$ is similar to point addition:
@@ -124,6 +130,10 @@ Point doubling is a special case of point addition where $P = Q$. In this case, 
 1. Find the tangent line $L$ at point $P$.
 2. Find the second point of intersection $R'$ between $L$ and the elliptic curve.
 3. Reflect $R'$ across the x-axis to obtain $R$.
+
+![Point doubling on Elliptic Curve ](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230509/point-doubling-in-ECC.png)
+
+*A geometrical visualization of a point addition on elliptic curve.*
 
 In SageMath, point doubling can be performed using the `*` operator:
 
@@ -324,6 +334,19 @@ print (" Multiscalar Multipliciation: ", R)
 ```
 
 By understanding multiscalar multiplication and its efficient algorithms, you can further optimize elliptic curve operations and enhance the performance of cryptographic protocols based on elliptic curves.
+
+There are several efficient algorithms for computing multi-scalar multiplication (MSM) in Elliptic Curve Cryptography. Five popular algorithms are:
+
+1. Double-and-add algorithm: This is the most basic algorithm for scalar multiplication, similar to the square-and-multiply algorithm for modular exponentiation. It computes kP by iterating through the bits of k, doubling the current point at each step, and adding P if the corresponding bit in k is 1 [en.wikipedia.org](https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication).
+
+2. Montgomery Ladder: This algorithm computes scalar multiplication using a ladder-like structure, which is efficient and resistant to side-channel attacks. It operates on x-coordinates only, making it well-suited for curves in Montgomery form [en.wikipedia.org](https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication).
+
+3. wNAF (Windowed Non-Adjacent Form) method: This algorithm computes scalar multiplication using a windowed non-adjacent form, which is a signed binary representation of the scalar. It allows for faster calculations by reducing the number of point additions required [en.wikipedia.org](https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication).
+
+4. Straus' algorithm (also known as Shamir's trick): This algorithm computes multi-scalar multiplication (kP + lQ) more efficiently than performing two separate scalar multiplications. It combines the double-and-add algorithm with interleaving, allowing simultaneous computation of kP and lQ [eprint.iacr.org](https://eprint.iacr.org/2003/257.pdf).
+
+5. Pippenger's algorithm: This algorithm is a generalization of Straus' algorithm for computing multi-scalar multiplication with more than two points. It divides the scalars into smaller groups and computes the scalar multiplication for each group separately before combining the results [cr.yp.to](https://cr.yp.to/papers/pippenger.pdf).
+
 
 We have explored how to work with elliptic curves in SageMath, including defining and visualizing elliptic curves, uncovering points on elliptic curves, and manipulating elliptic curve groups. By understanding these concepts and techniques, you will be well-equipped to explore more advanced topics in elliptic curve cryptography and its applications.
 
