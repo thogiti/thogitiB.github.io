@@ -33,6 +33,9 @@ Now, let's understand this step by step:
 
 # [Problem Definition Weighted Set Cover](#problem-definition-weighted-set-cover)
 
+![Weighted Set Cover Example](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230525/setcover.jpg)
+
+
 Given:
 - A universe $U$ of $n$ items (attractions in our analogy).
 - A collection $S$ of m subsets (regions/provinces).
