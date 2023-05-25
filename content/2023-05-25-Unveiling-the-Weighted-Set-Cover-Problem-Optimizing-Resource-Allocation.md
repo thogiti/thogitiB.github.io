@@ -8,19 +8,18 @@ tags = ["weighted set cover problem", "resource allocation optimization", "techn
 
 +++
 
-# **Note: This article is in draft mode and I didn't finish writing the sections, proof read, test the code for correctness and adding references. Please check it again in a day before I publish it.**
 
-Title: Solving the Weighted Set Cover Problem: A Tour Guide's Journey
-
-Outline:
-1. Introduction
-2. Problem Explanation
-3. Solution Approach: Greedy Algorithm
-4. Implementation in SageMath
-5. Example Scenario
-6. Applications in Blockchain Technology and Machine Learning
-7. Relating to Karp Reduction
-8. Conclusion
+- [Introduction](#introduction)
+- [Problem Explanation](#problem-explanation)
+- [Problem Definition Weighted Set Cover](#problem-definition-weighted-set-cover)
+- [Solution Greedy Algorithm](#solution-greedy-algorithm)
+- [Implementation in SageMath](#implementation-in-sagemath)
+- [Example Scenario](#example-scenario)
+- [Applications in Blockchain Technology and Machine Learning](#applications-in-blockchain-technology-and-machine-learning)
+- [Blockchain Transaction Fee Optimization](#blockchain-transaction-fee-optimization)
+- [Machine Learning Feature Selection](#machine-learning-feature-selection)
+- [Relating to Karp Reduction](#relating-to-karp-reduction)
+- [Conclusion](#conclusion)
 
 # [Introduction](#introduction)
 
@@ -32,7 +31,7 @@ In this kingdom, attractions are like gleaming gems scattered across the land, a
 
 Now, let's understand this step by step:
 
-# [Problem Definition: Weighted Set Cover](#problem-definition-weighted-set-cover)
+# [Problem Definition Weighted Set Cover](#problem-definition-weighted-set-cover)
 
 Given:
 - A universe $U$ of $n$ items (attractions in our analogy).
@@ -184,5 +183,12 @@ As you venture forth, remember to explore further, experiment with different sce
 
 Happy covering, noble ruler!
 
-You can find the complete sagemath code at the github repo [github.com/thogiti](https://github.com/thogiti/Elliptic-curve-arithmetic-sage).
+You can find the complete sagemath code at the github repo [github.com/thogiti](https://github.com/thogiti/Weighted-set-cover-problem).
+
+**Additional References**
+
+1. [optimization.cbe.cornell.edu](https://optimization.cbe.cornell.edu/index.php?title=Set_covering_problem)
+2. [cs.cornell.edu](http://www.cs.cornell.edu/courses/cs6820/2022fa/Handouts/LP2.pdf)
+3. [en.wikipedia.org](https://en.wikipedia.org/wiki/Set_cover_problem)
+
 
