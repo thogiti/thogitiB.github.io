@@ -2,7 +2,7 @@ base_url = "https://thogiti.github.io/"
 compile_sass = true
 generate_feed = true
 build_search_index = false
-title = "Dare to Know"
+title = "Dare to Know - AI, Machine Learning, and Blockchain Technology Insights"
 
 theme = "tale-zola"
 
@@ -18,6 +18,7 @@ highlight_theme = "base16-atelierdune-light"
 author = "0xnagu"
 github = "https://github.com/thogiti"
 email = "0xnagu@gmail.com"
+site_name = "Nagu Thogiti | 0xnagu"
 katex = true
 katex_enable = true
 google_analytics = "G-Z978GXQG0X"
@@ -35,10 +36,15 @@ name = "About"
 url = "about"
 
 [extra.seo]
+description = "Dive into AI, machine learning, and blockchain technology. Explore the intersection of technology, mathematics, and philosophy, and learn about cryptography, zero-knowledge proofs (ZKP), and privacy-preserving machine learning (ZKML)."
+author = "0xnagu"
 image = "assets/favicon.jpg"
 image_height = 0 
 image_width = 0
 og_locale = "en_US"
+og_title = "Dare to Know - AI, Machine Learning, and Blockchain Technology Insights"
+og_description = "Dive into AI, machine learning, and blockchain technology. Explore the intersection of technology, mathematics, and philosophy, and learn about cryptography, zero-knowledge proofs (ZKP), and privacy-preserving machine learning (ZKML)."
+og_author = "0xnagu"
 
 [extra.seo.twitter]
 site = "0xnagu"
