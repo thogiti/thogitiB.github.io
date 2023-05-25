@@ -43,7 +43,6 @@ image_height = 0
 image_width = 0
 og_locale = "en_US"
 og_title = "Dare to Know - AI, Machine Learning, and Blockchain Technology Insights"
-og_description = "Dive into AI, machine learning, and blockchain technology. Explore the intersection of technology, mathematics, and philosophy, and learn about cryptography, zero-knowledge proofs (ZKP), and privacy-preserving machine learning (ZKML)."
 og_author = "0xnagu"
 
 [extra.seo.twitter]

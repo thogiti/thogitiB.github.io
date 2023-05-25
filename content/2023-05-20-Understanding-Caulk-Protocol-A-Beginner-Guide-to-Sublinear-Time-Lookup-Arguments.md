@@ -1,5 +1,5 @@
 +++
-title = "Understanding Caulk Protocol: A Beginner's Guide to Sublinear Time Lookup Arguments"
+title = "Understanding Caulk Protocol: A Beginner's Guide to Sublinear Time Lookup Arguments (In Draft Mode)"
 
 
 [taxonomies]
@@ -7,6 +7,7 @@ tags = ["Ethereum", "Caulk", "Ethereum scalability", "Lookup Arguments", "Sublin
 
 +++
 
+# **Note: This article is in draft mode and I didn't finish write different sections of the Caulk protocol, proof read, test the code for correctness and adding references. Please check it again in 1-2 weeks before I publish it.**
 
 # Introduction
 
