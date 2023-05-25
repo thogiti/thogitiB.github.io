@@ -7,7 +7,7 @@ tags = ["Ethereum", "Caulk", "Ethereum scalability", "Lookup Arguments", "Sublin
 
 +++
 
-# **Note: This article is in draft mode and I didn't finish write different sections of the Caulk protocol, proof read, test the code for correctness and adding references. Please check it again in 1-2 weeks before I publish it.**
+# **Note: This article is in draft mode and I didn't finish writing the sections of the Caulk protocol, proof read, test the code for correctness and adding references. Please check it again in 1-2 weeks before I publish it.**
 
 # Introduction
 
