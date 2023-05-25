@@ -16,8 +16,8 @@ tags = ["weighted set cover problem", "resource allocation optimization", "techn
 - [Implementation in SageMath](#implementation-in-sagemath)
 - [Example Scenario](#example-scenario)
 - [Applications in Blockchain Technology and Machine Learning](#applications-in-blockchain-technology-and-machine-learning)
-- [Blockchain Transaction Fee Optimization](#blockchain-transaction-fee-optimization)
-- [Machine Learning Feature Selection](#machine-learning-feature-selection)
+  - [Blockchain Transaction Fee Optimization](#blockchain-transaction-fee-optimization)
+  - [Machine Learning Feature Selection](#machine-learning-feature-selection)
 - [Relating to Karp Reduction](#relating-to-karp-reduction)
 - [Conclusion](#conclusion)
 
@@ -126,7 +126,7 @@ Executing this code will display the result of our royal decree: the selected su
 
 The weighted set cover problem finds its applications in various technological domains, where efficient resource allocation and optimization are crucial. Let's explore two intriguing examples in the blockchain and machine learning fields.
 
-# [Blockchain Transaction Fee Optimization](#blockchain-transaction-fee-optimization)
+## [Blockchain Transaction Fee Optimization](#blockchain-transaction-fee-optimization)
 
 In the realm of blockchain technology, the weighted set cover problem can be employed to optimize transaction fee calculations. In blockchain networks like Bitcoin or Ethereum, users must pay transaction fees to incentivize miners or validators to include their transactions in the next block.
 
@@ -134,7 +134,7 @@ Consider a scenario where a user wants to perform multiple transactions while mi
 
 By solving the weighted set cover problem, blockchain systems can identify the optimal set of transactions to include in a block, maximizing the number of transactions while minimizing the total fee paid by the user.
 
-# [Machine Learning Feature Selection](#machine-learning-feature-selection)
+## [Machine Learning Feature Selection](#machine-learning-feature-selection)
 
 Feature selection plays a vital role in machine learning, where the goal is to identify the most relevant features or attributes that contribute to accurate predictions or classifications. The weighted set cover problem can be utilized to solve feature selection challenges efficiently. In Machine Learning, there are different kinds of techniques to identify the best predictors to explain the data.
 
@@ -190,5 +190,6 @@ You can find the complete sagemath code at the github repo [github.com/thogiti](
 1. [optimization.cbe.cornell.edu](https://optimization.cbe.cornell.edu/index.php?title=Set_covering_problem)
 2. [cs.cornell.edu](http://www.cs.cornell.edu/courses/cs6820/2022fa/Handouts/LP2.pdf)
 3. [en.wikipedia.org](https://en.wikipedia.org/wiki/Set_cover_problem)
-
+4. [en.wikipedia.org](https://en.wikipedia.org/wiki/Polynomial-time_reduction)
+5. [courses.engr.illinois.edu](https://courses.engr.illinois.edu/cs473/sp2011/lectures/21_notes.pdf)
 
