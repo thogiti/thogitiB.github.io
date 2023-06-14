@@ -69,6 +69,7 @@ The official documentation for the RLN circuits was located at [rate-limiting-nu
 **Flow**
 
 ```mermaid 
+
     graph TD
         ext_null>External Nullifier] --> h1(hash)
         secret{{Secret Trapdoor & nullifier}} --> h0(hash) --> a_0
@@ -82,6 +83,7 @@ The official documentation for the RLN circuits was located at [rate-limiting-nu
         a_0 --> plus --> sss([Shamir's Share y_share])
         a_0 --> h4(hash) --> id_com([id_commitment])
         h4 --> merkle(MerkleProof)
+
 ```
 
 
@@ -129,7 +131,25 @@ Findings are broken down into sections by their respective impact:
 
 ## Critical Findings
 
-None.
+### 1. Critical - `identitySecret` gets revealed for certain inputs `x` (hash of the message)
+
+The `identitySecret` gets revealed when the input signal `x` is the hash of the message. When the `x` is `0` or `21888242871839275222246405745257275088548364400416034343698204186575808495617` (in Ethereum) or the prime `p`, the order of the scalar field $Fp$ arithmetic circuits. 
+
+- This prime `p` is the order of the scalar field of the $BN254$ curve.
+- Circom 2.0.6 introduces two new prime numbers to work with
+  - The order of the scalar field of the $BLS12-381$.
+    -  `52435875175126190479447740508185965837690552500527637822603658699938581184513`
+  - The goldilocks prime `18446744069414584321`, originally used in $Plonky2$.
+
+**Recommended Solution**
+
+Constraint on the input signal `x` and also on the product `a1 * x` to be non-zero modulo prime `p`.
+
+```circom
+isZero(x).out === 0
+isZero(a1*x).out === 0
+
+```
 
 ## High Findings
 
