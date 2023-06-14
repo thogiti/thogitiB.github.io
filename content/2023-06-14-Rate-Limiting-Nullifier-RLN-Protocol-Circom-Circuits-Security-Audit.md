@@ -133,7 +133,7 @@ Findings are broken down into sections by their respective impact:
 
 ### 1. Critical - `identitySecret` gets revealed for certain inputs `x` (hash of the message)
 
-The `identitySecret` gets revealed when the input signal `x` is the hash of the message. When the `x` is `0` or `21888242871839275222246405745257275088548364400416034343698204186575808495617` (in Ethereum) or the prime `p`, the order of the scalar field $Fp$ arithmetic circuits. 
+The `identitySecret` gets revealed when the input signal `x`, the hash of the message, is `0` modulo prime `p` of the scalar field used. When the `x` is `0` or `21888242871839275222246405745257275088548364400416034343698204186575808495617` (in Ethereum) or the prime `p`, the order of the scalar field $Fp$ arithmetic circuits, the product `a1 * x` becomes zero thus revealing the `identitySecret`. 
 
 - This prime `p` is the order of the scalar field of the $BN254$ curve.
 - Circom 2.0.6 introduces two new prime numbers to work with
