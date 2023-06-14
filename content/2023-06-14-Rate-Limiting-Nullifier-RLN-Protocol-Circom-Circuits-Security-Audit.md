@@ -5,9 +5,14 @@ title = "Rate Limiting Nullifier (RLN) Protocol: Circom Circuits Security Audit"
 [taxonomies]
 tags = ["Ethereum", "RLN", "Rate Limiting Nullifier", "Circom Circuits", "Security Audit", "ZKP Security Audit", "ZKP", "Zero Knowledge Proofs", "Ecne", "Poseidon" ]
 
+
 +++
 
 # Rate Limiting Nullifier (RLN) Review
+
+I recently had the pleasure of conducting my first security audit of a Zero Knowledge Proofs (ZKP) protocol. The protocol in question was the Rate Limiting Nullifier (RLN) Zero Knowledge Proofs Protocol, with its circuits written in Circom. My main focus during this review was on the Circom Circuits of the Zero Knowledge Proofs gadgets. And let me tell you, it was quite the adventure! I mean, who knew math could be so exciting?
+
+During my review of the RLN Zero Knowledge Proofs Protocol, I learned a great deal about the intricacies of the RLN specifications, the verifications, and how to identify underconstraint systems. My mathematical background proved to be invaluable in helping me understand these complex concepts. It’s like they always say, “mathematics is the language of the universe”! But seriously, who comes up with this stuff? Additionally, I gained a deeper understanding of ZKP primitives attack vectors and other potential vulnerabilities in the system. It’s like being a detective, but for ZKP systems! And let me tell you, it’s not as easy as it looks. 
 
 **Review Resources:**
 
