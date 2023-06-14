@@ -70,7 +70,8 @@ The official documentation for the RLN circuits was located at [rate-limiting-nu
 
 Here is the complete flow diagram of RLN protocol for the Circom circuits.
 
-![RLN Protocol Flow](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230614/RLN-Flow-Diagram.jpg)
+![RLN Protocol Flow](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230614/RLN-Flow-Diagram.png)
+
 
 ```mermaid 
 
