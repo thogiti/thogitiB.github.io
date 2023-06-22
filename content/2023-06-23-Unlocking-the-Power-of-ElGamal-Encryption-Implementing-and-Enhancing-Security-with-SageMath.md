@@ -149,7 +149,7 @@ ElGamal encryption is an essential tool in the field of cryptography, with numer
 
 I encourage you to experiment with ElGamal encryption using SageMath and explore its potential in various applications. By understanding the fundamentals of ElGamal encryption and its implementation, you can build more secure and robust cryptographic systems.
 
-You can find the full code in the github repo [github.com/thogiti](https://github.com/thogiti/ElGamal-Encryption/blob/main/ElGamal-Encryption.sage).
+You can find the full code in the github repo [github.com/thogiti](https://github.com/thogiti/ElGamal-Encryption/).
 
 **References**
 1. ElGamal, T. (1985). A public key cryptosystem and a signature scheme based on discrete logarithms. IEEE Transactions on Information Theory, 31(4), 469-472.
