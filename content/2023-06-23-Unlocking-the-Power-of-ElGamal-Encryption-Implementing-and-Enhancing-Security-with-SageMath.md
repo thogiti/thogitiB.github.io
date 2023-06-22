@@ -9,7 +9,7 @@ tags = ["ElGamal", "SageMath Implementation", "Public Key Cryptography", "Discre
 - [Introduction](#introduction)
 - [ElGamal Encryption](#elgamal-encryption)
 - [Enhancing Security of ElGamal Encryption](#enhancing-security-of-elgamal-encryption)
-- [Finding a Safe Generator $g$](#finding-a-safe-generator-g)
+- [Finding a Safe Generator](#finding-a-safe-generator)
 - [Practical Applications of ElGamal Encryption](#practical-applications-of-elgamal-encryption)
 - [Conclusion](#conclusion)
 
@@ -75,7 +75,7 @@ To generate a 256-bit random prime number in SageMath, you can use the `random_p
 ```
 By updating the previous SageMath code with this new prime number generation method, you can enhance the security of the ElGamal encryption process.
 
-# [Finding a Safe Generator $g$](#finding-a-safe-generator)
+# [Finding a Safe Generator](#finding-a-safe-generator)
 
 In the ElGamal encryption scheme, selecting a safe generator $g$ is crucial for the security of the system. A safe generator is a number that generates a cyclic subgroup of the multiplicative group $modulo p$, where $p$ is a large prime number. 
 
