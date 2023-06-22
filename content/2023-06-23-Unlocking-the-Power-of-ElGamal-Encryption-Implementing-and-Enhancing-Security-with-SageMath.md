@@ -35,6 +35,21 @@ Let's consider an example of the ElGamal encryption process:
 - Alice wants to send a message $M$ to Bob. She chooses a random integer $k$ and computes the ciphertext $(a, b) = (g^k mod p, M * Y^k mod p)$.
 - Bob receives the ciphertext and decrypts it using his private key: $M = b * a^(-x) mod p$.
 
+**Flow of the ElGamal encryption**
+
+```mermaid
+sequenceDiagram 
+
+Alice->>Bob: Generate key pair (public key, private key) 
+Note right of Alice: (g^a mod p, a) 
+Note right of Bob: (g^b mod p, b) 
+Alice->>Bob: Send public key (g^a mod p) 
+Bob->>Alice: Encrypt message with Alice's public key 
+Note right of Bob: Encrypted message: (g^b mod p, M * (g^a)^b mod p) 
+Alice->>Alice: Decrypt message with private key 
+Note right of Alice: Decrypted message: M = (g^a)^(-b) * (M * (g^a)^b mod p) mod p
+```
+
 Implementing ElGamal Encryption with SageMath SageMath is an open-source mathematics software that provides a powerful environment for implementing various cryptographic algorithms, including ElGamal encryption. To get started with SageMath, you can install it on your local machine or use the online version available at sagemath.org.
 
 Once you have SageMath installed and running, you can implement the ElGamal encryption process as follows:
