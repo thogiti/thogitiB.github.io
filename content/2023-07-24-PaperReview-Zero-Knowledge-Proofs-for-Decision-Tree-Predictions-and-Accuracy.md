@@ -71,11 +71,43 @@ Here is a sequence diagram describing the specific construction of zkDT.
 ## [Authenticated Decision Tree](#authenticated-decision-tree) 
 The paper introduces the concept of an Authenticated Decision Tree (ADT), which is a decision tree that has been authenticated by a commitment scheme. The ADT is used in the proposed protocols for zero knowledge decision tree predictions and accuracy tests. The ADT is constructed by hashing the root of the decision tree concatenated with a random point, which is used as the commitment.
 
+- A naive approach to committing to a decision tree is to compute the hash of the entire tree, but this would result in high overhead when proving predictions.
+- Another approach is to use a Merkle hash tree on all the nodes in the decision tree, but this would still introduce overhead in the zero knowledge proof backend.
+
+
 ## [Construction of ADT](#construction-of-adt)
 The paper describes the construction of the ADT, which involves hashing the root of the decision tree concatenated with a random point to produce the commitment. The paper notes that the commitment must be randomized in order to prove the zero knowledge property of the scheme later.
 
+![Construction of ADT](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230724/Committing-algorithm-of-ADT-scheme-zkDT.png)
+
+
+- Each node in ADT contains three pieces of information: the attribute $(v.att)$, the threshold $(v.thr)$, and pointers to the left and right children $(lc, rc)$.
+- The construction of ADT is illustrated in the above figure, which shows how the hash of an intermediate node is computed using the hashes of its children and its own attribute and threshold values.
+- The inclusion of the attribute and threshold values in the hash computation ensures that the integrity of the decision tree is maintained, and any tampering with the tree structure or values will be detected during verification.
+- The verification algorithm for ADT is similar to that of the Merkle hash tree, where the proof includes the prediction path from the root to the leaf node that outputs the prediction result, as well as the hashes of the siblings of the nodes along the prediction path.
+- With the proof, the verifier can recompute the root hash and compare it with the commitment to ensure the validity of the prediction.
+- The advantage of using ADT over Merkle hash tree is that the verification of ADT only requires $O(h)$ hashes, where $h$ is the height of the decision tree, whereas Merkle hash tree requires $O(h log N)$ hashes, where $N$ is the number of nodes in the tree.
+- The construction of zkDT uses ADT to efficiently turn decision tree predictions and accuracy into statements of zero knowledge proofs, which allows the owner of a decision tree model to convince others of its accuracy without revealing any information about the model itself.
+
+
+With the construction of ADT, we can update our methodology of the algorithms used in the ADT for zero knowledge proofs of decision tree predictions and accuracy.
+- In order to prove the zero knowledge property of the scheme, the commitment has to be randomized. This means that a random point $r$ is added to the root of the decision tree and the hash of the root concatenated with r is used as the final commitment. This is shown in the above figure.
+- This ADT described in the paper does not have to support dynamic insertions and deletions for the purpose of the application, which simplifies the construction significantly.
+- The first algorithm, $pp ← ADT.G(1^λ)$, samples a collision-resistant hash function from the family of hash functions.
+- The second algorithm, $com_ADT ← ADT.Commit(T, pp, r)$, computes hashes from leaf nodes to the root of $T$ with the random point $r$ as shown in the above figure.
+- The third algorithm, $π_ADT ← ADT.P(T, Path, pp)$, given a path in $T$, contains all siblings of the nodes along the path Path and the randomness $r$ in the above figure.
+- The fourth algorithm, ${0, 1} ← ADT.V(com_ADT, Path, π_ADT, pp)$, given Path and $π_ADT$, recomputes hashes along Path with $π_ADT as the same progress in the above figure and compares the root hash with $com_ADT$. It outputs $1$ if they are the same, otherwise, it outputs $0$.
+- These algorithms are used to efficiently turn decision tree predictions and accuracy into statements of zero knowledge proofs.
+
+
+# [Zero Knowledge Decision Tree Prediction](#zero-knowledge-decision-tree-prediction)
+
 # [Proving the Validity of the Prediction](#proving-the-validity-of-the-prediction)
 The paper proposes a protocol for proving the validity of a decision tree prediction using a zero knowledge proof. The protocol involves the prover generating a proof that the decision tree model correctly classifies a given data sample. The verifier can then verify the proof without learning anything about the decision tree model.
+
+
+# [Zero Knowledge Decision Tree Accuracy](#zero-knowledge-decision-tree-accuracy)
+
 
 # [Validating Decision Tree Accuracy](#validating-decision-tree-accuracy)
 The paper proposes a protocol for validating decision tree accuracy using a zero knowledge proof. The protocol involves the prover generating a proof that the decision tree
