@@ -43,21 +43,35 @@ But first, let's introduce some concepts and definitions: $F$, a finite field; $
 
 Embracing transparency, the scheme assumes that both parties are aware of the height (or an upper bound) of the decision tree. Furthermore, they denote $comT$ as the commitment of the decision tree, $y_a$ as the class returned by the decision tree for data point $a$, and $π$ as the proof ingeniously crafted by the prover. Finally, ${0, 1}$ represents the verifier's output, indicating whether to accept or reject the classification and proof.
 
-The zero-knowledge decision tree schemes (zkDT) consists of the following algorithms:
+The zero-knowledge decision tree scheme (zkDT) consists of the four algorithms, $G$, $Commit$, $P$, and $V$:
 
-1. The $pp ← zkDT.G(1^λ)$ algorithm: With the security parameter given, generate the public parameter $pp$.
+1. The $pp ← zkDT.G(1^λ)$ algorithm: With the security parameter given, generate the public parameter $pp$. 
 
-2. The $comT ← zkDT.Commit(T , pp, r)$ algorithm: This step involves the prover committing to the decision tree $T$ using a random point $r$.
+2. The $comT ← zkDT.Commit(T , pp, r)$ algorithm: This step involves the prover committing to the decision tree $T$ using a random point $r$. 
 
 3. The $(y_a, π ) ← zkDT.P(T , a, pp)$ algorithm: When given a data point $a$, the decision tree algorithm is executed, producing $y_a = T(a)$ and an accompanying proof $π$.
 
-4. The ${0, 1} ← zkDT.V(comT , h, a, y_a, π , pp)$ algorithm: At this stage, we validate the prediction of $a$, the classification $y_a$, and the proof $π$ provided by the prover.
+4. The ${0, 1} ← zkDT.V(comT , h, a, y_a, π , pp)$ algorithm: At this stage, the Verifier validates the prediction of $a$, the classification $y_a$, and the proof $π$ provided by the prover.
 
 
-# [Authenticated Decision Tree](#authenticated-decision-tree) 
+## [Intuition of the construction of zkDT](#intuition-of-the-construction-of-zkdt)
+
+Here is a sequence diagram describing the specific construction of zkDT.
+
+![Intuition of the construction of zkDT](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230724/zkDT-sequence-diagram.png)
+
+
+- The general idea of the construction of zkDT involves the prover $P$ sending the commitment of a decision tree $T$, $comT$, to the verifier $V$.
+- After receiving the data sample $a$ from the verifier, the prover computes $y_a$ and the corresponding witness $w$ for proving $y_a = T(a)$, then sends $y_a$ to the verifier.
+- This relationship $R = ((ya, a, comT); w)$ is treated as a $NP$ relationship as described above in the [ZKP](#zero-knowledge-proofs).
+- The verifier and the prover then invoke the backend zero-knowledge proofs protocol to verify the relationship $R$ without leaking any information of $T$ except for $y_a$.
+- This approach ensures that the privacy of the decision tree is preserved while still allowing for accurate predictions to be made and verified.
+
+
+## [Authenticated Decision Tree](#authenticated-decision-tree) 
 The paper introduces the concept of an Authenticated Decision Tree (ADT), which is a decision tree that has been authenticated by a commitment scheme. The ADT is used in the proposed protocols for zero knowledge decision tree predictions and accuracy tests. The ADT is constructed by hashing the root of the decision tree concatenated with a random point, which is used as the commitment.
 
-# [Construction of ADT](#construction-of-adt)
+## [Construction of ADT](#construction-of-adt)
 The paper describes the construction of the ADT, which involves hashing the root of the decision tree concatenated with a random point to produce the commitment. The paper notes that the commitment must be randomized in order to prove the zero knowledge property of the scheme later.
 
 # [Proving the Validity of the Prediction](#proving-the-validity-of-the-prediction)
