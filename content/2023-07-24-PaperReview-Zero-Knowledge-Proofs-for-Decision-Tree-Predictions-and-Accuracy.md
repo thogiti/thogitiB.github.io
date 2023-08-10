@@ -94,16 +94,48 @@ With the construction of ADT, we can update our methodology of the algorithms us
 - In order to prove the zero knowledge property of the scheme, the commitment has to be randomized. This means that a random point $r$ is added to the root of the decision tree and the hash of the root concatenated with r is used as the final commitment. This is shown in the above figure.
 - This ADT described in the paper does not have to support dynamic insertions and deletions for the purpose of the application, which simplifies the construction significantly.
 - The first algorithm, $pp ← ADT.G(1^λ)$, samples a collision-resistant hash function from the family of hash functions.
-- The second algorithm, $com_ADT ← ADT.Commit(T, pp, r)$, computes hashes from leaf nodes to the root of $T$ with the random point $r$ as shown in the above figure.
-- The third algorithm, $π_ADT ← ADT.P(T, Path, pp)$, given a path in $T$, contains all siblings of the nodes along the path Path and the randomness $r$ in the above figure.
-- The fourth algorithm, ${0, 1} ← ADT.V(com_ADT, Path, π_ADT, pp)$, given Path and $π_ADT$, recomputes hashes along Path with $π_ADT as the same progress in the above figure and compares the root hash with $com_ADT$. It outputs $1$ if they are the same, otherwise, it outputs $0$.
+- The second algorithm, $comADT ← ADT.Commit(T, pp, r)$, computes hashes from leaf nodes to the root of $T$ with the random point $r$ as shown in the above figure.
+- The third algorithm, $πADT ← ADT.P(T, Path, pp)$, given a path in $T$, contains all siblings of the nodes along the path Path and the randomness $r$ in the above figure.
+- The fourth algorithm, ${0, 1} ← ADT.V(comADT, Path, πADT, pp)$, given Path and $πADT$, recomputes hashes along Path with $πADT$ as the same progress in the above figure and compares the root hash with $comADT$. It outputs $1$ if they are the same, otherwise, $0$.
 - These algorithms are used to efficiently turn decision tree predictions and accuracy into statements of zero knowledge proofs.
 
 
-# [Zero Knowledge Decision Tree Prediction](#zero-knowledge-decision-tree-prediction)
-
 # [Proving the Validity of the Prediction](#proving-the-validity-of-the-prediction)
-The paper proposes a protocol for proving the validity of a decision tree prediction using a zero knowledge proof. The protocol involves the prover generating a proof that the decision tree model correctly classifies a given data sample. The verifier can then verify the proof without learning anything about the decision tree model.
+The protocol for proving the correctness of the prediction in a decision tree involves using a zero knowledge proof on top of the validation process to keep the prediction path and sibling hashes confidential (zero knowledge). This protocol ensures that the verifier only receives a binary output $(1 or 0)$ indicating whether all the checks are satisfied or not, making it both sound and zero knowledge.
+- 
+![Zero knowledge decision tree prediction](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230724/Zero-knowledge-decision-tree-prediction.png)
+
+
+The below steps explain the design of an efficient zero knowledge proof protocol proposed in the paper for validating decision tree predictions.
+- The protocol reduces the validity of the prediction using a committed decision tree to an arithmetic circuit.
+- The public input of the circuit includes the data sample $a$, the commitment of the decision tree $comT$, and the prediction result $y_a$.
+- The secret witness from the prover includes the prediction path **$a$** and the randomness $r$ used in the commitment of ADT.
+- To improve efficiency, the prover inputs the siblings of nodes on the prediction path and the permutation $\hat{a}$ of the data sample $a$ ordered by $v.att$ of the nodes on the prediction path as part of the witness.
+- The purpose of the extended witness is to check the permutation between the data sample and the ordered sample and to validate the prediction path in the committed decision tree.
+- The whole circuit consists of three parts: validating the prediction algorithm of the decision tree, checking the permutation between the data sample $a$ and the ordered sample $\hat{a}$, and checking the validity of the prediction path in the committed decision tree.
+- The output of the circuit is either $1$ or $0$, denoting whether all the conditions are satisfied or some check fails.
+
+## [Decision Tree Prediction](#decision-tree-prediction)
+
+The above figure 2 describes the zero knowledge decision tree prediction.
+
+- The validation process is efficiently implemented using an arithmetic circuit with the help of auxiliary input $\hat{a}$.
+- The representation of a and $\hat{a}$ is slightly modified to be index-value pairs, where $a = (1, a[1]), . . . , (d, a[d])$ and $a = (i_1, a[i_1]), . . . , (i_d , a[i_d])$.
+- The circuit checks for every internal node $v_j$ on the prediction path $(j = 1, . . . , h−1)$ that (1) $v_j.att = i_j$, and (2) if $a[i_j ] < v$j.thr$, $v_j+1 = v_j.left$, otherwise $v_j+1 = v_j.right$.
+- The equality tests and comparisons are computed using standard techniques in the literature of circuit-based zero knowledge proof with the help of auxiliary input.
+- Finally, the circuit checks if ya = vh .class. The circuit outputs 1 if all the checks pass, and outputs 0 otherwise.
+- The total number of gates in this part is O(d + h), which is asymptotically the same as the plain decision tree prediction in Algorithm 1.
+- If h < d, which is usually true in practice, the circuit only checks the indices of the first h − 1 pairs in  ̄a. The rest of the indices are arbitrary, as long as  ̄a is a permutation of a.
+- The prover and the verifier can either agree on the length of the prediction path and construct a separate circuit for every data sample, or use the height of the tree as an upper-bound to construct the same circuit for all data samples.
+- Both options are supported by the scheme, and the asymptotic complexity is the same. However, the former is more efficient but leaks the length of the prediction paths.
+
+## [Permuitation Test](#permuitation-test)
+
+
+## [Path Validation](#path-validation)
+
+
+## [Zero Knowledge Decision Tree Prediction Protocol](#zero-knowledge-decision-tree-prediction-protocol)
 
 
 # [Zero Knowledge Decision Tree Accuracy](#zero-knowledge-decision-tree-accuracy)
