@@ -232,11 +232,11 @@ Test 1
 $$A = 
 \begin{array}{c}
 \begin{matrix}
-1&out & x & y & u & v & u1 & u2
+1&out & x & y & u & v & u1 & u2 \\\
 \end{matrix}\\
 \begin{bmatrix}
-    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
-    0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\\
+    0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\\
     0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 
 \end{bmatrix}
 \color{red}\begin{matrix}R_1\\R_2\\R_3\end{matrix}\hspace{-1em}\\
