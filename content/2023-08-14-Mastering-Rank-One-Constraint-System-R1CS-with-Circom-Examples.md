@@ -237,44 +237,19 @@ $$
     0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\\
     0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 
 \end{bmatrix}
-\color{red}\begin{matrix}R_1\\R_2\\R_3\end{matrix}\hspace{-1em}\\\
 \end{array}
 $$
 
 
 
-\begin{bmatrix}
-    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\\
-    0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\\
-    0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 
-\end{bmatrix}
-
-
-
 Here is the final matrix A in the table form:
 
-|      | 1  | out| x  | y  | u  | v  | u1 | u2 |
-| ---- | -- | -- | -- | -- | -- | -- | -- | -- |
+|      | 1  | out |  x  |  y  |  u  |  v  |  u1 | u2 |
+| ---- | -- | --  | --  |  -- |  -- |  -- |  -- | -- |
 | R1   |  0 |  0  |  1  |  0  |  0  |  0  |  0  |  0 |
 | R2   |  0 |  0  |  0  |  0  |  1  |  0  |  0  |  0 |
 | R3   |  0 |  0  |  0  |  0  |  0  |  0  |  1  |  0 |
 
-
-
-$$
-\begin{bmatrix}
-   a & b \\\ 
-   c & d 
-\end{bmatrix}
-$$
-
-$$
-\begin{bmatrix}
-   a & b & b \\\ 
-   c & d & b \\\
-   c & d & b 
-\end{bmatrix}
-$$
 
 
 
