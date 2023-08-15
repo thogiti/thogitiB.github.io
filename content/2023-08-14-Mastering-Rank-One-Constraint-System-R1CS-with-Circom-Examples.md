@@ -59,6 +59,7 @@ For Circom installation, follow the official documentation at [docs.circom.io](h
 # [Circom R1CS Examples]
 
 Before we can create an r1cs, our polynomials and constraints need to be of the form
+
 ![r1cs-form](https://github.com/thogiti/thogiti.github.io/blob/master/content/images/20230814/r1cs-eq1.jpg)
 
 Also, Circom expects the constraints to be of the form $Aw * Bw - Cw = 0$, where $A$ is the left hand side of matrix, $B$ is the right hand side of matrix and $C$ is the output matrix forms. The variable $w$ is witness vector. Here the witness $w$ will be of the form $[1, out, x, y, ...]$
@@ -132,6 +133,7 @@ The witness vector will be $[1, out, x, y, u, v, u1, u2]$. This makes our matric
 
 We have three constraints, hene we will have three rows in the matrices $A$, $B$, and $C$. Each row representing the corresponding constraint as written above.
 
+
 ![r1cs-ex2]([#images/20230814/r1cs-ex2.jpg](https://github.com/thogiti/thogiti.github.io/blob/master/content/images/20230814/r1cs-ex2.jpg))
 
 **Constructing Matrix A from left hand terms**
@@ -204,7 +206,7 @@ Since there is $u1$ in the left hand side term, we get the third row of A to be 
 Hence, after the third constraint, we get the final form of matrix $A$.
 
 
-```math
+$$
 A = 
 \begin{array}{c}
 \begin{matrix}
@@ -218,7 +220,8 @@ A =
 \color{red}\begin{matrix}R_1\\R_2\\R_3\end{matrix}\hspace{-1em}\\
 \end{array}
 
-```
+$$
+
 
 Here is the final matrix A in the table form:
 
