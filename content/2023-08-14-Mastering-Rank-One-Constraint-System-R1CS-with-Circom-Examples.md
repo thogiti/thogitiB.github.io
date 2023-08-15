@@ -244,8 +244,8 @@ $$
 
 $$
 \begin{bmatrix}
-    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\\
-    0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\\
+    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
     0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 
 \end{bmatrix}
 $$
@@ -263,12 +263,17 @@ Here is the final matrix A in the table form:
 
 $$
 \begin{bmatrix}
-   a & b \\\ 
-   c & d
+   0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\\
+   0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 
 \end{bmatrix}
 $$
 
-
+$$
+\begin{bmatrix}
+   a & b \\\
+   c & D 
+\end{bmatrix}
+$$
 
 **Constructing Matrix B from right hand terms**
 
