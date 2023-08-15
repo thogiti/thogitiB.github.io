@@ -224,12 +224,10 @@ A =
 \end{bmatrix}
 \color{red}\begin{matrix}R_1\\R_2\\R_3\end{matrix}\hspace{-1em}\\
 \end{array}
-
  ```
  
 
-$$
-A = 
+$$ 
 \begin{array}{c}
 \begin{matrix}
 1&out & x & y & u & v & u1 & u2
@@ -241,8 +239,16 @@ A =
 \end{bmatrix}
 \color{red}\begin{matrix}R_1\\R_2\\R_3\end{matrix}\hspace{-1em}\\\
 \end{array}
+$$
 
- $$
+
+$$
+\begin{bmatrix}
+    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\\
+    0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\\
+    0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 
+\end{bmatrix}
+$$
 
 
 Here is the final matrix A in the table form:
