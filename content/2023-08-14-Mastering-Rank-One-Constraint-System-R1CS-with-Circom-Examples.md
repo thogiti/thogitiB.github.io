@@ -145,7 +145,8 @@ The witness vector is $[1, out, x, y, u, v, u1, u2]$.
 
 The matrix A will be of the form:
 
-$$
+
+```math
 A_{3,8} = 
 \begin{pmatrix}
 a_{1,1} & a_{1,2} & a_{1,3} & a_{1,4} & a_{1,5} & a_{1,6} & a_{1,7} & a_{1,8} \\
@@ -154,7 +155,7 @@ a_{2,1} & a_{2,2} & a_{2,3} & a_{2,4} & a_{2,5} & a_{2,6} & a_{2,7} & a_{2,8} \\
 
 a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8} \\
 \end{pmatrix}
-$$
+```
 
 Now, let's fill the matrix $A$ for the first row (first constraint). 
 
@@ -166,7 +167,8 @@ Since, there is only $x$ in the left hand terms. the first row of A will $[0, 0,
 
 Hence, after the first constraint, we get
 
-$$
+
+```math 
 A_{3,8} = 
 \begin{pmatrix}
 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
@@ -175,7 +177,8 @@ a_{2,1} & a_{2,2} & a_{2,3} & a_{2,4} & a_{2,5} & a_{2,6} & a_{2,7} & a_{2,8} \\
 
 a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8} \\
 \end{pmatrix}
-$$
+```
+
 
 Now, let's fill the matrix $A$ for the second row (second constraint). 
 
@@ -187,7 +190,7 @@ Since there is $u$ in the left hand side term, we get the second row of A to be 
 
 Hence, after the second constraint, we get
 
-$$
+```math 
 A_{3,8} = 
 \begin{pmatrix}
 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
@@ -196,7 +199,7 @@ A_{3,8} =
 
 a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8} \\
 \end{pmatrix}
-$$
+```
 
 Now, let's fill the matrix $A$ for the third row (third constraint). 
 
