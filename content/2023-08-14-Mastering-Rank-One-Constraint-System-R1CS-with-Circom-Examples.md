@@ -226,48 +226,15 @@ A =
 \end{array}
 
  ```
-
-Test 1
-
-$$A = 
-\begin{array}{c}
-\begin{matrix}
-1&out & x & y & u & v & u1 & u2 \\\
-\end{matrix}\\
-\begin{bmatrix}
-    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\\
-    0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\\
-    0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 
-\end{bmatrix}
-\color{red}\begin{matrix}R_1\\R_2\\R_3\end{matrix}\hspace{-1em}\\
-\end{array}
-$$
- 
-
-Test 2
-
-$\A = 
-\begin{array}{c}
-\begin{matrix}
-1&out & x & y & u & v & u1 & u2
-\end{matrix}\\
-\begin{bmatrix}
-    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
-    0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
-    0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 
-\end{bmatrix}
-\color{red}\begin{matrix}R_1\\R_2\\R_3\end{matrix}\hspace{-1em}\\
-\end{array}
-$
  
 
 Here is the final matrix A in the table form:
 
 |      | 1  | out| x  | y  | u  | v  | u1 | u2 |
 | ---- | -- | -- | -- | -- | -- | -- | -- | -- |
-| R1   |  0 |  0  |  1  |  0  |  0  |  0  |  0  |  0  |
-| R2   |  0 |  0  |  0  |  0  |  1  |  0  |  0  |   0 |
-| R3   |  0 |  0  |  0  |  0  |   0 |   0 |   1 |   0 |
+| R1   |  0 |  0  |  1  |  0  |  0  |  0  |  0  |  0 |
+| R2   |  0 |  0  |  0  |  0  |  1  |  0  |  0  |  0 |
+| R3   |  0 |  0  |  0  |  0  |  0  |  0  |  1  |  0 |
 
 
 
