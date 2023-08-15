@@ -92,14 +92,17 @@ Now, we can verify that $Aw * Bw - Cw = 0$.
 You can verify the above calculations of the matrices by running the below sagemath code.
 
 ```python
-
 # define the matrices
 C = matrix(ZZ, [[0,1,0,0]])
 A = matrix(ZZ, [[0,0,1,0]])
 B = matrix(ZZ, [[0,0,0,1]])
 
+x = randint(1,100000)
+y = randint(1,100000)
+out = x * y
+
 # witness vector
-witness = vector([1, 99, 11, 9])
+witness = vector([1, out, x, y])
 
 # Calculate the results
 A_witness = A * witness
@@ -121,6 +124,125 @@ print(f"result: ",result)
 assert result, "result contains an inequality"
 
 ```
+
+
+The output will look like below:
+
+
+```
+A * witness = (15189)
+B * witness = (90533)
+C * witness = (1375105737)
+(A * witness) * (B * witness) = (1375105737)
+result:  True
+
+```
+
+
+The Circom circuit template for this will look like below:
+
+```circom
+pragma circom 2.1.4;
+
+template Multiply2() {
+    signal input x;
+    signal input y;
+    signal output out;
+
+    out <== x * y;
+ }
+
+component main = Multiply2();
+
+/* INPUT = {
+    "X": "5",
+    "y": "77"
+} */
+```
+
+Let's compile this file with Circom compiler and create r1cs file. Run the below commands at the terminal.
+
+
+```shell
+circom multiply2.circom --r1cs --sym
+snarkjs r1cs print multiply2.r1cs
+```
+
+
+Here is the output from the above commands:
+
+![multiply2-r1cs](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/multiply2-r1cs-output.png)
+
+
+We should be expecting $x*y - out = 0$ (because Circom shows the constraints as $A*B-C=0$). 
+ - Why do we this very big number `21888242871839275222246405745257275088548364400416034343698204186575808495616`?
+ - What is this number?
+
+In Circom, math is done modulo `21888242871839275222246405745257275088548364400416034343698204186575808495617`. The above number `21888242871839275222246405745257275088548364400416034343698204186575808495616` is equivalent to `-1` in Circom. 
+
+
+```python
+p = 21888242871839275222246405745257275088548364400416034343698204186575808495617
+
+# 1 - 2 = -1
+(1 - 2) % p
+```
+
+The output is as below:
+
+```python
+21888242871839275222246405745257275088548364400416034343698204186575808495616
+```
+
+
+So, from the `snarkjs` command output we have $\(-1) * x * y -\ (-1)*out = 0$ which is equivalent to $out - x*y =0$.
+
+Our matrices are:
+
+$A = [0, 0, -1, 0]$
+$B = [0, 0,  0, 1]$
+$C = [0, -1, 0, 0]$
+
+
+Let’s recompile our circuit with a wasm solver:
+```shell
+circom multiply2.circom --r1cs --wasm --sym
+
+cd multiply2_js
+```
+
+We create the `input.json` file:
+```shell
+echo '{"x": "11", "y": "9"}' > input.json
+```
+
+Now, compute the witness:
+
+```shell
+node generate_witness.js multiply2.wasm input.json witness.wtns
+
+snarkjs wtns export json witness.wtns witness.json
+
+cat witness.json
+```
+
+We can check that circom is using the same column layout for witness $w$ we have been using: $[1, out, x, y]$, as $x$ was set to `11` and $y$ to `9` in our `input.json`.
+
+
+![multiply2-r1cs-wasm-witness](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/multiply2-r1cs-wasm-witness-output.png)
+
+
+We can manually check our matrices if they satisfy the constraint $Aw*Bw = Cw$.
+
+$w = [1, 99, 11, 9]$
+$A = [0, 0, -1, 0]$
+$B = [0, 0,  0, 1]$
+$C = [0, -1, 0, 0]$
+
+$Aw = -11$
+$Bw = 9$
+$Cw = -99$
+
 
 
 ## [Example 2]
@@ -224,25 +346,11 @@ A =
 \end{bmatrix}
 \color{red}\begin{matrix}R_1\\R_2\\R_3\end{matrix}\hspace{-1em}\\
 \end{array}
- ```
+```
  
 
-$$ 
-\begin{array}{c}
-\begin{matrix}
-1&out & x & y & u & v & u1 & u2
-\end{matrix}\\\
-\begin{bmatrix}
-    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\\
-    0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\\
-    0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 
-\end{bmatrix}
-\end{array}
-$$
 
-
-
-Here is the final matrix A in the table form:
+Here is the final matrix A in the tabular form:
 
 |      | 1  | out |  x  |  y  |  u  |  v  |  u1 | u2 |
 | ---- | -- | --  | --  |  -- |  -- |  -- |  -- | -- |
@@ -252,11 +360,138 @@ Here is the final matrix A in the table form:
 
 
 
+## [Method 2]
+
+Alternatively, we can express the left hand side terms in the three constraints as a linear combination of the witness vector. 
+
+$$u1 = x * y$$
+$$u2 = u * v$$
+$$out = u1 * u2$$
+
+Here we can expand the left hand side terms using the witness vector $w$ and form the matrix $A$ as below.
+
+$$u1 = (0.1 + 0.out + 1.x + 0.y + 0.u + 0.v + 0.u1 + 0.u2) * y$$
+$$u2 = (0.1 + 0.out + 0.x + 0.y + 1.u + 0.v + 0.u1 + 0.u2)  * v$$
+$$out = (0.1 + 0.out + 0.x + 0.y + 0.u + 0.v + 1.u1 + 0.u2)  * u2$$
+
+
+Hence, the matrix $A$ can be written as 
+
+```math
+A = 
+\begin{bmatrix}
+    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 
+\end{bmatrix}
+```
+
 
 **Constructing Matrix B from right hand terms**
 
+We can follow the above steps but now we reduce the rhight hand side terms.
+
+$$u1 = x * (0.1 + 0.out + 0.x + 1.y + 0.u + 0.v + 0.u1 + 0.u2)$$
+$$u2 = u * (0.1 + 0.out + 0.x + 0.y + 0.u + 1.v + 0.u1 + 0.u2)$$
+$$out = u1 * (0.1 + 0.out + 0.x + 0.y + 0.u + 0.v + 0.u1 + 1.u2)$$
+
+Hence, the matrix $B$ will as follows:
+
+
+```math
+B = 
+\begin{bmatrix}
+    0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 
+\end{bmatrix}
+```
+
+
 
 **Constructing Matrix C from output terms**
+
+We can follow the above steps but now we reduce the output terms.
+
+$$(0.1 + 0.out + 0.x + 0.y + 0.u + 0.v + 1.u1 + 0.u2) = x * y$$
+$$(0.1 + 0.out + 0.x + 0.y + 0.u + 0.v + 0.u1 + 1.u2) = u * v$$
+$$(0.1 + 1.out + 0.x + 0.y + 0.u + 0.v + 0.u1 + 0.u2) = u1 * u2$$
+
+Hence, the matrix $B$ will as follows:
+
+
+```math
+C = 
+\begin{bmatrix}
+    0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 
+\end{bmatrix}
+```
+
+
+We can verify the above using the below sagemath code:
+
+```python
+
+# define the matrices
+A = matrix([[0,0,1,0,0,0,0,0],
+            [0,0,0,0,1,0,0,0],
+            [0,0,0,0,0,0,1,0]])
+
+B = matrix([[0,0,0,1,0,0,0,0],
+            [0,0,0,0,0,1,0,0],
+            [0,0,0,0,0,0,0,1]])
+
+C = matrix([[0,0,0,0,0,0,1,0],
+            [0,0,0,0,0,0,0,1],
+            [0,1,0,0,0,0,0,0]])
+
+x = randint(1,100000)
+y = randint(1,100000)
+z = randint(1,100000)
+u = randint(1,100000)
+
+# reductions
+out = x * y * z * u
+v1 = x * y
+v2 = z * u
+
+
+# witness vector
+w = matrix([1, out, x, y, z, u, v1, v2])
+
+
+# Calculate the results
+A_witness = A * witness
+B_witness = B * witness
+C_witness = C * witness
+AB_witness = vector([A_witness.dot_product(B_witness)])
+
+# Print the results
+print(f"A * witness = {A_witness}")
+print(f"B * witness = {B_witness}")
+print(f"C * witness = {C_witness}")
+print(f"(A * witness) * (B * witness) = {AB_witness}")
+
+# Check the equality
+result = C_witness == AB_witness
+print(f"result: ",result)
+
+# Check that the equality is true
+assert result, "result contains an inequality"
+
+```
+
+The output will look like below:
+
+```
+A * witness = (75143, 93490, 3168855453)
+B * witness = (42171, 50969, 4765091810)
+C * witness = (3168855453, 4765091810, 15099887166164139930)
+(A * witness) * (B * witness) = (3168855453, 4765091810, 15099887166164139930)
+result:  True
+```
 
 
 
