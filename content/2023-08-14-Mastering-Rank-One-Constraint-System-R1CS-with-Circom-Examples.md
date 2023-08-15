@@ -241,6 +241,7 @@ Here is the final matrix A in the table form:
 $$
 \begin{bmatrix}
    a & b \\
+   
    c & d
 \end{bmatrix}
 $$
