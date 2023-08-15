@@ -174,7 +174,7 @@ Here is the output from the above commands:
 ![multiply2-r1cs](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/multiply2-r1cs-output.png)
 
 
-We should be expecting $x*y - out = 0$ (because Circom shows the constraints as $A*B-C=0$). 
+We should be expecting $x*y - out = 0$ because Circom shows the constraints as $A*B-C=0$. 
  - Why do we this very big number `21888242871839275222246405745257275088548364400416034343698204186575808495616`?
  - What is this number?
 
@@ -195,13 +195,11 @@ The output is as below:
 ```
 
 
-So, from the `snarkjs` command output we have $\(-1) * x * y -\ (-1)*out = 0$ which is equivalent to $out - x*y =0$.
+So, the `snarkjs` command output is equivalent to $out - x*y =0$.
 
 Our matrices are:
 
-$A = [0, 0, -1, 0]$
-$B = [0, 0,  0, 1]$
-$C = [0, -1, 0, 0]$
+$A = [0, 0, -1, 0]$, $B = [0, 0,  0, 1]$, $C = [0, -1, 0, 0]$
 
 
 Let’s recompile our circuit with a wasm solver:
@@ -234,14 +232,10 @@ We can check that circom is using the same column layout for witness $w$ we have
 
 We can manually check our matrices if they satisfy the constraint $Aw*Bw = Cw$.
 
-$w = [1, 99, 11, 9]$
-$A = [0, 0, -1, 0]$
-$B = [0, 0,  0, 1]$
-$C = [0, -1, 0, 0]$
+$w = [1, 99, 11, 9]$, $A = [0, 0, -1, 0]$, $B = [0, 0,  0, 1]$, $C = [0, -1, 0, 0]$
 
-$Aw = -11$
-$Bw = 9$
-$Cw = -99$
+
+$Aw = -11$, $Bw = 9$, $Cw = -99$, $Aw*Bw = -99$.
 
 
 
