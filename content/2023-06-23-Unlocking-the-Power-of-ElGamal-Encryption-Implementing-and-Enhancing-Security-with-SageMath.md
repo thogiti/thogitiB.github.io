@@ -33,7 +33,7 @@ Let's consider an example of the ElGamal encryption process:
 - Alice and Bob agree on a large prime number $p$ and a primitive root $g modulo p$.
 - Bob chooses a random private key $x$ and computes his public key $Y = g^x mod p$.
 - Alice wants to send a message $M$ to Bob. She chooses a random integer $k$ and computes the ciphertext $(a, b) = (g^k mod p, M * Y^k mod p)$.
-- Bob receives the ciphertext and decrypts it using his private key: $M = b * a^(-x) mod p$.
+- Bob receives the ciphertext and decrypts it using his private key: $M = b * a^{-x}\ mod\ p$.
 
 **Flow of the ElGamal encryption**
 
