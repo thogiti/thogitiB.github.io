@@ -174,7 +174,7 @@ Here is the output from the above commands:
 ![multiply2-r1cs](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/multiply2-r1cs-output.png)
 
 
-We should be expecting $x*y - out = 0$ because Circom shows the constraints as $A*B-C=0$. 
+We should be expecting $x*y-out=0$  because Circom shows the constraints as $A*B-C=0$. 
  - Why do we this very big number `21888242871839275222246405745257275088548364400416034343698204186575808495616`?
  - What is this number?
 
@@ -453,14 +453,14 @@ v2 = z * u
 
 
 # witness vector
-w = matrix([1, out, x, y, z, u, v1, v2])
+witness = vector([1, out, x, y, z, u, v1, v2])
 
 
 # Calculate the results
-A_witness = A * witness
-B_witness = B * witness
-C_witness = C * witness
-AB_witness = vector([A_witness.dot_product(B_witness)])
+A_witness = A*witness
+B_witness = B*witness
+C_witness = C*witness
+AB_witness = A_witness.pairwise_product(B_witness)
 
 # Print the results
 print(f"A * witness = {A_witness}")
@@ -480,12 +480,69 @@ assert result, "result contains an inequality"
 The output will look like below:
 
 ```
-A * witness = (75143, 93490, 3168855453)
-B * witness = (42171, 50969, 4765091810)
-C * witness = (3168855453, 4765091810, 15099887166164139930)
-(A * witness) * (B * witness) = (3168855453, 4765091810, 15099887166164139930)
+A * witness = (85530, 65887, 6198615690)
+B * witness = (72473, 49454, 3258375698)
+C * witness = (6198615690, 3258375698, 20197418725537501620)
+(A * witness) * (B * witness) = (6198615690, 3258375698, 20197418725537501620)
 result:  True
 ```
+
+
+
+Here is the Circom Circuit for this example:
+
+```circom
+pragma circom 2.1.4;
+
+template Multiply4() {
+    signal input x;
+    signal input y;
+    signal input u;
+    signal input v;
+    
+    signal u1;
+    signal u2;
+    
+    signal out;
+    
+    u1 <== x * y;
+    u2 <== u * v;   
+    out <== u1 * u2;
+}
+
+component main = Multiply4();
+
+/* INPUT = {
+    "X": "5",
+    "y": "10",
+    "u": "3",
+    "v": "4",
+} */
+
+```
+
+Let's compile this and generate a witness.
+
+```shell
+circom multiply4.circom --r1cs --wasm --sym
+
+snarkjs r1cs print multiply4.r1cs
+
+cd multiply4_js
+
+echo '{"x": "5", "y": "10", "u": "3", "v": "4"}' > input.json
+
+node generate_witness.js multiply4.wasm input.json witness.wtns
+
+snarkjs wtns export json witness.wtns witness.json
+
+cat witness.json
+
+```
+
+We get the following output.
+
+![multiply4-r1cs-wasm-witness-output](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/multiply4-r1cs-wasm-witness-output.png)
 
 
 
@@ -493,23 +550,149 @@ result:  True
 
 **Circuit** $out = x*y + 2$
 
+We can repeat the above reduction process and get the matrices. We write the matrices for $out-2=x*y$. We have one constraint and witness vector will be $w = [1, out, x, y]$.
+
+$A = [0, 0, 1, 0]$, $B = [0, 0, 0, 1], $C = [-2, 1, 0, 0]
+
+
 
 ## [Example 4]
 
 **Circuit** $out = 2x^2 + y$
 
+We write the matrices for $out-y=2x^2$. We have one constraint and witness vector will be $w = [1, out, x, y]$. 
+
+$A = [0, 0, 2, 0]$, $B = [0, 0, 1, 0], $C = [0, 1, 0, -1]
+
+
 
 ## [Example 5]
 
-**Circuit** $out = 3x^2 + 5xy - x - 2y + 3$
+**Circuit** $out = 3x^2y + 5xy - x - 2y + 3$
+
+We can reduce the equations to below:
+
+$$u1 = 3*x*x$$
+$$u2 = u1*y$$
+$$x+2y-3-u2+out = 5xy$$
 
 
-## [Example 6]
-
-**Circuit** $out = x^2 + y$
+We have three constraints. Our witness vector will be $w = [1, out, x, y, u1, u2]$.
 
 
-## [Example 7]
+Hence, the our matrices $A$, $B$, and $C$ can be written as 
 
-**Circuit** $out = x + y$
+```math
+A = 
+\begin{bmatrix}
+    0 & 0 & 3 & 0 & 0 & 0  \\
+    0 & 0 & 0 & 0 & 1 & 0  \\
+    0 & 0 & 5 & 0 & 0 & 0 
+\end{bmatrix}
+```
+
+```math
+B = 
+\begin{bmatrix}
+    0 & 0 & 1 & 0 & 0 & 0  \\
+    0 & 0 & 0 & 1 & 1 & 0  \\
+    0 & 0 & 0 & 1 & 0 & 0 
+\end{bmatrix}
+```
+
+```math
+C = 
+\begin{bmatrix}
+    0 & 0 & 0 & 0 & 1 & 0  \\
+    0 & 0 & 0 & 0 & 0 & 1  \\
+    -3 & 1 & 1 & 2 & 0 & -1 
+\end{bmatrix}
+```
+
+We can check these matrices with below sagemath code:
+
+```python
+
+# define the matrices
+
+A = matrix([[0,0,3,0,0,0],
+               [0,0,0,0,1,0],
+               [0,0,1,0,0,0]])
+
+B = matrix([[0,0,1,0,0,0],
+               [0,0,0,1,0,0],
+               [0,0,0,5,0,0]])
+
+C = matrix([[0,0,0,0,1,0],
+               [0,0,0,0,0,1],
+               [-3,1,1,2,0,-1]])
+
+x = randint(1,100000)
+y = randint(1,100000)
+
+
+# reductions
+out = 3 * x * x * y + 5 * x * y - x- 2*y + 3
+# the intermediate variables
+u1 = 3*x*x
+u2 = u1 * y
+
+
+# witness vector
+witness = vector([1, out, x, y, u1, u2])
+
+
+# Calculate the results
+A_witness = A*witness
+B_witness = B*witness
+C_witness = C*witness
+AB_witness = A_witness.pairwise_product(B_witness)
+
+# Print the results
+print(f"A * witness = {A_witness}")
+print(f"B * witness = {B_witness}")
+print(f"C * witness = {C_witness}")
+print(f"(A * witness) * (B * witness) = {AB_witness}")
+
+# Check the equality
+result = C_witness == AB_witness
+print(f"result: ",result)
+
+# Check that the equality is true
+assert result, "result contains an inequality"
+```
+
+
+We will see the output:
+```shell
+A * witness = (133875, 5974171875, 44625)
+B * witness = (44625, 61540, 307700)
+C * witness = (5974171875, 367650537187500, 13731112500)
+(A * witness) * (B * witness) = (5974171875, 367650537187500, 13731112500)
+result:  True
+```
+
+
+Let's compile this and generate a witness.
+
+```shell
+circom Example5.circom --r1cs --wasm --sym
+
+snarkjs r1cs print Example5.r1cs
+
+cd Example5_js
+
+echo '{"x": "5", "y": "10"}' > input.json
+
+node generate_witness.js Example5.wasm input.json witness.wtns
+
+snarkjs wtns export json witness.wtns witness.json
+
+cat witness.json
+
+```
+
+We get the following output.
+
+![multiply4-r1cs-wasm-witness-output](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/Example5-r1cs-wasm-witness-output.png)
 
