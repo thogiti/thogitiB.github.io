@@ -4,6 +4,9 @@ title = "Mastering Rank One Constraint System R1CS with Circom Examples"
 [taxonomies]
 tags = ["R1CS", "ZKP", "Zero knowledge proofs", "Circom", "Constraint system", "Non-linear constraints" ]
 
+[extra]
+katex = true
+
 +++
 
 **In Draft Mode**
@@ -206,7 +209,7 @@ Since there is $u1$ in the left hand side term, we get the third row of A to be 
 Hence, after the third constraint, we get the final form of matrix $A$.
 
 
-$$
+```math
 A = 
 \begin{array}{c}
 \begin{matrix}
@@ -220,7 +223,7 @@ A =
 \color{red}\begin{matrix}R_1\\R_2\\R_3\end{matrix}\hspace{-1em}\\
 \end{array}
 
-$$
+ ```
 
 
 Here is the final matrix A in the table form:
