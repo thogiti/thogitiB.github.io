@@ -59,16 +59,9 @@ For Circom installation, follow the official documentation at [docs.circom.io](h
 # [Circom R1CS Examples]
 
 Before we can create an r1cs, our polynomials and constraints need to be of the form
-![r1cs-form](#images/20230814/r1cs-eq1.jpg)
+![r1cs-form](https://github.com/thogiti/thogiti.github.io/blob/master/content/images/20230814/r1cs-eq1.jpg)
 
 Also, Circom expects the constraints to be of the form $Aw * Bw - Cw = 0$, where $A$ is the left hand side of matrix, $B$ is the right hand side of matrix and $C$ is the output matrix forms. The variable $w$ is witness vector. Here the witness $w$ will be of the form $[1, out, x, y, ...]$
-
-$
-\begin{matrix}
-1, out, x, y, ...
-\end{matrix}
-$
-
 
 The matrices $A$, $B$, and $C$ have the same number of columns as the witness venctor $w$, and each column represents the same variable the index is using.
 
@@ -79,7 +72,7 @@ We will see and verify this form by Circom when we compiled the Circom circuits 
 
 **Circuit** $out = x*y$
 
-Since our equation is already in the form of $out = x * y$, where $x$ is the left hand side matrix $A$, $y$ is the right hand side matrix $B$ and $out is the results matrix.
+Since our equation is already in the form of quadratic constraint, $out = x * y$  or $A*B-C=0$, where $x$ is the left hand side matrix $A$, $y$ is the right hand side matrix $B$ and $out$ is the results matrix.
 
 The witness $w$ will be $[1, out, x, y]$.
 
@@ -127,7 +120,7 @@ assert result, "result contains an inequality"
 
 ## [Example 2]
 
-**Circuit** $out = x*y*u*v$
+**Circuit** $out = {x*y*u*v}$
 
 Remember that in R1CS, you can only have at most one multiplication in the constraint. The above equation has three multiplications. We use intermediate variables to *flatten* the polynomial like below.
 
@@ -135,15 +128,15 @@ $$u1 = x * y$$
 $$u2 = u * v$$
 $$out = u1 * u2$$
 
-The witness vedtor will be $[1, out, x, y, u, v, u1, u2]$. This makes our matrices $A$, $B$, and $C$ will have wight columns, the same columns as $w$. 
+The witness vector will be $[1, out, x, y, u, v, u1, u2]$. This makes our matrices $A$, $B$, and $C$ will have eight columns, the same columns as $w$. 
 
 We have three constraints, hene we will have three rows in the matrices $A$, $B$, and $C$. Each row representing the corresponding constraint as written above.
 
-![r1cs-ex2](#images/20230814/r1cs-ex2.jpg)
+![r1cs-ex2]([#images/20230814/r1cs-ex2.jpg](https://github.com/thogiti/thogiti.github.io/blob/master/content/images/20230814/r1cs-ex2.jpg))
 
 **Constructing Matrix A from left hand terms**
 
-The witness vedtor is $[1, out, x, y, u, v, u1, u2]$.
+The witness vector is $[1, out, x, y, u, v, u1, u2]$.
 
 The matrix A will be of the form:
 
@@ -151,7 +144,9 @@ $$
 A_{3,8} = 
 \begin{pmatrix}
 a_{1,1} & a_{1,2} & a_{1,3} & a_{1,4} & a_{1,5} & a_{1,6} & a_{1,7} & a_{1,8} \\
+
 a_{2,1} & a_{2,2} & a_{2,3} & a_{2,4} & a_{2,5} & a_{2,6} & a_{2,7} & a_{2,8} \\
+
 a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8} \\
 \end{pmatrix}
 $$
@@ -170,7 +165,9 @@ $$
 A_{3,8} = 
 \begin{pmatrix}
 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+
 a_{2,1} & a_{2,2} & a_{2,3} & a_{2,4} & a_{2,5} & a_{2,6} & a_{2,7} & a_{2,8} \\
+
 a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8} \\
 \end{pmatrix}
 $$
@@ -189,7 +186,9 @@ $$
 A_{3,8} = 
 \begin{pmatrix}
 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+
 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+
 a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8} \\
 \end{pmatrix}
 $$
@@ -202,16 +201,34 @@ $$u2 = u * v$$
 
 Since there is $u1$ in the left hand side term, we get the third row of A to be $[0, 0, 0, 0, 0, 0, 1, 0]$.
 
-Hence, after the secthirdond constraint, we get the final form of matrix $A$.
+Hence, after the third constraint, we get the final form of matrix $A$.
 
-$$
-A_{3,8} = 
-\begin{pmatrix}
-0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
-0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
-0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
-\end{pmatrix}
-$$
+
+```math
+A = 
+\begin{array}{c}
+\begin{matrix}
+1&out & x & y & u & v & u1 & u2
+\end{matrix}\\
+\begin{bmatrix}
+    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 
+\end{bmatrix}
+\color{red}\begin{matrix}R_1\\R_2\\R_3\end{matrix}\hspace{-1em}\\
+\end{array}
+
+```
+
+Here is the final matrix A in the table form:
+
+|      | 1  | out| x  | y  | u  | v  | u1 | u2 |
+| ---- | -- | -- | -- | -- | -- | -- | -- | -- |
+| R1   |  0 |  0  |  1  |  0  |  0  |  0  |  0  |  0  |
+| R2   |  0 |  0  |  0  |  0  |  1  |  0  |  0  |   0 |
+| R3   |  0 |  0  |  0  |  0  |   0 |   0 |   1 |   0 |
+
+
 
 
 **Constructing Matrix B from right hand terms**
