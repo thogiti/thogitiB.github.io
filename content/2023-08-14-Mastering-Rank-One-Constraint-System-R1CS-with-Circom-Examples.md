@@ -124,7 +124,7 @@ assert result, "result contains an inequality"
 
 ## [Example 2]
 
-**Circuit** $out = {x*y*u*v}$
+**Circuit** $out = {x * y * u * v}$
 
 Remember that in R1CS, you can only have at most one multiplication in the constraint. The above equation has three multiplications. We use intermediate variables to *flatten* the polynomial like below.
 
@@ -137,7 +137,8 @@ The witness vector will be $[1, out, x, y, u, v, u1, u2]$. This makes our matric
 We have three constraints, hene we will have three rows in the matrices $A$, $B$, and $C$. Each row representing the corresponding constraint as written above.
 
 
-![r1cs-ex2]([#images/20230814/r1cs-ex2.jpg](https://github.com/thogiti/thogiti.github.io/blob/master/content/images/20230814/r1cs-ex2.jpg))
+![r1cs-ex2](https://github.com/thogiti/thogiti.github.io/blob/master/content/images/20230814/r1cs-ex2.jpg)
+
 
 **Constructing Matrix A from left hand terms**
 
@@ -153,13 +154,13 @@ a_{1,1} & a_{1,2} & a_{1,3} & a_{1,4} & a_{1,5} & a_{1,6} & a_{1,7} & a_{1,8} \\
 
 a_{2,1} & a_{2,2} & a_{2,3} & a_{2,4} & a_{2,5} & a_{2,6} & a_{2,7} & a_{2,8} \\
 
-a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8} \\
+a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8} 
 \end{pmatrix}
 ```
 
 Now, let's fill the matrix $A$ for the first row (first constraint). 
 
-**$$u1 = x * y$$**
+$$u1 = x * y$$
 $$u2 = u * v$$
 $$out = u1 * u2$$
 
@@ -175,7 +176,7 @@ A_{3,8} =
 
 a_{2,1} & a_{2,2} & a_{2,3} & a_{2,4} & a_{2,5} & a_{2,6} & a_{2,7} & a_{2,8} \\
 
-a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8} \\
+a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8} 
 \end{pmatrix}
 ```
 
@@ -183,7 +184,7 @@ a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8} \\
 Now, let's fill the matrix $A$ for the second row (second constraint). 
 
 $$u1 = x * y$$
-**$$u2 = u * v$$**
+$$u2 = u * v$$
 $$out = u1 * u2$$
 
 Since there is $u$ in the left hand side term, we get the second row of A to be $[0, 0, 0, 0, 1, 0, 0, 0]$.
@@ -197,7 +198,7 @@ A_{3,8} =
 
 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
 
-a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8} \\
+a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8} 
 \end{pmatrix}
 ```
 
