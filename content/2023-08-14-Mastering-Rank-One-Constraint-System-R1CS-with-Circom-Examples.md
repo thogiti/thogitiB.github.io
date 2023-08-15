@@ -264,7 +264,15 @@ Here is the final matrix A in the table form:
 $$
 \begin{bmatrix}
    a & b \\\ 
-   c & d
+   c & d 
+\end{bmatrix}
+$$
+
+$$
+\begin{bmatrix}
+   a & b & b \\\ 
+   c & d & b \\\
+   c & d & b 
 \end{bmatrix}
 $$
 
