@@ -63,7 +63,8 @@ For Circom installation, follow the official documentation at [docs.circom.io](h
 
 Before we can create an r1cs, our polynomials and constraints need to be of the form
 
-![r1cs-form](https://github.com/thogiti/thogiti.github.io/blob/master/content/images/20230814/r1cs-eq1.jpg)
+![r1cs-form](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/r1cs-eq1.jpg)
+
 
 Also, Circom expects the constraints to be of the form $Aw * Bw - Cw = 0$, where $A$ is the left hand side of matrix, $B$ is the right hand side of matrix and $C$ is the output matrix forms. The variable $w$ is witness vector. Here the witness $w$ will be of the form $[1, out, x, y, ...]$
 
@@ -137,7 +138,7 @@ The witness vector will be $[1, out, x, y, u, v, u1, u2]$. This makes our matric
 We have three constraints, hene we will have three rows in the matrices $A$, $B$, and $C$. Each row representing the corresponding constraint as written above.
 
 
-![r1cs-ex2](https://github.com/thogiti/thogiti.github.io/blob/master/content/images/20230814/r1cs-ex2.jpg)
+![r1cs-ex2](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/r1cs-ex2.jpg)
 
 
 **Constructing Matrix A from left hand terms**
@@ -161,8 +162,7 @@ a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8}
 Now, let's fill the matrix $A$ for the first row (first constraint). 
 
 $$u1 = x * y$$
-$$u2 = u * v$$
-$$out = u1 * u2$$
+
 
 Since, there is only $x$ in the left hand terms. the first row of A will $[0, 0, 1, 0, 0, 0, 0, 0]$.
 
@@ -183,9 +183,9 @@ a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8}
 
 Now, let's fill the matrix $A$ for the second row (second constraint). 
 
-$$u1 = x * y$$
+
 $$u2 = u * v$$
-$$out = u1 * u2$$
+
 
 Since there is $u$ in the left hand side term, we get the second row of A to be $[0, 0, 0, 0, 1, 0, 0, 0]$.
 
@@ -204,9 +204,7 @@ a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} & a_{3,6} & a_{3,7} & a_{3,8}
 
 Now, let's fill the matrix $A$ for the third row (third constraint). 
 
-$$u1 = x * y$$
-$$u2 = u * v$$
-**$$out = u1 * u2$$**
+$$out = u1 * u2$$
 
 Since there is $u1$ in the left hand side term, we get the third row of A to be $[0, 0, 0, 0, 0, 0, 1, 0]$.
 
