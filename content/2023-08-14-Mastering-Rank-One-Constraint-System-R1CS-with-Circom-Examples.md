@@ -242,13 +242,13 @@ $$
 $$
 
 
-$$
-\\begin{bmatrix}
+
+\begin{bmatrix}
     0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\\
     0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\\
     0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 
-\\end{bmatrix}
-$$
+\end{bmatrix}
+
 
 
 Here is the final matrix A in the table form:
