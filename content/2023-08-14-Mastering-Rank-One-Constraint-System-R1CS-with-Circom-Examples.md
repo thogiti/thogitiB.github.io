@@ -9,7 +9,25 @@ katex = true
 
 +++
 
-**In Draft Mode**
+
+- [Overview](#overview)
+  - [Understanding the Role of R1CS in Zero-Knowledge Protocols](#understanding-the-role-of-r1cs-in-zero-knowledge-protocols)
+  - [Definition and Explanation of R1CS](#definition-and-explanation-of-r1cs)
+  - [Relation to Circuits of Logical Gates](#relation-to-circuits-of-logical-gates)
+  - [Constructing R1CS for Zero Knowledge Proofs](#constructing-r1cs-for-zero-knowledge-proofs)
+- [Circom R1CS Examples](#circom-r1cs-examples)
+  - [Example 1](#example-1)
+    - [Ex1 Sagemath Implementation](#ex1-sagemath-implementation)
+    - [Ex1 Circom Circuit Implementation](#ex1-circom-circuit-implementation)
+  - [Example 2](#example-2)
+    - [Method 2](#method-2)
+    - [Ex2 Sagemath Implementation](#ex2-sagemath-implementation)
+    - [Ex2 Circom Circuit Implementation](#ex2-circom-circuit-implementation)
+  - [Example 3](#example-3)
+  - [Example 4](#example-4)
+  - [Example 5](#example-5)
+    - [Ex5 Sagemath Implementation](#ex5-sagemath-implementation)
+    - [Ex5 Circom Circuit Implementation](#ex5-circom-circuit-implementation)
 
 
 # [Overview](#overview)
@@ -26,7 +44,7 @@ In the [previous](https://thogiti.github.io/writing-zero-knowledge-proofs-and-ci
 Constraint systems are collections of arithmetic constraints over a set of variables. They play an essential role in computational problems, particularly in the realm of cryptographic protocols and zero-knowledge proofs. In a constraint system, there are two types of variables: high-level variables (the secret inputs) and low-level variables (the internal inputs and outputs of the multiplication gates).
 
 
-## [Understanding the Role of R1CS in Zero-Knowledge Protocols]
+## [Understanding the Role of R1CS in Zero-Knowledge Protocols](#understanding-the-role-of-r1cs-in-zero-knowledge-protocols)
 
 Zero-Knowledge (ZK) protocols, which are commonly used in cryptography, require provers to demonstrate that they know a solution to a computational problem. This problem is often expressed as a Rank-1 Constraint System (R1CS). 
 
@@ -35,16 +53,16 @@ An R1CS is essentially a collection of non-linear arithmetic constraints over a 
 In contrast, the linear (additive) constraints, despite being part of the system, do not significantly contribute to its security. This is because these constraints are relatively straightforward to solve, making them less effective as a defense against potential attacks.
 
 
-## [Definition and Explanation of R1CS]
+## [Definition and Explanation of R1CS](#definition-and-explanation-of-r1cs)
 
 A Rank-1 Constraint System (R1CS) is a specific type of constraint system. It consists of two sets of constraints: multiplicative constraints and linear constraints. Each multiplicative constraint takes the form `a_L * a_R = a_O`, while each linear constraint takes the form` W_L * a_L + W_R * a_R + W_O * a_O = W_V * (v + c)`. Here, `a_L`, `a_R`, and `a_O` represent the left input, right input, and output of each gate in the circuit. `W_L`, `W_R`, `W_O`, and `W_V` are weights applied to their respective inputs and outputs.
 
 
-## [Relation to Circuits of Logical Gates]
+## [Relation to Circuits of Logical Gates](#relation-to-circuits-of-logical-gates)
 
 In the context of zk-SNARKs, an arithmetic circuit is converted into an R1CS. Each constraint corresponds to one logic gate in the circuit. This conversion is crucial because zk-SNARKs require computational problems to be expressed as a set of quadratic constraints, which are closely related to circuits of logical gates.
 
-## [Constructing R1CS for Zero Knowledge Proofs]
+## [Constructing R1CS for Zero Knowledge Proofs](#constructing-r1cs-for-zero-knowledge-proofs)
 
 We'll delve into numerous examples illustrating how to construct Rank-1 Constraint Systems (R1CS) for given polynomial equations or statements, particularly when creating Zero Knowledge Proofs. 
 
@@ -59,7 +77,7 @@ npm install snarkjs
 For Circom installation, follow the official documentation at [docs.circom.io](https://docs.circom.io/getting-started/installation/#installing-dependencies).
 
 
-# [Circom R1CS Examples]
+# [Circom R1CS Examples](#circom-r1cs-examples)
 
 Before we can create an r1cs, our polynomials and constraints need to be of the form
 
@@ -73,7 +91,7 @@ The matrices $A$, $B$, and $C$ have the same number of columns as the witness ve
 
 We will see and verify this form by Circom when we compiled the Circom circuits and see the info on the constraints.
 
-## [Example 1]
+## [Example 1](#example-1)
 
 **Circuit** $out = x*y$
 
@@ -88,6 +106,8 @@ $B$ is [0, 0, 0, 1] because the variables in the right hand side are just $y$.
 $C$ is [0, 1, 0, 0] because we only have the $out$ variable.
 
 Now, we can verify that $Aw * Bw - Cw = 0$.
+
+### [Ex1 Sagemath Implementation](#ex1-sagemath-implementation)
 
 You can verify the above calculations of the matrices by running the below sagemath code.
 
@@ -139,6 +159,9 @@ result:  True
 ```
 
 
+### [Ex1 Circom Circuit Implementation](#ex1-circom-circuit-implementation)
+
+
 The Circom circuit template for this will look like below:
 
 ```circom
@@ -174,8 +197,9 @@ Here is the output from the above commands:
 ![multiply2-r1cs](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/multiply2-r1cs-output.png)
 
 
-We should be expecting $x*y-out=0$  because Circom shows the constraints as $A*B-C=0$. 
- - Why do we this very big number `21888242871839275222246405745257275088548364400416034343698204186575808495616`?
+We should be expecting the constraints in the form of  $ A * B - C = 0$. 
+
+ - Why do we see this very big number `21888242871839275222246405745257275088548364400416034343698204186575808495616`?
  - What is this number?
 
 In Circom, math is done modulo `21888242871839275222246405745257275088548364400416034343698204186575808495617`. The above number `21888242871839275222246405745257275088548364400416034343698204186575808495616` is equivalent to `-1` in Circom. 
@@ -239,7 +263,7 @@ $Aw = -11$, $Bw = 9$, $Cw = -99$, $Aw*Bw = -99$.
 
 
 
-## [Example 2]
+## [Example 2](#example-2)
 
 **Circuit** $out = {x * y * u * v}$
 
@@ -354,7 +378,7 @@ Here is the final matrix A in the tabular form:
 
 
 
-## [Method 2]
+### [Method 2](#method-2)
 
 Alternatively, we can express the left hand side terms in the three constraints as a linear combination of the witness vector. 
 
@@ -423,6 +447,7 @@ C =
 \end{bmatrix}
 ```
 
+### [Ex2 Sagemath Implementation](#ex2-sagemath-implementation)
 
 We can verify the above using the below sagemath code:
 
@@ -487,7 +512,7 @@ C * witness = (6198615690, 3258375698, 20197418725537501620)
 result:  True
 ```
 
-
+### [Ex2 Circom Circuit Implementation](#ex2-circom-circuit-implementation)
 
 Here is the Circom Circuit for this example:
 
@@ -546,7 +571,7 @@ We get the following output.
 
 
 
-## [Example 3]
+## [Example 3](#example-3)
 
 **Circuit** $out = x*y + 2$
 
@@ -556,7 +581,7 @@ $A = [0, 0, 1, 0]$, $B = [0, 0, 0, 1], $C = [-2, 1, 0, 0]
 
 
 
-## [Example 4]
+## [Example 4](#example-4)
 
 **Circuit** $out = 2x^2 + y$
 
@@ -566,7 +591,7 @@ $A = [0, 0, 2, 0]$, $B = [0, 0, 1, 0], $C = [0, 1, 0, -1]
 
 
 
-## [Example 5]
+## [Example 5](#example-5)
 
 **Circuit** $out = 3x^2y + 5xy - x - 2y + 3$
 
@@ -608,6 +633,8 @@ C =
     -3 & 1 & 1 & 2 & 0 & -1 
 \end{bmatrix}
 ```
+
+### [Ex5 Sagemath Implementation](#ex5-sagemath-implementation)
 
 We can check these matrices with below sagemath code:
 
@@ -672,6 +699,35 @@ C * witness = (5974171875, 367650537187500, 13731112500)
 result:  True
 ```
 
+
+### [Ex5 Circom Circuit Implementation](#ex5-circom-circuit-implementation)
+Here is the Circom circuit:
+
+```circom
+pragma circom 2.1.4;
+
+template Example5() {
+    signal input x;
+    signal input y;
+    signal output out;
+
+    signal u1;
+    signal u2;
+
+    u1 <== 3 * x * x;
+    u2 <== u1 * y;
+    out <== 5 * x * y + u2 - x - 2*y +3;
+ }
+
+
+component main = Example5();
+
+/* INPUT = {
+    "X": "5",
+    "y": "10"
+} */
+
+```
 
 Let's compile this and generate a witness.
 
