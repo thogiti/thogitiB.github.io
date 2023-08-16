@@ -10,26 +10,6 @@ katex = true
 +++
 
 
-- [Overview](#overview)
-  - [Understanding the Role of R1CS in Zero-Knowledge Protocols](#understanding-the-role-of-r1cs-in-zero-knowledge-protocols)
-  - [Definition and Explanation of R1CS](#definition-and-explanation-of-r1cs)
-  - [Relation to Circuits of Logical Gates](#relation-to-circuits-of-logical-gates)
-  - [Constructing R1CS for Zero Knowledge Proofs](#constructing-r1cs-for-zero-knowledge-proofs)
-- [Circom R1CS Examples](#circom-r1cs-examples)
-  - [Example 1](#example-1)
-    - [Ex1 Sagemath Implementation](#ex1-sagemath-implementation)
-    - [Ex1 Circom Circuit Implementation](#ex1-circom-circuit-implementation)
-  - [Example 2](#example-2)
-    - [Method 2](#method-2)
-    - [Ex2 Sagemath Implementation](#ex2-sagemath-implementation)
-    - [Ex2 Circom Circuit Implementation](#ex2-circom-circuit-implementation)
-  - [Example 3](#example-3)
-  - [Example 4](#example-4)
-  - [Example 5](#example-5)
-    - [Ex5 Sagemath Implementation](#ex5-sagemath-implementation)
-    - [Ex5 Circom Circuit Implementation](#ex5-circom-circuit-implementation)
-
-
 # [Overview](#overview)
 
 Rank-1 Constraint Systems, or R1CS, are a critical component in cryptographic protocols, especially those related to zero-knowledge proofs such as zk-SNARKS. They are a system of equations used to represent computations, and are particularly useful in scenarios where we want to prove that a certain computation was done correctly, without revealing any other information about the inputs or the computation itself.
@@ -44,7 +24,7 @@ In the [previous](https://thogiti.github.io/writing-zero-knowledge-proofs-and-ci
 Constraint systems are collections of arithmetic constraints over a set of variables. They play an essential role in computational problems, particularly in the realm of cryptographic protocols and zero-knowledge proofs. In a constraint system, there are two types of variables: high-level variables (the secret inputs) and low-level variables (the internal inputs and outputs of the multiplication gates).
 
 
-## [Understanding the Role of R1CS in Zero-Knowledge Protocols](#understanding-the-role-of-r1cs-in-zero-knowledge-protocols)
+## [Understanding the Role of R1CS in Zero-Knowledge Protocols]
 
 Zero-Knowledge (ZK) protocols, which are commonly used in cryptography, require provers to demonstrate that they know a solution to a computational problem. This problem is often expressed as a Rank-1 Constraint System (R1CS). 
 
