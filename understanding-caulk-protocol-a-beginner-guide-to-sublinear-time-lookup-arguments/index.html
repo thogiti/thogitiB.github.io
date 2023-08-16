@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+<title>Understanding Caulk Protocol: A Beginner&#x27;s Guide to Sublinear Time Lookup Arguments (In Draft Mode) | Dare to Know - AI, Machine Learning, and Blockchain Technology Insights</title>
+
+
+
+<meta property="og:title" content="Understanding Caulk Protocol: A Beginner&#x27;s Guide to Sublinear Time Lookup Arguments (In Draft Mode)">
+
+
+
+<meta name="author" content="0xnagu">
+
+
+<meta property="og:locale" content="en_US">
+
+
+
+
+<link rel="canonical" href="https://thogiti.github.io/understanding-caulk-protocol-a-beginner-guide-to-sublinear-time-lookup-arguments/">
+<meta property="og:url" content="https://thogiti.github.io/understanding-caulk-protocol-a-beginner-guide-to-sublinear-time-lookup-arguments/">
+
+
+
+<meta property="og:site_name" content="Dare to Know - AI, Machine Learning, and Blockchain Technology Insights" />
+
+
+
+  <meta property="og:image" content="https://thogiti.github.io/assets/favicon.jpg">
+  
+  
+
+
+
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="2023-05-20T00:00:00+00:00">
+
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image"">
+  <meta property="twitter:image" content="https://thogiti.github.io/assets/favicon.jpg">
+
+
+
+  <meta property="twitter:title" content="Understanding Caulk Protocol: A Beginner&#x27;s Guide to Sublinear Time Lookup Arguments (In Draft Mode)">
+
+
+
+  <meta name="twitter:site" content="@0xnagu">
+  
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "author": {
+    "@type":"Person",
+	  "name":"0xnagu"
+  },
+  "description": "",
+  "url": "https://thogiti.github.io/understanding-caulk-protocol-a-beginner-guide-to-sublinear-time-lookup-arguments/",
+  "@context":"https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Understanding Caulk Protocol: A Beginner&#x27;s Guide to Sublinear Time Lookup Arguments (In Draft Mode)"
+  
+    
+    
+      "datePublished":"2023-05-20T00:00:00+00:00",
+    
+    ,
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://thogiti.github.io/understanding-caulk-protocol-a-beginner-guide-to-sublinear-time-lookup-arguments/"
+    }
+  
+}
+</script>
+
+  <link rel="stylesheet" href="https://thogiti.github.io/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://thogiti.github.io/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://thogiti.github.io/assets/favicon-16x16.png">
+
+  
+    <link type="application/atom+xml" rel="alternate" href="https://thogiti.github.io/atom.xml" title="Dare to Know - AI, Machine Learning, and Blockchain Technology Insights" />
+  
+
+  
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1DVQM7WJ3Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-1DVQM7WJ3Q');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W7CGC8T');</script>
+    <!-- End Google Tag Manager -->
+
+
+  
+
+  
+  
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+                                                                                                                                                                                                            
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                renderMathInElement(document.body, {
+                  // customised options
+                  // • auto-render specific keys, e.g.:
+                  delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false},
+                        {left: "\\(", right: "\\)", display: false},
+                        {left: "\\begin{equation}", right: "\\end{equation}", display: true},
+                        {left: "\\begin{align}", right: "\\end{align}", display: true},
+                        {left: "\\begin{alignat}", right: "\\end{alignat}", display: true},
+                        {left: "\\begin{gather}", right: "\\end{gather}", display: true},
+                        {left: "\\begin{CD}", right: "\\end{CD}", display: true},
+                        {left: "\\begin{matrix}", right: "\\end{matrix}", display: true},
+                        {left: "\\begin{bmatrix}", right: "\\end{bmatrix}", display: true},
+                        {left: "\\begin{pmatrix}", right: "\\end{pmatrix}", display: true},
+                        {left: "\\begin{array}", right: "\\end{array}", display: true},
+                        {left: "\\[", right: "\\]", display: true}
+                        ],
+                  // • rendering keys, e.g.:
+                  throwOnError : false
+                });
+            });
+        </script>
+
+
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-1DVQM7WJ3Q"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7CGC8T"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="https://thogiti.github.io/">
+        <h2 class="nav-title">Dare to Know - AI, Machine Learning, and Blockchain Technology Insights</h2>
+      </a>
+      <ul>
+        
+          
+            <li><a href="https://thogiti.github.io">Blog</a></li>
+          
+            <li><a href="https://thogiti.github.io/tags">Tags</a></li>
+          
+            <li><a href="https://thogiti.github.io/about">About</a></li>
+          
+        
+      </ul>
+    </div>
+  </nav>
+  
+
+  <main>
+    
+  <div class="post">
+  	<div class="post-info">
+  		<time datetime="2023-05-20">May 20, 2023</time>
+  	</div>
+  	<h1 class="post-title">Understanding Caulk Protocol: A Beginner&#x27;s Guide to Sublinear Time Lookup Arguments (In Draft Mode)</h1>
+  	<div class="post-line"></div>
+  	<h1 id="note-this-article-is-in-draft-mode-and-i-didn-t-finish-writing-the-sections-of-the-caulk-protocol-proof-read-test-the-code-for-correctness-and-adding-references-please-check-it-again-in-1-2-weeks-before-i-publish-it"><strong>Note: This article is in draft mode and I didn't finish writing the sections of the Caulk protocol, proof read, test the code for correctness and adding references. Please check it again in 1-2 weeks before I publish it.</strong></h1>
+<h1 id="introduction">Introduction</h1>
+<p>In this blog we will review Caulk protocol for computing efficient lookup arguments in sublinear time.</p>
+<p>The Caulk protocol offers a significant improvement over existing cryptographic solutions for vector commitment schemes, providing a more efficient and secure approach to position-hiding linkability. Its potential impact on future cryptographic systems and applications is immense, paving the way for more scalable and practical solutions in privacy-preserving applications, verifiable computation schemes, and lookup tables.</p>
+<p>Full citation of the paper:
+@misc{cryptoeprint:2022/621,
+author = {Arantxa Zapico and Vitalik Buterin and Dmitry Khovratovich and Mary Maller and Anca Nitulescu and Mark Simkin},
+title = {Caulk: Lookup Arguments in Sublinear Time},
+howpublished = {Cryptology ePrint Archive, Paper 2022/621},
+year = {2022},
+note = {\url{https://eprint.iacr.org/2022/621}},
+url = {https://eprint.iacr.org/2022/621}
+}</p>
+<h2 id="what-is-the-caulk-protocol-and-why-it-matters">What is the Caulk protocol and why it matters</h2>
+<p>The Caulk protocol is a groundbreaking cryptographic solution that addresses the challenges of vector commitment schemes in a more efficient and secure manner. It is designed to provide position-hiding linkability for vector commitment schemes, allowing users to prove in zero-knowledge that one or multiple values belong to a committed vector. This innovative approach has significant implications for privacy-preserving applications, verifiable computation schemes, and lookup tables.</p>
+<p>Vector commitment schemes play a crucial role in cryptography, as they enable the creation of compact data structures that can store large numbers of elements while allowing users to prove that specific elements have been committed to. The Caulk protocol enhances these schemes by offering sublinear time lookup arguments, drastically reducing the computational overhead and making them more practical for real-world applications.</p>
+<h2 id="the-role-of-vector-commitment-schemes-in-cryptography">The role of vector commitment schemes in cryptography</h2>
+<p>Vector commitment schemes are fundamental cryptographic primitives that underpin numerous constructions and protocols. They allow users to commit to a potentially large set of elements in a compact manner and later prove that a specific element is part of the committed set. These proofs should be succinct, unforgeable, and ideally, zero-knowledge, meaning that they do not reveal any information about the committed element.</p>
+<p>Some common applications of vector commitment schemes include privacy-preserving cryptocurrencies, membership proofs, ring signatures, and anonymous credentials. In these scenarios, it is essential to provide efficient and secure solutions that can scale with the growing demands of modern cryptographic systems.</p>
+<h2 id="challenges-with-existing-cryptographic-solutions">Challenges with existing cryptographic solutions</h2>
+<p>Existing cryptographic solutions for vector commitment schemes often rely on heavy cryptography machinery, which can result in significant computational overheads and limit their scalability and adoption. For example, the first version of the Zcash cryptocurrency used a SHA-2-based Merkle tree and the Groth16 SNARK to prove coin ownership, resulting in a prover time of 40 seconds, which was barely usable in practice.</p>
+<p>The Caulk protocol addresses these challenges by offering a more efficient and secure alternative to existing solutions. By leveraging the KZG polynomial commitment scheme and introducing position-hiding linkability, the Caulk protocol can drastically reduce the prover time and proof size, making it more practical for real-world applications.</p>
+<p>Here's a simple example of Rust code to demonstrate the creation of a commitment using the Caulk protocol:</p>
+<p>First, add the following dependencies to your Cargo.toml file:</p>
+<pre data-lang="toml" style="background-color:#fefbec;color:#6e6b5e;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[dependencies]
+</span><span style="color:#d73737;">arkworks-gadgets </span><span>= &quot;</span><span style="color:#60ac39;">0.3.0</span><span>&quot;
+</span><span style="color:#d73737;">arkworks-utils </span><span>= &quot;</span><span style="color:#60ac39;">0.3.0</span><span>&quot;
+</span><span style="color:#d73737;">caulk </span><span>= { </span><span style="color:#d73737;">git </span><span>= &quot;</span><span style="color:#60ac39;">https://github.com/caulk-crypto/caulk</span><span>&quot; }
+</span></code></pre>
+<p>Then, use the following Rust code to create a commitment using the Caulk protocol:</p>
+<pre data-lang="rust" style="background-color:#fefbec;color:#6e6b5e;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b854d4;">use </span><span>ark_bls12_381::Bls12_381;
+</span><span style="color:#b854d4;">use </span><span>ark_ff::UniformRand;
+</span><span style="color:#b854d4;">use </span><span>ark_std::rand::rngs::OsRng;
+</span><span style="color:#b854d4;">use </span><span>caulk::commitment::{CaulkCommitment, Commitment};
+</span><span style="color:#b854d4;">use </span><span>caulk::srs::</span><span style="color:#b65611;">SRS</span><span>;
+</span><span>
+</span><span style="color:#b854d4;">fn </span><span style="color:#6684e1;">main</span><span>() {
+</span><span>    </span><span style="color:#b854d4;">let</span><span> vector = vec![</span><span style="color:#b65611;">1</span><span>, </span><span style="color:#b65611;">2</span><span>, </span><span style="color:#b65611;">3</span><span>, </span><span style="color:#b65611;">4</span><span>, </span><span style="color:#b65611;">5</span><span>];
+</span><span>    </span><span style="color:#b854d4;">let</span><span> rng = &amp;</span><span style="color:#b854d4;">mut</span><span> OsRng;
+</span><span>    </span><span style="color:#b854d4;">let</span><span> srs = </span><span style="color:#b65611;">SRS</span><span>::&lt;Bls12_381&gt;::dummy(</span><span style="color:#b65611;">32</span><span>);
+</span><span>
+</span><span>    </span><span style="color:#b854d4;">let</span><span> caulk_commitment = CaulkCommitment::&lt;Bls12_381&gt;::new(&amp;srs, &amp;vector);
+</span><span>    </span><span style="color:#b854d4;">let </span><span>(commitment, randomness) = caulk_commitment.</span><span style="color:#1fad83;">commit</span><span>(rng);
+</span><span>    println!(&quot;</span><span style="color:#60ac39;">Commitment: </span><span style="color:#b65611;">{:?}</span><span>&quot;, commitment);
+</span><span>}
+</span></code></pre>
+
+  </div>
+
+	
+
+  <div class="pagination">
+  	
+		<a href="#" class="top">Top</a>
+		
+  </div>
+
+  </main>
+
+  
+  <footer>
+    <span>&copy; <time datetime="2023-08-16T02:23:16.323148464+00:00">2022-2024</time> 0xnagu. </span>
+  </footer>
+  
+</body>
+</html>

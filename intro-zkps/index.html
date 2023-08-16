@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+<title>A brief introduction to Zero Knowledge Proofs (ZKPs) | Dare to Know - AI, Machine Learning, and Blockchain Technology Insights</title>
+
+
+
+<meta property="og:title" content="A brief introduction to Zero Knowledge Proofs (ZKPs)">
+
+
+
+<meta name="author" content="0xnagu">
+
+
+<meta property="og:locale" content="en_US">
+
+
+
+
+<link rel="canonical" href="https://thogiti.github.io/intro-zkps/">
+<meta property="og:url" content="https://thogiti.github.io/intro-zkps/">
+
+
+
+<meta property="og:site_name" content="Dare to Know - AI, Machine Learning, and Blockchain Technology Insights" />
+
+
+
+  <meta property="og:image" content="https://thogiti.github.io/assets/favicon.jpg">
+  
+  
+
+
+
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="2022-12-25T00:00:00+00:00">
+
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image"">
+  <meta property="twitter:image" content="https://thogiti.github.io/assets/favicon.jpg">
+
+
+
+  <meta property="twitter:title" content="A brief introduction to Zero Knowledge Proofs (ZKPs)">
+
+
+
+  <meta name="twitter:site" content="@0xnagu">
+  
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "author": {
+    "@type":"Person",
+	  "name":"0xnagu"
+  },
+  "description": "",
+  "url": "https://thogiti.github.io/intro-zkps/",
+  "@context":"https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "A brief introduction to Zero Knowledge Proofs (ZKPs)"
+  
+    
+    
+      "datePublished":"2022-12-25T00:00:00+00:00",
+    
+    ,
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://thogiti.github.io/intro-zkps/"
+    }
+  
+}
+</script>
+
+  <link rel="stylesheet" href="https://thogiti.github.io/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://thogiti.github.io/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://thogiti.github.io/assets/favicon-16x16.png">
+
+  
+    <link type="application/atom+xml" rel="alternate" href="https://thogiti.github.io/atom.xml" title="Dare to Know - AI, Machine Learning, and Blockchain Technology Insights" />
+  
+
+  
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1DVQM7WJ3Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-1DVQM7WJ3Q');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W7CGC8T');</script>
+    <!-- End Google Tag Manager -->
+
+
+  
+
+  
+  
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+                                                                                                                                                                                                            
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                renderMathInElement(document.body, {
+                  // customised options
+                  // • auto-render specific keys, e.g.:
+                  delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false},
+                        {left: "\\(", right: "\\)", display: false},
+                        {left: "\\begin{equation}", right: "\\end{equation}", display: true},
+                        {left: "\\begin{align}", right: "\\end{align}", display: true},
+                        {left: "\\begin{alignat}", right: "\\end{alignat}", display: true},
+                        {left: "\\begin{gather}", right: "\\end{gather}", display: true},
+                        {left: "\\begin{CD}", right: "\\end{CD}", display: true},
+                        {left: "\\begin{matrix}", right: "\\end{matrix}", display: true},
+                        {left: "\\begin{bmatrix}", right: "\\end{bmatrix}", display: true},
+                        {left: "\\begin{pmatrix}", right: "\\end{pmatrix}", display: true},
+                        {left: "\\begin{array}", right: "\\end{array}", display: true},
+                        {left: "\\[", right: "\\]", display: true}
+                        ],
+                  // • rendering keys, e.g.:
+                  throwOnError : false
+                });
+            });
+        </script>
+
+
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-1DVQM7WJ3Q"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7CGC8T"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="https://thogiti.github.io/">
+        <h2 class="nav-title">Dare to Know - AI, Machine Learning, and Blockchain Technology Insights</h2>
+      </a>
+      <ul>
+        
+          
+            <li><a href="https://thogiti.github.io">Blog</a></li>
+          
+            <li><a href="https://thogiti.github.io/tags">Tags</a></li>
+          
+            <li><a href="https://thogiti.github.io/about">About</a></li>
+          
+        
+      </ul>
+    </div>
+  </nav>
+  
+
+  <main>
+    
+  <div class="post">
+  	<div class="post-info">
+  		<time datetime="2022-12-25">December 25, 2022</time>
+  	</div>
+  	<h1 class="post-title">A brief introduction to Zero Knowledge Proofs (ZKPs)</h1>
+  	<div class="post-line"></div>
+  	<ol>
+<li>Introduction
+<ul>
+<li>A. Definition of Zero Knowledge Proofs (ZKPs)</li>
+<li>B. Overview of the Benefits of Using ZKPs</li>
+</ul>
+</li>
+<li>How ZKPs Work
+<ul>
+<li>A. Overview of the ZKP Process</li>
+<li>B. Explanation of the Three Stages of the ZKP Process</li>
+</ul>
+</li>
+<li>Applications of ZKPs
+<ul>
+<li>A. Cryptocurrency Transactions</li>
+<li>B. Identity Management</li>
+<li>C. Data Privacy</li>
+</ul>
+</li>
+<li>Challenges with ZKPs
+<ul>
+<li>A. ODifficulty of Implementation</li>
+<li>B. Security and Privacy Concerns</li>
+</ul>
+</li>
+<li>Conclusion
+<ul>
+<li>A. Summary of ZKP Benefits</li>
+<li>B. Outlook on Future of ZKPs</li>
+</ul>
+</li>
+</ol>
+<h2 id="overview">Overview</h2>
+<p>Zero knowledge proofs (ZKPs) are a powerful technique that allows one person (the prover) to prove to another (the verifier) that they have specific information without actually providing it. Although this idea may seem unusual at first, it has significant implications in the world of cryptography and can be applied to improve the security and privacy of a variety of systems.</p>
+<p>ZKPs' &quot;non-interactivity&quot; is one of its fundamental characteristics. As a result, the prover can produce a proof and submit it to the verifier, who can then independently assess the proof's veracity without additional communication. This contrasts with other kinds of proofs, which frequently need for back-and-forth communication between the prover and verifier. </p>
+<p>Imagine a person attempting to prove to a bank that they have a certain amount of money in their account without disclosing the exact amount. The individual could show the bank proof that they have at least a certain amount of money without disclosing the exact amount. This would allow the bank to confirm that the person has sufficient funds without learning the details of the person's financial situation. </p>
+<p>ZKPs can be built in a variety of ways and used to prove a wide variety of statements. Some common examples include demonstrating that a person knows the solution to a specific problem (such as a password or a puzzle), demonstrating that a person has access to specific data (such as a private key or a document), or demonstrating that a person has performed a specific computation (e.g. a hash function). </p>
+<p>There has been a great deal of interest in implementing ZKPs in the Rust programming language in recent years. Rust is a systems programming language that is intended to be safe, concurrent, and fast. It has a growing ecosystem of libraries and tools and is being used in a variety of applications, including blockchain technologies and other security-critical systems. </p>
+<p>Rust is an excellent choice for implementing ZKPs for a variety of reasons. Here are three important explanations:</p>
+<ul>
+<li>For starters, Rust has strong support for low-level programming and memory safety, both of which are critical for implementing complex cryptographic algorithms.</li>
+<li>Second, Rust places a strong emphasis on concurrency and parallelism, which can be useful for optimizing the performance of ZKPs.</li>
+<li>Finally, Rust has a growing developer community and a well-documented API, which makes building and maintaining ZKP implementations easier. </li>
+</ul>
+<p>There are already a number of Rust libraries and projects that support ZKPs, such as libzkp, zkp-toolkit, and bellman. These libraries offer a variety of features and support for various ZKP constructions, and can be used to create a wide range of ZKP-based applications. </p>
+<p>To summarize, zero knowledge proofs are a powerful tool that can be used to improve the security and privacy of a variety of systems. Because of its emphasis on safety, concurrency, and performance, Rust is an excellent choice for implementing ZKPs, and there are already several libraries and projects that support ZKPs in Rust. We can expect to see even more Rust implementations and applications in the future as the use of ZKPs grows. </p>
+<p>So, how do zero knowledge proofs actually work? Let's look at a small Rust example to see how this works. In this example, we will develop a zero knowledge proof that proves the truth of a specific assertion without revealing any underlying facts or information. </p>
+<p>Here is the code for our zero knowledge proof:</p>
+<pre data-lang="rust" style="background-color:#fefbec;color:#6e6b5e;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b854d4;">extern crate</span><span> rand;
+</span><span style="color:#b854d4;">extern crate</span><span> sha2;
+</span><span>
+</span><span style="color:#b854d4;">use </span><span>rand::{Rng, SeedableRng, OsRng};
+</span><span style="color:#b854d4;">use </span><span>sha2::{Sha256, Digest};
+</span><span>
+</span><span style="color:#999580;">// Define the statement we want to prove
+</span><span style="color:#b854d4;">const </span><span style="color:#b65611;">STATEMENT</span><span>: &amp;</span><span style="color:#b854d4;">str </span><span>= &quot;</span><span style="color:#60ac39;">I possess the secret key</span><span>&quot;;
+</span><span>
+</span><span style="color:#999580;">// Define the secret key
+</span><span style="color:#b854d4;">const </span><span style="color:#b65611;">SECRET_KEY</span><span>: &amp;[</span><span style="color:#b854d4;">u8</span><span>] = </span><span style="color:#b854d4;">b</span><span>&quot;</span><span style="color:#60ac39;">my_secret_key</span><span>&quot;;
+</span><span>
+</span><span style="color:#b854d4;">fn </span><span style="color:#6684e1;">main</span><span>() {
+</span><span style="color:#999580;">// Generate a random number to use as a nonce
+</span><span style="color:#b854d4;">let mut</span><span> rng = OsRng::new().</span><span style="color:#1fad83;">unwrap</span><span>();
+</span><span style="color:#b854d4;">let</span><span> nonce: </span><span style="color:#b854d4;">u64 </span><span>= rng.</span><span style="color:#1fad83;">gen</span><span>();
+</span><span style="color:#999580;">// Hash the nonce and secret key together
+</span><span style="color:#b854d4;">let</span><span> input = format!(&quot;</span><span style="color:#b65611;">{}{}</span><span>&quot;, nonce, </span><span style="color:#b65611;">SECRET_KEY</span><span>);
+</span><span style="color:#b854d4;">let mut</span><span> hasher = Sha256::new();
+</span><span>hasher.</span><span style="color:#1fad83;">input</span><span>(input);
+</span><span style="color:#b854d4;">let</span><span> hash = hasher.</span><span style="color:#1fad83;">result</span><span>();
+</span><span>
+</span><span style="color:#999580;">// Generate a proof by hashing the statement and the hash together
+</span><span style="color:#b854d4;">let</span><span> input = format!(&quot;</span><span style="color:#b65611;">{}{}</span><span>&quot;, </span><span style="color:#b65611;">STATEMENT</span><span>, hash);
+</span><span style="color:#b854d4;">let mut</span><span> hasher = Sha256::new();
+</span><span>hasher.</span><span style="color:#1fad83;">input</span><span>(input);
+</span><span style="color:#b854d4;">let</span><span> proof = hasher.</span><span style="color:#1fad83;">result</span><span>();
+</span><span>
+</span><span style="color:#999580;">// Send the proof to the verifier
+</span><span style="color:#b854d4;">let</span><span> verifier = Verifier::new();
+</span><span style="color:#b854d4;">let</span><span> result = verifier.</span><span style="color:#1fad83;">verify</span><span>(proof, </span><span style="color:#b65611;">STATEMENT</span><span>, </span><span style="color:#b65611;">SECRET_KEY</span><span>);
+</span><span>
+</span><span style="color:#999580;">// Print the result
+</span><span>println!(&quot;</span><span style="color:#60ac39;">Verification result: </span><span style="color:#b65611;">{}</span><span>&quot;, result);
+</span><span>}
+</span><span>
+</span><span style="color:#b854d4;">struct </span><span>Verifier {
+</span><span>    </span><span style="color:#d73737;">secret_key</span><span>: &amp;</span><span style="color:#b854d4;">&#39;static</span><span> [</span><span style="color:#b854d4;">u8</span><span>],
+</span><span>}
+</span><span>
+</span><span style="color:#b854d4;">impl </span><span>Verifier {
+</span><span style="color:#b854d4;">fn </span><span style="color:#6684e1;">new</span><span>() -&gt; Verifier {
+</span><span>    Verifier { secret_key: </span><span style="color:#b65611;">SECRET_KEY </span><span>}
+</span><span>}
+</span><span>
+</span><span style="color:#b854d4;">fn </span><span style="color:#6684e1;">verify</span><span>(&amp;</span><span style="color:#d73737;">self</span><span>, </span><span style="color:#d73737;">proof</span><span>: Digest, </span><span style="color:#d73737;">statement</span><span>: &amp;</span><span style="color:#b854d4;">str</span><span>, </span><span style="color:#d73737;">secret_key</span><span>: &amp;[</span><span style="color:#b854d4;">u8</span><span>]) -&gt; </span><span style="color:#b854d4;">bool </span><span>{
+</span><span>    </span><span style="color:#999580;">// Hash the statement and the secret key together
+</span><span>    </span><span style="color:#b854d4;">let</span><span> input = format!(&quot;</span><span style="color:#b65611;">{}{}</span><span>&quot;, statement, secret_key);
+</span><span>    </span><span style="color:#b854d4;">let mut</span><span> hasher = Sha256::new();
+</span><span>    hasher.</span><span style="color:#1fad83;">input</span><span>(input);
+</span><span>    </span><span style="color:#b854d4;">let</span><span> hash = hasher.</span><span style="color:#1fad83;">result</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#999580;">// Check if the proof matches the hash
+</span><span>    proof == hash
+</span><span>}
+</span><span>}
+</span><span>
+</span></code></pre>
+<p>In this code example, we define a constant <code>STATEMENT</code> which represents the statement we want to prove. We also define a constant <code>SECRET_KEY</code> which represents the secret key that we want to prove we possess.</p>
+<p>Next, we generate a random number to use as a nonce (a unique value used for one-time use) and hash it together with the secret key using the SHA-256 hash function. This creates a unique hash value that is based on both the nonce and the secret key.</p>
+<p>We then generate a proof by hashing the statement and the hash value together using the SHA-256 hash function. This creates a new hash value that is based on both the statement and the original hash value.</p>
+<p>We send the proof to the verifier, which then uses the secret key and the statement to recreate the original hash value. If the proof matches the original hash value, then the verifier can be confident that the prover possesses the secret key and that the statement is true.</p>
+<p>In this way, zero knowledge proofs allow the prover to demonstrate the truth of a particular statement without actually revealing any of the underlying data or information. This is achieved through the use of cryptographic techniques such as hash functions and digital signatures, which allow the prover to create a proof that is verifiable by the verifier without revealing any of the underlying data or information.</p>
+
+  </div>
+
+	
+
+  <div class="pagination">
+  	
+		<a href="#" class="top">Top</a>
+		
+  </div>
+
+  </main>
+
+  
+  <footer>
+    <span>&copy; <time datetime="2023-08-16T02:23:16.324207670+00:00">2022-2024</time> 0xnagu. </span>
+  </footer>
+  
+</body>
+</html>

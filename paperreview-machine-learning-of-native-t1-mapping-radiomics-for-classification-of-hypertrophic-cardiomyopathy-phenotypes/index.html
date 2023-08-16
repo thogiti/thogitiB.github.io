@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+<title>Paper Review - Machine learning of native T1 mapping radiomics for classification of hypertrophic cardiomyopathy phenotypes | Dare to Know - AI, Machine Learning, and Blockchain Technology Insights</title>
+
+
+
+<meta property="og:title" content="Paper Review - Machine learning of native T1 mapping radiomics for classification of hypertrophic cardiomyopathy phenotypes">
+
+
+
+<meta name="author" content="0xnagu">
+
+
+<meta property="og:locale" content="en_US">
+
+
+
+
+<link rel="canonical" href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/">
+<meta property="og:url" content="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/">
+
+
+
+<meta property="og:site_name" content="Dare to Know - AI, Machine Learning, and Blockchain Technology Insights" />
+
+
+
+  <meta property="og:image" content="https://thogiti.github.io/assets/favicon.jpg">
+  
+  
+
+
+
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="2023-03-03T00:00:00+00:00">
+
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image"">
+  <meta property="twitter:image" content="https://thogiti.github.io/assets/favicon.jpg">
+
+
+
+  <meta property="twitter:title" content="Paper Review - Machine learning of native T1 mapping radiomics for classification of hypertrophic cardiomyopathy phenotypes">
+
+
+
+  <meta name="twitter:site" content="@0xnagu">
+  
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "author": {
+    "@type":"Person",
+	  "name":"0xnagu"
+  },
+  "description": "",
+  "url": "https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/",
+  "@context":"https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Paper Review - Machine learning of native T1 mapping radiomics for classification of hypertrophic cardiomyopathy phenotypes"
+  
+    
+    
+      "datePublished":"2023-03-03T00:00:00+00:00",
+    
+    ,
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/"
+    }
+  
+}
+</script>
+
+  <link rel="stylesheet" href="https://thogiti.github.io/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://thogiti.github.io/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://thogiti.github.io/assets/favicon-16x16.png">
+
+  
+    <link type="application/atom+xml" rel="alternate" href="https://thogiti.github.io/atom.xml" title="Dare to Know - AI, Machine Learning, and Blockchain Technology Insights" />
+  
+
+  
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1DVQM7WJ3Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-1DVQM7WJ3Q');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W7CGC8T');</script>
+    <!-- End Google Tag Manager -->
+
+
+  
+
+  
+  
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+                                                                                                                                                                                                            
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                renderMathInElement(document.body, {
+                  // customised options
+                  // • auto-render specific keys, e.g.:
+                  delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false},
+                        {left: "\\(", right: "\\)", display: false},
+                        {left: "\\begin{equation}", right: "\\end{equation}", display: true},
+                        {left: "\\begin{align}", right: "\\end{align}", display: true},
+                        {left: "\\begin{alignat}", right: "\\end{alignat}", display: true},
+                        {left: "\\begin{gather}", right: "\\end{gather}", display: true},
+                        {left: "\\begin{CD}", right: "\\end{CD}", display: true},
+                        {left: "\\begin{matrix}", right: "\\end{matrix}", display: true},
+                        {left: "\\begin{bmatrix}", right: "\\end{bmatrix}", display: true},
+                        {left: "\\begin{pmatrix}", right: "\\end{pmatrix}", display: true},
+                        {left: "\\begin{array}", right: "\\end{array}", display: true},
+                        {left: "\\[", right: "\\]", display: true}
+                        ],
+                  // • rendering keys, e.g.:
+                  throwOnError : false
+                });
+            });
+        </script>
+
+
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-1DVQM7WJ3Q"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7CGC8T"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="https://thogiti.github.io/">
+        <h2 class="nav-title">Dare to Know - AI, Machine Learning, and Blockchain Technology Insights</h2>
+      </a>
+      <ul>
+        
+          
+            <li><a href="https://thogiti.github.io">Blog</a></li>
+          
+            <li><a href="https://thogiti.github.io/tags">Tags</a></li>
+          
+            <li><a href="https://thogiti.github.io/about">About</a></li>
+          
+        
+      </ul>
+    </div>
+  </nav>
+  
+
+  <main>
+    
+  <div class="post">
+  	<div class="post-info">
+  		<time datetime="2023-03-03">March  3, 2023</time>
+  	</div>
+  	<h1 class="post-title">Paper Review - Machine learning of native T1 mapping radiomics for classification of hypertrophic cardiomyopathy phenotypes</h1>
+  	<div class="post-line"></div>
+  	<h1 id="overview"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#overview">Overview</a></h1>
+<p>The paper presents a machine learning approach for classification of hypertrophic cardiomyopathy phenotypes using native T1 mapping radiomics.</p>
+<h1 id="citation-of-the-paper"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#citation-of-the-paper">Citation of the Paper</a></h1>
+<p>Antonopoulos, A.S., Boutsikou, M., Simantiris, S. et al. Machine learning of native T1 mapping radiomics for classification of hypertrophic cardiomyopathy phenotypes. Sci Rep 11, 23596 (2021). https://doi.org/10.1038/s41598-021-02971-z</p>
+<h1 id="faqs"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#faqs">FAQs</a></h1>
+<h2 id="explain-abstract-of-this-paper-in-simple-terms"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#explain-abstract-of-this-paper-in-simple-terms">Explain Abstract of this paper in simple terms</a></h2>
+<p>The paper explores the use of machine learning techniques to classify hypertrophic cardiomyopathy (HCM) phenotypes using radiomic features of the left ventricle. Radiomic features are mathematical representations of the texture and intensity of medical images. The study found that these features are useful in identifying different HCM phenotypes, which may have important implications for diagnosis and treatment of the disease.</p>
+<h2 id="explain-abstract-of-this-paper-in-2-lines"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#explain-abstract-of-this-paper-in-2-lines">Explain Abstract of this paper in 2 lines</a></h2>
+<p>The paper investigates machine learning techniques to identify hypertrophic cardiomyopathy (HCM) phenotypes using radiomic features. The study shows that radiomic features can be used to classify different HCM phenotypes, which could aid in diagnosis and treatment of the disease.</p>
+<h2 id="explain-abstract-of-this-paper-like-i-am-five-years-old"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#explain-abstract-of-this-paper-like-i-am-five-years-old">Explain Abstract of this paper like I am five years old</a></h2>
+<p>The paper talks about using computers to help doctors identify different types of heart problems. They do this by looking at pictures of the heart and finding patterns in the picture that tell them which type of heart problem it is. This can help doctors give the right treatment to the patient.</p>
+<h2 id="what-are-the-contributions-of-this-paper"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#what-are-the-contributions-of-this-paper">What are the contributions of this paper</a></h2>
+<p>The paper shows that radiomic features can be used to classify different types of hypertrophic cardiomyopathy (HCM) phenotypes, which can aid in the diagnosis and treatment of the disease. This demonstrates the potential of machine learning techniques in medical image analysis and highlights the importance of considering radiomic features for clinical decision making.</p>
+<h2 id="explain-the-practical-implications-of-this-paper"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#explain-the-practical-implications-of-this-paper">Explain the practical implications of this paper</a></h2>
+<p>The paper suggests that machine learning techniques can be used to improve diagnosis and treatment of hypertrophic cardiomyopathy (HCM) by identifying different HCM phenotypes. This can help doctors give more targeted treatment to patients, potentially improving outcomes and quality of life. The use of radiomic features in medical imaging analysis may also have broader applications in other areas of medicine.</p>
+<h2 id="summarize-introduction-of-this-paper"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#summarize-introduction-of-this-paper">Summarize introduction of this paper</a></h2>
+<p>The introduction of this paper provides an overview of hypertrophic cardiomyopathy (HCM), a heart disease that affects the structure of the heart muscle. The authors discuss the limitations of current diagnostic methods, which rely on subjective assessments of echocardiograms and other imaging techniques. They argue that there is a need for more objective and quantitative measures to aid in the diagnosis and classification of HCM. </p>
+<p>The authors propose the use of radiomic features, which are mathematical representations of the texture and intensity of medical images, as a potential solution. They describe how these features can capture subtle differences in tissue composition and microstructure that may be indicative of different HCM phenotypes. The authors also highlight the potential of machine learning techniques to analyze large amounts of radiomic data and identify patterns that may not be apparent to the naked eye.</p>
+<p>The authors then outline the objectives of the study, which include identifying radiomic features that are stable across different imaging modalities, exploring the relationships between different radiomic features, and using machine learning techniques to classify different HCM phenotypes based on radiomic features. They also describe the study design, which involved two separate cohorts of patients, and the methods used to extract and analyze radiomic data from cardiac MRI scans.</p>
+<p>Overall, the introduction provides a detailed background and rationale for the study, highlighting the potential of radiomic features and machine learning techniques to improve the diagnosis and classification of HCM.</p>
+<h2 id="methods-used-in-this-paper"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#methods-used-in-this-paper">Methods used in this paper</a></h2>
+<h3 id="study-population"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#study-population">Study Population</a></h3>
+<p>The study comprised two arms, with the first arm comprised of 20 CMR scans with available native T1 mapping randomly selected by their archive, which served for the purpose of stability assessment (i.e., inter-observer variability) of extracted radiomic features from T1 maps, which were included in further analysis in Study Arm 2. </p>
+<p>Study Arm 2 included a total of 152 consecutive patients undergoing a CMR scan (period 2019–2020) and native T1 mapping as follows: individuals without evidence of structural heart disease on CMR (n = 30), patients with left ventricular hypertrophy (LVH, i.e. increased wall thickness ≥ 12 mm or increased LV mass index) of various causes (athletes, valvular heart disease, hypertension etc., n = 30), patients with known HCM (n = 61) and patients with known cardiac amyloidosis (n = 28). </p>
+<p>The complete data pipeline, data sampling and ML workflow can be found in the Fig 1. <img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230303/ML_workflow_and_data_sampling.jpeg" alt="ML workflow and data pipeline" /></p>
+<h3 id="data-extraction-and-analysis"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#data-extraction-and-analysis">Data Extraction and Analysis</a></h3>
+<p>They extracted a total of 850 radiomic features from T1 maps by cardiac magnetic resonance (CMR) and explored their value in disease classification. They applied principal component analysis and unsupervised clustering in exploratory analysis, and then machine learning for feature selection of the best radiomic features that maximized the diagnostic value for cardiac disease classification.</p>
+<p>They used the following steps to process the data:</p>
+<ul>
+<li>Radiomic feature extraction: Radiomic features were extracted from the T1 maps using the PyRadiomics library.</li>
+<li>Exploratory analysis: Unsupervised hierarchical clustering was performed on the extracted radiomic features.</li>
+<li>Feature selection: The authors used machine learning algorithms to select the best radiomic features for classification of cardiac disease phenotypes. They used a combination of random forests and recursive feature elimination (RFE).</li>
+<li>Model validation: The selected radiomic features were used to train a machine learning model for classification of cardiac disease phenotypes. The model was validated using internal and external datasets.</li>
+<li>The diagnostic performance of the radiomics model was evaluated using the area under the receiver operating characteristic curve (AUC).</li>
+<li>Statistical analysis was performed using chi-squared tests and logistic regression models.</li>
+</ul>
+<p>The exploratory data analysis can be found in the Fig 2. <img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230303/EDA_radiomic_features.jpeg" alt="exploratory data analysis" /></p>
+<h2 id="results-of-the-paper"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#results-of-the-paper">Results of the paper</a></h2>
+<p>The results of the paper are as follows:</p>
+<ul>
+<li>The first three principal components of the T1 radiomics were distinctively correlated with cardiac disease type.</li>
+<li>Unsupervised hierarchical clustering of the population by myocardial T1 radiomics was significantly associated with myocardial disease type.</li>
+<li>After feature selection, internal validation, and external testing, a model of T1 radiomics had good diagnostic performance (AUC 0.753) for multinomial classification of disease phenotype (normal vs. LVH vs. HCM vs. cardiac amyloid).</li>
+<li>A subset of six radiomic features outperformed mean native T1 values for classification between myocardial health vs. disease and HCM phenocopies.</li>
+</ul>
+<p>Therefore, the results of the paper suggest that myocardial texture assessed by native T1 maps is linked to features of cardiac disease, and myocardial radiomic phenotyping could enhance the diagnostic yield of T1 mapping for myocardial disease detection and classification.</p>
+<p>The performance analysis anc confusion matrix can be found in the Fig 4. <img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230303/Top_T1_radiomic_features_and_confusion_matrix.jpeg" alt="performance analysis" /></p>
+<h2 id="conclusions-from-the-paper"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#conclusions-from-the-paper">Conclusions from the paper</a></h2>
+<p>The conclusions from the paper are as follows:</p>
+<ul>
+<li>Radiomic features provide added diagnostic value for distinction between healthy and diseased myocardium, as well as for differentiation between HCM and relevant phenocopies, such as amyloidosis, on top of native T1.</li>
+<li>The application of radiomics to standard native T1 mapping is a promising approach for the texture characterization of the human myocardium and for further enhancing the diagnostic value of CMR.</li>
+</ul>
+<p>Therefore, the paper suggests that myocardial radiomic phenotyping using T1 radiomics analysis could enhance the diagnostic yield of T1 mapping for myocardial disease detection and classification.</p>
+<h2 id="limitations-of-this-paper"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#limitations-of-this-paper">Limitations of this paper</a></h2>
+<p>The limitations of this paper are as follows:</p>
+<ul>
+<li>The study was conducted at a single center with a relatively small sample size, which may limit the generalizability of the findings.</li>
+<li>Only the basal slice of the T1 maps was used for texture analysis, which may not fully represent the entire myocardium.</li>
+<li>The reproducibility of radiomics features across different scanners/vendors and acquisition sequences is still an issue, which may limit the clinical application of radiomics.</li>
+<li>The study did not include a comparison with other imaging modalities or biomarkers, which may limit the assessment of the added diagnostic value of radiomics.</li>
+<li>The study did not include a longitudinal follow-up to assess the prognostic value of radiomics features for disease progression or response to treatment.</li>
+</ul>
+<p>Therefore, these limitations should be taken into consideration when interpreting the results of the study.</p>
+<h2 id="future-works-suggested-in-this-paper"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#future-works-suggested-in-this-paper">Future works suggested in this paper</a></h2>
+<p>The future works suggested in this paper are as follows:</p>
+<ul>
+<li>Further research is needed to harmonize the readouts between different scanners/vendors and acquisition sequences to address the reproducibility issues of radiomics.</li>
+<li>Future studies should include a larger sample size and a multi-center design to validate the findings of this study and improve the generalizability of the results.</li>
+<li>Future studies should also include a comparison with other imaging modalities or biomarkers to assess the added diagnostic value of radiomics.</li>
+<li>Longitudinal follow-up studies are needed to assess the prognostic value of radiomics features for disease progression or response to treatment.</li>
+<li>Future studies should also investigate the potential of radiomics for other CMR applications, such as perfusion imaging and late gadolinium enhancement imaging.</li>
+</ul>
+<p>Therefore, these future works could help to further validate and improve the clinical application of radiomics in CMR.</p>
+<h1 id="advanced-questions"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#advanced-questions">Advanced Questions</a></h1>
+<h2 id="how-does-the-use-of-radiomics-analysis-enhance-the-diagnostic-value-of-cmr-for-myocardial-texture-phenotyping"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#how-does-the-use-of-radiomics-analysis-enhance-the-diagnostic-value-of-cmr-for-myocardial-texture-phenotyping">How does the use of radiomics analysis enhance the diagnostic value of CMR for myocardial texture phenotyping?</a></h2>
+<p>Using radiomic features can improve the ability of CMR to distinguish between healthy and diseased myocardium, as well as between HCM and other similar conditions. Radiomic features provide additional information about the texture and heterogeneity of the myocardium that may not be captured by conventional CMR parameters like native T1 values. Radiomic features are quantitative measures of image texture and heterogeneity that can be extracted from medical images using advanced image processing techniques.</p>
+<p>In this study, the authors extracted radiomic features from T1 maps generated by CMR and used machine learning to identify the best radiomic features for classifying cardiac disease. The results showed that a model using T1 radiomics had good diagnostic performance for categorizing different types of cardiac disease. Additionally, a subset of six radiomic features performed better than mean native T1 values for differentiating between healthy and diseased myocardium and identifying HCM phenocopies.</p>
+<p>Therefore, using radiomic features can enhance the accuracy of T1 mapping for detecting and classifying myocardial disease.</p>
+<p>The population heatmap can be found in the Fig 3.  <img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230303/Population_heatmap_radiomic_features.jpeg" alt="performance analysis" /></p>
+<h2 id="what-were-some-limitations-of-this-study-and-how-might-they-impact-the-generalizability-of-its-findings-to-other-populations-or-imaging-settings"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#what-were-some-limitations-of-this-study-and-how-might-they-impact-the-generalizability-of-its-findings-to-other-populations-or-imaging-settings">What were some limitations of this study, and how might they impact the generalizability of its findings to other populations or imaging settings?</a></h2>
+<p>The limitations of the study are summarized above in the <a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#limitations-of-this-paper">limitations section</a>.</p>
+<p>These limitations may impact the generalizability of the findings to other populations or imaging settings. Therefore, further studies with larger sample sizes, multi-center designs, and longitudinal follow-up are needed to validate the findings of this study and improve the generalizability of the results. Additionally, the reproducibility of radiomics features across different scanners/vendors and acquisition sequences should be addressed to improve the clinical application of radiomics.</p>
+<h2 id="can-you-explain-how-radiomic-features-are-extracted-from-medical-images-and-what-types-of-information-they-can-provide-about-tissue-volume-shape-and-texture"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#can-you-explain-how-radiomic-features-are-extracted-from-medical-images-and-what-types-of-information-they-can-provide-about-tissue-volume-shape-and-texture">Can you explain how radiomic features are extracted from medical images, and what types of information they can provide about tissue volume, shape, and texture?</a></h2>
+<p>Radiomic features are quantitative measures of image texture and heterogeneity that can be extracted from medical images using advanced image processing techniques. In this study, radiomic features were extracted from T1 maps by CMR. The process of extracting radiomic features involves the following steps:</p>
+<ul>
+<li>
+<p>Image acquisition: Medical images are acquired using various imaging modalities such as CT, MRI, or PET.</p>
+</li>
+<li>
+<p>Image segmentation: The anatomical volumes of interest are segmented from the background using manual or automated methods.</p>
+</li>
+<li>
+<p>Feature extraction: Radiomic features are extracted from the segmented volumes using mathematical algorithms that analyze the spatial relationship of (dis)similar voxels. These features can provide information on tissue volume, shape, and texture, such as:</p>
+</li>
+<li>
+<p>First-order statistics: Measures of the distribution of pixel/voxel intensities, such as mean, median, standard deviation, skewness, and kurtosis.</p>
+</li>
+<li>
+<p>Second-order statistics: Measures of the spatial relationship between pixels/voxels, such as gray-level co-occurrence matrix (GLCM), gray-level run-length matrix (GLRLM), and gray-level size zone matrix (GLSZM).</p>
+</li>
+<li>
+<p>Higher-order statistics: Measures of the spatial relationship between higher-order features, such as fractal dimension, wavelet transform, and Laplacian of Gaussian (LoG).</p>
+</li>
+</ul>
+<p>Radiomic features can provide additional information about tissue texture and heterogeneity that may not be captured by conventional imaging parameters. Therefore, radiomic analysis has the potential to enhance the diagnostic and prognostic value of medical imaging for various diseases.</p>
+<p>The most important radiomic features selected can be found in the Table 2. <img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230303/top_radiomic_features.jpeg" alt="diagnostic value" /></p>
+<h2 id="in-what-ways-has-radiomic-phenotyping-been-successfully-used-in-other-medical-fields-such-as-clinical-oncology-are-there-any-key-differences-between-these-applications-and-those-explored-in-this-paper"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#in-what-ways-has-radiomic-phenotyping-been-successfully-used-in-other-medical-fields-such-as-clinical-oncology-are-there-any-key-differences-between-these-applications-and-those-explored-in-this-paper">In what ways has radiomic phenotyping been successfully used in other medical fields such as clinical oncology? Are there any key differences between these applications and those explored in this paper?</a></h2>
+<p>Radiomic phenotyping has been successfully used in clinical oncology to characterize the distinct biological phenotypes of tumors and provide relevant information for diagnosis, prognosis, and treatment planning. For example, radiomic features extracted from CT or MRI images of lung cancer have been shown to be associated with tumor stage, histology, and patient survival. Similarly, radiomic features extracted from MRI images of glioblastoma have been shown to be associated with tumor grade, molecular subtype, and patient survival.</p>
+<p>The key difference between these applications and those explored in this paper is the imaging modality and the disease being studied. In this paper, radiomic features were extracted from T1 maps by CMR to enhance the diagnostic value of T1 mapping for myocardial disease detection and classification. Therefore, the application of radiomic phenotyping in this paper is specific to CMR and myocardial disease. However, the underlying principle of radiomic analysis is the same across different imaging modalities and diseases, which is to extract quantitative measures of image texture and heterogeneity that can provide additional information for disease characterization and management.</p>
+<p>The most important radiomic phenotyping predictors data can be found in the Table 1. <img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230303/Unsupervised_clustering_radiomic_phenotyping_of_myocardium.jpeg" alt="diagnostic value" /></p>
+<h2 id="what-were-the-principal-components-identified-through-the-principal-component-analysis-and-how-were-they-used-to-explore-associations-with-disease-background"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#what-were-the-principal-components-identified-through-the-principal-component-analysis-and-how-were-they-used-to-explore-associations-with-disease-background">What were the principal components identified through the principal component analysis and how were they used to explore associations with disease background?</a></h2>
+<p>The principal component analysis (PCA) was performed on the radiomic features extracted from T1 maps by CMR to identify the principal components (PC) that describe most of the phenotypic variation in the study population. The first two components (PC1, PC2) were used to explore associations with disease background in relevant cluster plots. The first three principal components of the T1 radiomics were distinctively correlated with cardiac disease type. The unsupervised hierarchical clustering of the population by myocardial T1 radiomics was significantly associated with myocardial disease type (chi 2 = 55.98, p &lt; 0.0001). Therefore, the PCA helped to identify the most relevant radiomic features that are associated with cardiac disease type and provided a basis for further analysis of the radiomic features.</p>
+<p>The pinciple component analysis can be found in the Fig 2. <img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230303/EDA_radiomic_features.jpeg" alt="pinciple component data analysis" /></p>
+<h2 id="can-you-explain-the-process-of-stability-assessment-of-extracted-radiomic-features-from-t1-maps-and-how-it-was-used-to-limit-the-analysis-to-radiomic-features-that-could-be-of-value-as-imaging-biomarkers"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#can-you-explain-the-process-of-stability-assessment-of-extracted-radiomic-features-from-t1-maps-and-how-it-was-used-to-limit-the-analysis-to-radiomic-features-that-could-be-of-value-as-imaging-biomarkers">Can you explain the process of stability assessment of extracted radiomic features from T1 maps and how it was used to limit the analysis to radiomic features that could be of value as imaging biomarkers?</a></h2>
+<p>The stability assessment of extracted radiomic features from T1 maps was performed to limit the analysis to radiomic features that could be of value as imaging biomarkers. The process involved the following steps:</p>
+<ul>
+<li>Twenty scans from Study Arm 1 were used to assess the coefficient of variation (CV) of each radiomic feature in multiple delineations by two independent operators.</li>
+<li>The CV was calculated as the ratio of the standard deviation to the mean of the radiomic feature across multiple delineations.</li>
+<li>Only those radiomic features with multiple delineation CV &lt; 10% were included in further analysis (n = 628).</li>
+<li>This step was performed to ensure that the radiomic features were stable and reproducible across different delineations and operators.</li>
+<li>The remaining radiomic features were then used for further analysis, including exploratory analysis, feature selection, and machine learning for disease classification.</li>
+</ul>
+<p>By performing the stability assessment, the study was able to limit the analysis to radiomic features that were stable and reproducible, which could be of value as imaging biomarkers for disease classification. This step helped to ensure that the radiomic features used in the analysis were reliable and could provide meaningful information for disease characterization.</p>
+<h2 id="what-specific-machine-learning-algorithms-were-used-in-this-study-for-feature-selection-and-classification-of-cardiac-disease-phenotype"><a href="https://thogiti.github.io/paperreview-machine-learning-of-native-t1-mapping-radiomics-for-classification-of-hypertrophic-cardiomyopathy-phenotypes/#what-specific-machine-learning-algorithms-were-used-in-this-study-for-feature-selection-and-classification-of-cardiac-disease-phenotype">What specific machine learning algorithms were used in this study for feature selection and classification of cardiac disease phenotype?</a></h2>
+<p>The paper did not provide specific details on the machine learning algorithms used for feature selection and classification of cardiac disease phenotype. However, the paper mentioned that machine learning was used for feature selection of the best radiomic features that maximized the diagnostic value for cardiac disease classification. The paper also mentioned that a model of T1 radiomics had good diagnostic performance (AUC 0.753) for multinomial classification of disease phenotype (normal vs. LVH vs. HCM vs. cardiac amyloid). Therefore, the study used machine learning algorithms for feature selection and classification of cardiac disease phenotype, but the specific algorithms used were not mentioned in the paper.</p>
+
+  </div>
+
+	
+
+  <div class="pagination">
+  	
+		<a href="#" class="top">Top</a>
+		
+  </div>
+
+  </main>
+
+  
+  <footer>
+    <span>&copy; <time datetime="2023-08-16T02:23:16.323001064+00:00">2022-2024</time> 0xnagu. </span>
+  </footer>
+  
+</body>
+</html>

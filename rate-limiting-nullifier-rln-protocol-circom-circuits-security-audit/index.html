@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+<title>Rate Limiting Nullifier (RLN) Protocol: Circom Circuits Security Audit | Dare to Know - AI, Machine Learning, and Blockchain Technology Insights</title>
+
+
+
+<meta property="og:title" content="Rate Limiting Nullifier (RLN) Protocol: Circom Circuits Security Audit">
+
+
+
+<meta name="author" content="0xnagu">
+
+
+<meta property="og:locale" content="en_US">
+
+
+
+
+<link rel="canonical" href="https://thogiti.github.io/rate-limiting-nullifier-rln-protocol-circom-circuits-security-audit/">
+<meta property="og:url" content="https://thogiti.github.io/rate-limiting-nullifier-rln-protocol-circom-circuits-security-audit/">
+
+
+
+<meta property="og:site_name" content="Dare to Know - AI, Machine Learning, and Blockchain Technology Insights" />
+
+
+
+  <meta property="og:image" content="https://thogiti.github.io/assets/favicon.jpg">
+  
+  
+
+
+
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="2023-06-14T00:00:00+00:00">
+
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image"">
+  <meta property="twitter:image" content="https://thogiti.github.io/assets/favicon.jpg">
+
+
+
+  <meta property="twitter:title" content="Rate Limiting Nullifier (RLN) Protocol: Circom Circuits Security Audit">
+
+
+
+  <meta name="twitter:site" content="@0xnagu">
+  
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "author": {
+    "@type":"Person",
+	  "name":"0xnagu"
+  },
+  "description": "",
+  "url": "https://thogiti.github.io/rate-limiting-nullifier-rln-protocol-circom-circuits-security-audit/",
+  "@context":"https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Rate Limiting Nullifier (RLN) Protocol: Circom Circuits Security Audit"
+  
+    
+    
+      "datePublished":"2023-06-14T00:00:00+00:00",
+    
+    ,
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://thogiti.github.io/rate-limiting-nullifier-rln-protocol-circom-circuits-security-audit/"
+    }
+  
+}
+</script>
+
+  <link rel="stylesheet" href="https://thogiti.github.io/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://thogiti.github.io/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://thogiti.github.io/assets/favicon-16x16.png">
+
+  
+    <link type="application/atom+xml" rel="alternate" href="https://thogiti.github.io/atom.xml" title="Dare to Know - AI, Machine Learning, and Blockchain Technology Insights" />
+  
+
+  
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1DVQM7WJ3Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-1DVQM7WJ3Q');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W7CGC8T');</script>
+    <!-- End Google Tag Manager -->
+
+
+  
+
+  
+  
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+                                                                                                                                                                                                            
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                renderMathInElement(document.body, {
+                  // customised options
+                  // • auto-render specific keys, e.g.:
+                  delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false},
+                        {left: "\\(", right: "\\)", display: false},
+                        {left: "\\begin{equation}", right: "\\end{equation}", display: true},
+                        {left: "\\begin{align}", right: "\\end{align}", display: true},
+                        {left: "\\begin{alignat}", right: "\\end{alignat}", display: true},
+                        {left: "\\begin{gather}", right: "\\end{gather}", display: true},
+                        {left: "\\begin{CD}", right: "\\end{CD}", display: true},
+                        {left: "\\begin{matrix}", right: "\\end{matrix}", display: true},
+                        {left: "\\begin{bmatrix}", right: "\\end{bmatrix}", display: true},
+                        {left: "\\begin{pmatrix}", right: "\\end{pmatrix}", display: true},
+                        {left: "\\begin{array}", right: "\\end{array}", display: true},
+                        {left: "\\[", right: "\\]", display: true}
+                        ],
+                  // • rendering keys, e.g.:
+                  throwOnError : false
+                });
+            });
+        </script>
+
+
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-1DVQM7WJ3Q"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7CGC8T"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="https://thogiti.github.io/">
+        <h2 class="nav-title">Dare to Know - AI, Machine Learning, and Blockchain Technology Insights</h2>
+      </a>
+      <ul>
+        
+          
+            <li><a href="https://thogiti.github.io">Blog</a></li>
+          
+            <li><a href="https://thogiti.github.io/tags">Tags</a></li>
+          
+            <li><a href="https://thogiti.github.io/about">About</a></li>
+          
+        
+      </ul>
+    </div>
+  </nav>
+  
+
+  <main>
+    
+  <div class="post">
+  	<div class="post-info">
+  		<time datetime="2023-06-14">June 14, 2023</time>
+  	</div>
+  	<h1 class="post-title">Rate Limiting Nullifier (RLN) Protocol: Circom Circuits Security Audit</h1>
+  	<div class="post-line"></div>
+  	<h1 id="rate-limiting-nullifier-rln-review">Rate Limiting Nullifier (RLN) Review</h1>
+<p>I recently had the pleasure of conducting my first security audit of a Zero Knowledge Proofs (ZKP) protocol. The protocol in question was the Rate Limiting Nullifier (RLN) Zero Knowledge Proofs Protocol, with its circuits written in Circom. My main focus during this review was on the Circom Circuits of the Zero Knowledge Proofs gadgets. And let me tell you, it was quite the adventure! I mean, who knew math could be so exciting?</p>
+<p>During my review of the RLN Zero Knowledge Proofs Protocol, I learned a great deal about the intricacies of the RLN specifications, the verifications, and how to identify underconstraint systems. My mathematical background proved to be invaluable in helping me understand these complex concepts. It’s like they always say, “mathematics is the language of the universe”! But seriously, who comes up with this stuff? Additionally, I gained a deeper understanding of ZKP primitives attack vectors and other potential vulnerabilities in the system. It’s like being a detective, but for ZKP systems! And let me tell you, it’s not as easy as it looks. </p>
+<p><strong>Review Resources:</strong></p>
+<ul>
+<li>The code repository at <a href="https://github.com/Rate-Limiting-Nullifier/circom-rln">github.com/Rate-Limiting-Nullifier</a></li>
+<li>The RLN V1 specification document at <a href="https://rfc.vac.dev/spec/32">rfc.vac.dev</a></li>
+<li>The RLN V2 specification document at <a href="https://rfc.vac.dev/spec/58">rfc.vac.dev</a></li>
+</ul>
+<p><strong>Auditors:</strong></p>
+<ul>
+<li><a href="https://github.com/thogiti/">0xnagu</a></li>
+</ul>
+<h2 id="table-of-contents">Table of Contents <!-- omit in toc --></h2>
+<p><a href="https://thogiti.github.io/rate-limiting-nullifier-rln-protocol-circom-circuits-security-audit/#executive-summary">Executive Summary</a></p>
+<p><a href="https://thogiti.github.io/rate-limiting-nullifier-rln-protocol-circom-circuits-security-audit/#scope">Scope</a> </p>
+<p><a href="https://thogiti.github.io/rate-limiting-nullifier-rln-protocol-circom-circuits-security-audit/#explanation-of-findings">Explanation of Findings</a> </p>
+<p><a href="https://thogiti.github.io/rate-limiting-nullifier-rln-protocol-circom-circuits-security-audit/#critical-findings">Critical Findings</a> </p>
+<p><a href="https://thogiti.github.io/rate-limiting-nullifier-rln-protocol-circom-circuits-security-audit/#high-findings">High Findings</a> </p>
+<p><a href="https://thogiti.github.io/rate-limiting-nullifier-rln-protocol-circom-circuits-security-audit/#medium-findings">Medium Findings</a> </p>
+<p><a href="https://thogiti.github.io/rate-limiting-nullifier-rln-protocol-circom-circuits-security-audit/#low-findings">Low Findings</a> </p>
+<p><a href="https://thogiti.github.io/rate-limiting-nullifier-rln-protocol-circom-circuits-security-audit/#final-remarks">Final Remarks</a> </p>
+<h2 id="executive-summary">Executive Summary</h2>
+<ul>
+<li>There are no critical or high impact bugs in the code.</li>
+<li>There were some low impact bugs mainly under constrained input variables between the Circom circuits and their corresponding Solidity contracts. </li>
+</ul>
+<p><strong>Rate Limiting Nullifier</strong></p>
+<p>Rate limiting nullifier (RLN) is a construct based on zero-knowledge proofs (sometimes called ZKP gadget) that provides an anonymous rate-limited signaling/messaging framework suitable for decentralized (and centralized) environments using Secret Shamir Sharing (SSS) scheme.</p>
+<p><strong>Motivation</strong>
+Some applications of rate limiting nullifier in anonymous decentralized networks include:</p>
+<ol>
+<li>Decentralized voting applications: RLN helps prevent voting outcomes from being manipulated by spam or sybil attacks, ensuring the integrity of the voting process. </li>
+<li>Anonymous group chat applications: By preventing users from spamming or polluting group chats, RLN enhances the user experience in these applications.</li>
+<li>Direct anonymous attestation: RLN can be used in combination with Direct Anonymous Attestation (DAA) to implement service rate-limiting in a scenario where messages between users and the service are sent anonymously while preserving message unlinkability</li>
+<li>Blockchain-based social networks: RLN can be applied to decentralized social media networks to prevent spam, sybil attacks, and other types of abuse targeting APIs and applications, thus enhancing the overall security and reliability of these networks.</li>
+<li>Rate limiting in web applications: RLN can be integrated with Web Application Firewalls (WAF) to protect against denial-of-service attacks, brute-force login attempts, and API traffic surges, providing a more secure and reliable web application experience. </li>
+</ol>
+<p><strong>RLN V2</strong>
+The RLN V2 protocol is a more general construct, that allows to set various limits for an epoch (it’s 1 message per epoch in RLN-V1) while remaining almost as simple as it predecessor. Moreover, it allows to set different rate-limits for different RLN app users based on some public data, e.g. stake.</p>
+<p>The RLN Circom circuits were reviewed over 13 days. The code review was performed between May 31 and June 12, 2023. The RLN repository was under active development during the review, but the review was limited to the latest commit, <a href="https://github.com/Rate-Limiting-Nullifier/circom-rln/tree/37073131b9c5910228ad6bdf0fc50080e507166a">37073131b9</a> at the start of the review. </p>
+<p>The official documentation for the RLN circuits was located at <a href="https://rate-limiting-nullifier.github.io/rln-docs/">rate-limiting-nullifier.github.io</a>.</p>
+<p><strong>Flow</strong></p>
+<p>Here is the complete flow diagram of RLN protocol for the Circom circuits.</p>
+<p><img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230614/RLN-Flow-Diagram.png" alt="RLN Protocol Flow" /></p>
+<pre data-lang="mermaid" style="background-color:#fefbec;color:#6e6b5e;" class="language-mermaid "><code class="language-mermaid" data-lang="mermaid"><span>
+</span><span>    graph TD
+</span><span>        ext_null&gt;External Nullifier] --&gt; h1(hash)
+</span><span>        secret{{Secret Trapdoor &amp; nullifier}} --&gt; h0(hash) --&gt; a_0
+</span><span>        a_0{{Secret hashed a_0}} --&gt; h1
+</span><span>        msg_id&gt;Message_ID `k`] --&gt; h1
+</span><span>        msg_id --&gt; limit_check(Message Limit Check)
+</span><span>        msg_limit&gt;Message Limit] --&gt; limit_check
+</span><span>        h1 --&gt; a_1 --&gt; h2(hash) --&gt; int_null([Internal Nullifier])
+</span><span>        a_1 --&gt; times
+</span><span>        m&gt;Message] --&gt; h3(hash) --&gt; times(*) --&gt; plus(+)
+</span><span>        a_0 --&gt; plus --&gt; sss([Shamir&#39;s Share y_share])
+</span><span>        a_0 --&gt; h4(hash) --&gt; id_com([id_commitment])
+</span><span>        h4 --&gt; merkle(MerkleProof)
+</span><span>
+</span></code></pre>
+<h2 id="scope">Scope</h2>
+<p>The scope of the review consisted of the following circuits at the specific commit:</p>
+<ul>
+<li><a href="https://github.com/Rate-Limiting-Nullifier/circom-rln/blob/37073131b9c5910228ad6bdf0fc50080e507166a/circuits/rln.circom">rln.circom</a></li>
+<li><a href="https://github.com/Rate-Limiting-Nullifier/circom-rln/blob/37073131b9c5910228ad6bdf0fc50080e507166a/circuits/utils.circom">utils.circom</a></li>
+<li><a href="https://github.com/Rate-Limiting-Nullifier/circom-rln/blob/37073131b9c5910228ad6bdf0fc50080e507166a/circuits/withdraw.circom">withdraw.circom</a></li>
+</ul>
+<p>After the findings were presented to the RLN team, fixes were made and included in several PRs.</p>
+<p>This review is a code review to identify potential vulnerabilities in the code. The reviewers did not investigate security practices or operational security and assumed that privileged accounts could be trusted. The reviewers did not evaluate the security of the code relative to a standard or specification. The review may not have identified all potential attack vectors or areas of vulnerability.</p>
+<p>yAcademy and the auditors make no warranties regarding the security of the code and do not warrant that the code is free from defects. yAcademy and the auditors do not represent nor imply to third parties that the code has been audited nor that the code is free from defects. By deploying or using the code, RLN and users of the contracts agree to use the code at their own risk.</p>
+<h2 id="code-evaluation-matrix">Code Evaluation Matrix</h2>
+<table><thead><tr><th>Category</th><th>Mark</th><th>Description</th></tr></thead><tbody>
+<tr><td>Access Control</td><td>Not applicable</td><td>The code does not explicitly implement access control mechanisms. It does not have specific checks or restrictions on who can access or modify the data.</td></tr>
+<tr><td>Mathematics</td><td>Good</td><td>The code includes mathematical operations such as addition, multiplication, and hashing using the Poseidon function. It also includes range checks and bit manipulation operations.</td></tr>
+<tr><td>Complexity</td><td>Good</td><td>The complexity of the code is relatively low. It consists of basic mathematical operations and includes a Merkle tree inclusion proof and range checks.</td></tr>
+<tr><td>Libraries</td><td>Average</td><td>The code includes the Circomlib library, specifically the Poseidon circuit, which is used for hashing.</td></tr>
+<tr><td>Decentralization</td><td>Not applicable</td><td>The code does not explicitly address decentralization. It does not include mechanisms for distributed consensus or interaction with a decentralized network.</td></tr>
+<tr><td>Code stability</td><td>Good</td><td>The code appears to be well-structured and follows the Circom syntax. It does not contain any obvious errors or issues that would affect its stability.</td></tr>
+<tr><td>Documentation</td><td>Low</td><td>The code does not include extensive documentation. There are some comments explaining the purpose of certain components, but more detailed documentation would be beneficial.</td></tr>
+<tr><td>Monitoring</td><td>Average</td><td>The code does not include specific monitoring mechanisms. It does not have built-in logging or tracking of events or performance metrics.</td></tr>
+<tr><td>Testing and verification</td><td>Average</td><td>The code includes some basic range checks and a Merkle tree inclusion proof, which are important for ensuring the correctness of the code. However, it does not include comprehensive testing or verification procedures.</td></tr>
+</tbody></table>
+<h2 id="explanation-of-findings">Explanation of Findings</h2>
+<p>Findings are broken down into sections by their respective impact:</p>
+<ul>
+<li>Critical, High, Medium, Low impact
+<ul>
+<li>These are findings that range from attacks that may cause loss of funds, impact control/ownership of the contracts, or cause any unintended consequences/actions that are outside the scope of the requirements</li>
+</ul>
+</li>
+<li>Gas savings
+<ul>
+<li>Findings that can improve the gas efficiency of the contracts</li>
+</ul>
+</li>
+<li>Informational
+<ul>
+<li>Findings including recommendations and best practices</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="critical-findings">Critical Findings</h2>
+<h3 id="1-critical-identitysecret-gets-revealed-for-certain-inputs-x-hash-of-the-message">1. Critical - <code>identitySecret</code> gets revealed for certain inputs <code>x</code> (hash of the message)</h3>
+<p>The <code>identitySecret</code> gets revealed when the input signal <code>x</code>, the hash of the message, is <code>0</code> modulo prime <code>p</code> of the scalar field used. When the <code>x</code> is <code>0</code> or <code>21888242871839275222246405745257275088548364400416034343698204186575808495617</code> (in Ethereum) or the prime <code>p</code>, the order of the scalar field $Fp$ arithmetic circuits, the product <code>a1 * x</code> becomes zero thus revealing the <code>identitySecret</code>. </p>
+<ul>
+<li>This prime <code>p</code> is the order of the scalar field of the $BN254$ curve.</li>
+<li>Circom 2.0.6 introduces two new prime numbers to work with
+<ul>
+<li>The order of the scalar field of the $BLS12-381$.
+<ul>
+<li><code>52435875175126190479447740508185965837690552500527637822603658699938581184513</code></li>
+</ul>
+</li>
+<li>The goldilocks prime <code>18446744069414584321</code>, originally used in $Plonky2$.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Recommended Solution</strong></p>
+<p>Constraint on the input signal <code>x</code> and also on the product <code>a1 * x</code> to be non-zero modulo prime <code>p</code>.</p>
+<pre data-lang="circom" style="background-color:#fefbec;color:#6e6b5e;" class="language-circom "><code class="language-circom" data-lang="circom"><span>isZero(x).out === 0
+</span><span>isZero(a1*x).out === 0
+</span><span>
+</span></code></pre>
+<h2 id="high-findings">High Findings</h2>
+<p>None.</p>
+<h2 id="medium-findings">Medium Findings</h2>
+<p>None.</p>
+<h2 id="low-findings">Low Findings</h2>
+<h3 id="1-low-incosistency-between-rln-contract-and-rln-circuit-on-the-number-of-bits-for-usermessagelimit">1. Low - Incosistency between RLN contract and RLN circuit on the number of bits for userMessageLimit</h3>
+<p>In RLN.sol, the messageLimit can take upto 2<strong>256 - 1 values whereas messageId &amp; userMessageLimit values in circuits is restricted to 2</strong>16 - 1 .</p>
+<p><a href="https://github.com/Rate-Limiting-Nullifier/circom-rln/blob/37073131b9c5910228ad6bdf0fc50080e507166a/circuits/rln.circom">rln.circom</a></p>
+<pre data-lang="circom" style="background-color:#fefbec;color:#6e6b5e;" class="language-circom "><code class="language-circom" data-lang="circom"><span>template RLN(DEPTH, LIMIT_BIT_SIZE) {
+</span><span>...
+</span><span>    // messageId range check
+</span><span>    RangeCheck(LIMIT_BIT_SIZE)(messageId, userMessageLimit);
+</span><span>...
+</span><span>}
+</span><span>component main { public [x, externalNullifier] } = RLN(20, 16);
+</span></code></pre>
+<p><a href="https://github.com/Rate-Limiting-Nullifier/rln-contracts/blob/main/src/RLN.sol">rln.sol</a></p>
+<pre data-lang="solidity" style="background-color:#fefbec;color:#6e6b5e;" class="language-solidity "><code class="language-solidity" data-lang="solidity"><span>uint256 messageLimit = amount / MINIMAL_DEPOSIT;
+</span></code></pre>
+<p><strong>Recommended Solution</strong></p>
+<p>Update the relevant code at <a href="https://github.com/Rate-Limiting-Nullifier/rln-contracts/blob/main/src/RLN.sol">rln.sol</a> with something like below:</p>
+<pre data-lang="solidity" style="background-color:#fefbec;color:#6e6b5e;" class="language-solidity "><code class="language-solidity" data-lang="solidity"><span>function register(uint256 identityCommitment, uint256 amount) external {
+</span><span>        ...
+</span><span>        uint256 messageLimit = amount / MINIMAL_DEPOSIT;
+</span><span>        require( messageLimit &lt;= type(uint16).max , &quot;Max length of your message limit is 65535&quot;);
+</span><span>        ...
+</span><span>    }
+</span></code></pre>
+<h3 id="2-low-unused-address-input-signal-in-the-withdraw-circuit">2. Low - Unused <code>address</code> input signal in the Withdraw circuit</h3>
+<p>The input signal <code>address</code> was declared but not used in the output calculation. </p>
+<pre data-lang="circom" style="background-color:#fefbec;color:#6e6b5e;" class="language-circom "><code class="language-circom" data-lang="circom"><span>    signal input address;
+</span></code></pre>
+<p><strong>Recommended Solution</strong>
+Assign a local computation for the unused input signal <code>address</code>. For example:</p>
+<pre data-lang="circom" style="background-color:#fefbec;color:#6e6b5e;" class="language-circom "><code class="language-circom" data-lang="circom"><span>   signal addressDoubled &lt;== address + address;
+</span></code></pre>
+<h3 id="3-low-missing-rangechecks-for-the-data-inputs">3. Low - Missing rangechecks for the data inputs</h3>
+<p>The Circom circuits are missing explicit rangechecks for several input parameters suchh as <code>DEPTH</code>, <code>address</code>, <code>LIMIT_BIT_SIZE</code>, etc. </p>
+<p><strong>Recommended Solution</strong>
+Perform explcit range checks and constrain the data input parameters to improve the soundness of the ZKP system.</p>
+<h2 id="informational-findings">Informational Findings</h2>
+<p>The Circom circuits are further tested for <code>Weak Verification</code> soundness property using <a href="https://github.com/franklynwang/EcneProject">Ecne tool</a> from 0xParc. This tests if, given the input variables in a QAP (R1CS constraints), the output variables have uniquely determined values. An underconstrained circuit admits valid proofs for multiple different outputs, given the same input. In the worst case, an attacker can generate a valid proof for an underconstrained circuit for any output--meaning that an attacker would be able to convince a verifier who (incorrectly) believes the circuit to be properly-constrained that the attacker knows the pre-image of arbitrary outputs.</p>
+<h3 id="ecne-findings">Ecne Findings</h3>
+<p>The Circom cuits were compiled to non-optimized R1CS constraints system and then they were tested for <code>Weak Verification</code> to check for any bad constraints or underconstraints. All the circuits passed the Ecne tests without any bad or underconstraints. This verifies that R1CS equations of the given circuits uniquely determine outputs given inputs (i.e. that the constraints are sound).</p>
+<h3 id="error-handling">Error Handling</h3>
+<p>Consider adding below error handling to check for specific conditions and throw an error or return an error code when those conditions are not met. This helps provide meaningful error messages or handle exceptional cases in a controlled manner.</p>
+<p><strong><code>rln.circom</code></strong></p>
+<pre data-lang="circom" style="background-color:#fefbec;color:#6e6b5e;" class="language-circom "><code class="language-circom" data-lang="circom"><span>// Add error handling for Merkle tree inclusion proof
+</span><span>root &lt;== MerkleTreeInclusionProof(DEPTH)(rateCommitment, identityPathIndex, pathElements);
+</span><span>assert(root !== 0, &quot;Invalid Merkle tree inclusion proof&quot;); // Throw an error if the Merkle tree inclusion proof is invalid
+</span><span>
+</span></code></pre>
+<p><strong><code>withdraw.circom</code></strong></p>
+<pre data-lang="circom" style="background-color:#fefbec;color:#6e6b5e;" class="language-circom "><code class="language-circom" data-lang="circom"><span>// Add error handling for address length check
+</span><span>assert(address.length == EXPECTED_ADDRESS_LENGTH, &quot;Invalid address length&quot;); // Throw an error if the address length is not as expected
+</span><span>
+</span></code></pre>
+<p><strong><code>utils.circom</code></strong></p>
+<pre data-lang="circom" style="background-color:#fefbec;color:#6e6b5e;" class="language-circom "><code class="language-circom" data-lang="circom"><span>
+</span><span>// Add error handling for length check
+</span><span>assert(leaf.length == EXPECTED_LEAF_LENGTH, &quot;Invalid leaf length&quot;); // Throw an error if the leaf length is not as expected
+</span></code></pre>
+<h3 id="poseidon-and-some-additional-remarks"><code>POSEIDON</code> and Some Additional Remarks</h3>
+<ul>
+<li>The RLN circuit assumes that the underlying hash function (<code>Poseidon</code>) is:
+<ul>
+<li>Collision-resistant</li>
+<li>Resistant to differential, algebraic, and interpolation attacks</li>
+<li>Behaves as a random oracle</li>
+</ul>
+</li>
+<li>The Merkle tree used for membership proof is assumed to be secure against second-preimage attacks.</li>
+<li>The security of the circuit depends on the security of the cryptographic primitives used for range checks and SSS share calculations.</li>
+<li>The security of the circuit also depends on the secrecy of the <code>identitySecret</code> signal, which is assumed to be kept secret by the user.</li>
+<li>Social engineering attacks are still a valid way to break the system.</li>
+<li>An attacker can obtain the <code>identitySecret</code> signal of a user by using methods such as social engineering, phishing attacks, or exploiting vulnerabilities in the user's system.</li>
+<li>Once the attacker has obtained the <code>identitySecret</code> signal, they can calculate the <code>identityCommitment</code>, <code>rateCommitment</code>, <code>a1</code>, and <code>y</code> signals for that user, and use them to break the security of the RLN circuit.</li>
+</ul>
+<h2 id="final-remarks">Final remarks</h2>
+<p>Overall, the code demonstrates good implementation of mathematical operations and basic functionality. However, it could benefit from more extensive documentation and additional testing and verification procedures.</p>
+
+  </div>
+
+	
+
+  <div class="pagination">
+  	
+		<a href="#" class="top">Top</a>
+		
+  </div>
+
+  </main>
+
+  
+  <footer>
+    <span>&copy; <time datetime="2023-08-16T02:23:16.322270760+00:00">2022-2024</time> 0xnagu. </span>
+  </footer>
+  
+</body>
+</html>

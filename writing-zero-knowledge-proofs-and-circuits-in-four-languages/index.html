@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+<title>Writing Zero Knowledge Proofs and Circuits in Four Different Languages - Dotproduct of Two Vectors | Dare to Know - AI, Machine Learning, and Blockchain Technology Insights</title>
+
+
+
+<meta property="og:title" content="Writing Zero Knowledge Proofs and Circuits in Four Different Languages - Dotproduct of Two Vectors">
+
+
+
+<meta name="author" content="0xnagu">
+
+
+<meta property="og:locale" content="en_US">
+
+
+
+
+<link rel="canonical" href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/">
+<meta property="og:url" content="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/">
+
+
+
+<meta property="og:site_name" content="Dare to Know - AI, Machine Learning, and Blockchain Technology Insights" />
+
+
+
+  <meta property="og:image" content="https://thogiti.github.io/assets/favicon.jpg">
+  
+  
+
+
+
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="2023-04-12T00:00:00+00:00">
+
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image"">
+  <meta property="twitter:image" content="https://thogiti.github.io/assets/favicon.jpg">
+
+
+
+  <meta property="twitter:title" content="Writing Zero Knowledge Proofs and Circuits in Four Different Languages - Dotproduct of Two Vectors">
+
+
+
+  <meta name="twitter:site" content="@0xnagu">
+  
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "author": {
+    "@type":"Person",
+	  "name":"0xnagu"
+  },
+  "description": "",
+  "url": "https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/",
+  "@context":"https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Writing Zero Knowledge Proofs and Circuits in Four Different Languages - Dotproduct of Two Vectors"
+  
+    
+    
+      "datePublished":"2023-04-12T00:00:00+00:00",
+    
+    ,
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/"
+    }
+  
+}
+</script>
+
+  <link rel="stylesheet" href="https://thogiti.github.io/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://thogiti.github.io/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://thogiti.github.io/assets/favicon-16x16.png">
+
+  
+    <link type="application/atom+xml" rel="alternate" href="https://thogiti.github.io/atom.xml" title="Dare to Know - AI, Machine Learning, and Blockchain Technology Insights" />
+  
+
+  
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1DVQM7WJ3Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-1DVQM7WJ3Q');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W7CGC8T');</script>
+    <!-- End Google Tag Manager -->
+
+
+  
+
+  
+  
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+                                                                                                                                                                                                            
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                renderMathInElement(document.body, {
+                  // customised options
+                  // • auto-render specific keys, e.g.:
+                  delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false},
+                        {left: "\\(", right: "\\)", display: false},
+                        {left: "\\begin{equation}", right: "\\end{equation}", display: true},
+                        {left: "\\begin{align}", right: "\\end{align}", display: true},
+                        {left: "\\begin{alignat}", right: "\\end{alignat}", display: true},
+                        {left: "\\begin{gather}", right: "\\end{gather}", display: true},
+                        {left: "\\begin{CD}", right: "\\end{CD}", display: true},
+                        {left: "\\begin{matrix}", right: "\\end{matrix}", display: true},
+                        {left: "\\begin{bmatrix}", right: "\\end{bmatrix}", display: true},
+                        {left: "\\begin{pmatrix}", right: "\\end{pmatrix}", display: true},
+                        {left: "\\begin{array}", right: "\\end{array}", display: true},
+                        {left: "\\[", right: "\\]", display: true}
+                        ],
+                  // • rendering keys, e.g.:
+                  throwOnError : false
+                });
+            });
+        </script>
+
+
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-1DVQM7WJ3Q"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7CGC8T"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="https://thogiti.github.io/">
+        <h2 class="nav-title">Dare to Know - AI, Machine Learning, and Blockchain Technology Insights</h2>
+      </a>
+      <ul>
+        
+          
+            <li><a href="https://thogiti.github.io">Blog</a></li>
+          
+            <li><a href="https://thogiti.github.io/tags">Tags</a></li>
+          
+            <li><a href="https://thogiti.github.io/about">About</a></li>
+          
+        
+      </ul>
+    </div>
+  </nav>
+  
+
+  <main>
+    
+  <div class="post">
+  	<div class="post-info">
+  		<time datetime="2023-04-12">April 12, 2023</time>
+  	</div>
+  	<h1 class="post-title">Writing Zero Knowledge Proofs and Circuits in Four Different Languages - Dotproduct of Two Vectors</h1>
+  	<div class="post-line"></div>
+  	<h1 id="overview">Overview</h1>
+<p>We will implement dot product of two vectors of size <code>N</code> using Zero Knowledge Proofs (ZKP) in Circom, Halo2, . According to <a href="https://k12.libretexts.org/Bookshelves/Mathematics/Precalculus/07%3A_Vectors/7.04%3A_Dot_Product_and_Angle_Between_Two_Vectors">k12.libretexts.org</a>, the dot product of two vectors <code>A</code> and <code>B</code> of size <code>N</code> is given by:</p>
+<pre style="background-color:#fefbec;color:#6e6b5e;"><code><span>A.B = a1*b1 + a2*b2 + ... + aN*bN
+</span></code></pre>
+<ul>
+<li><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#overview">Overview</a></li>
+<li><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#process-flow-of-a-zero-knowledge-proof">Process Flow of a Zero Knowledge Proof</a></li>
+<li><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#circom-circuit-for-dotproduct-of-two-vectors">Circom Circuit for Dotproduct of Two Vectors</a>
+<ul>
+<li><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#circom-setup-and-installation">Circom Setup and Installation</a>
+<ul>
+<li><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#circom-install-dependencies">Circom Install dependencies</a></li>
+<li><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#install-circom">Install Circom</a></li>
+<li><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#install-snarkjs">Install Snarkjs</a></li>
+</ul>
+</li>
+<li><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#implementing-circom-circuit-for-the-dotproduct-of-two-vectors">Implementing Circom Circuit for the Dotproduct of Two Vectors</a></li>
+</ul>
+</li>
+<li><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#halo2-circuit-for-dotproduct-of-two-vectors">Halo2 Circuit for Dotproduct of Two Vectors</a>
+<ul>
+<li><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#halo2-setup-and-installation">Halo2 Setup and Installation</a></li>
+<li><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#implementing-halo2-circuit-for-the-dotproduct-of-two-vectors">Implementing Halo2 Circuit for the Dotproduct of Two Vectors</a></li>
+<li><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#what-is-a-trusted-setup-and-why-is-it-necessary-in-a-real-world-application">What is a trusted setup and why is it necessary in a real-world application?</a></li>
+</ul>
+</li>
+<li><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#noir-circuit-for-dotproduct-of-two-vectors">Noir Circuit for Dotproduct of Two Vectors</a>
+<ul>
+<li><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#installing-noir">Installing Noir</a></li>
+<li><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#implementing-noir-circuit-for-the-dotproduct-of-two-vectors">Implementing Noir Circuit for the Dotproduct of Two Vectors</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="process-flow-of-a-zero-knowledge-proof"><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#process-flow-of-a-zero-knowledge-proof">Process Flow of a Zero Knowledge Proof</a></h1>
+<p>The below diagram describes a typical process flow in creating a Zero Knowledge Proof system. <img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230313/zkp-process-flow-diagram-2023-04-13-150046.png" alt="Zero Knowledge Proof Process Flow" /></p>
+<p>To create zero-knowledge proofs and circuits using different libraries like Circom, Noir, and Halo2, follow these steps:</p>
+<ol>
+<li>Define the problem: Identify the problem you want to prove using zero-knowledge proofs. For instance, prove that you are a member of top 100 Uniswap liquidity provider without revealing any additional information or that you identified a critical bug in a smart contract without revealing any additional information.</li>
+<li>Choose the appropriate ZKP library: Select the library that suits your needs, such as Circom, Noir, or Halo2 or others. Each library has its own set of features and trade-offs:
+<ul>
+<li>Circom: A domain-specific language (DSL) designed for creating circuits in a simple and intuitive way. It's useful for creating zk-SNARK circuits. For more details on Circom, visit the <a href="https://docs.circom.io/">official documentation</a>.</li>
+<li>Noir: A high-level, general-purpose language for creating zero-knowledge proofs. It's easy to understand and has a growing ecosystem. For more details on Noir, visit the <a href="https://noir-lang.org/">official documentation</a>.</li>
+<li>Halo2: A library for constructing zk-SNARKs without a trusted setup, providing a more secure and efficient alternative to some other libraries. For more details on Halo2, visit the <a href="https://zcash.github.io/halo2/index.html">official documentation</a>.</li>
+</ul>
+</li>
+<li>Create the circuit: Design the circuit that represents the problem using the chosen library. This involves defining the inputs, outputs, and constraints that must be satisfied for the proof to be valid.</li>
+<li>Generate the proof: Using the library's tools, generate the zero-knowledge proof that demonstrates the statement is true without revealing any additional information.</li>
+<li>Verify the proof: Implement the verification process to ensure that the proof is valid and the statement is true, without learning any additional information.</li>
+</ol>
+<h1 id="circom-circuit-for-dotproduct-of-two-vectors"><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#circom-circuit-for-dotproduct-of-two-vectors">Circom Circuit for Dotproduct of Two Vectors</a></h1>
+<p>In this example we will investigate how to write a Circom circuit for the dotproduct of two vectors, create a Zero Knowledge Proof and verify the proof withoit revealing any additional information.</p>
+<h2 id="circom-setup-and-installation"><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#circom-setup-and-installation">Circom Setup and Installation</a></h2>
+<p>The complete and latest documentation for installing the Circom ecosystem can be found <a href="https://docs.circom.io/getting-started/installation/">here</a>. The older versions of Circom can be also installed from the <a href="https://github.com/iden3/circom_old">old circom repository</a>.</p>
+<h3 id="circom-install-dependencies"><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#circom-install-dependencies">Circom Install dependencies</a></h3>
+<p>The Circom compiler is written in Rust. To have Rust available in your system, you can install <code>rustup</code>. If you’re using Linux or macOS, open a terminal and enter the following command:</p>
+<pre data-lang="shell" style="background-color:#fefbec;color:#6e6b5e;" class="language-shell "><code class="language-shell" data-lang="shell"><span>curl --proto &#39;=https&#39; --tlsv1.2 https://sh.rustup.rs -sSf | sh
+</span></code></pre>
+<p>You also need the latest version of <code>Node.js</code> (or <code>yarn</code>). You can install them from <a href="https://nodejs.org/en/download">here</a>.</p>
+<h3 id="install-circom"><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#install-circom">Install Circom</a></h3>
+<p>First, clone the circom repository: </p>
+<pre data-lang="shell" style="background-color:#fefbec;color:#6e6b5e;" class="language-shell "><code class="language-shell" data-lang="shell"><span>git clone https://github.com/iden3/circom.git
+</span></code></pre>
+<p>Enter the circom directory and use the cargo build to compile:</p>
+<pre data-lang="shell" style="background-color:#fefbec;color:#6e6b5e;" class="language-shell "><code class="language-shell" data-lang="shell"><span>cargo build --release
+</span></code></pre>
+<p>The installation takes around 3 minutes to be completed. When the command successfully finishes, it generates the circom binary in the directory <code>target/release</code>. You can install this binary as follows:</p>
+<pre data-lang="shell" style="background-color:#fefbec;color:#6e6b5e;" class="language-shell "><code class="language-shell" data-lang="shell"><span>cargo install --path circom
+</span></code></pre>
+<p>The previous command will install the circom binary in the directory <code>$HOME/.cargo/bin</code>. </p>
+<h3 id="install-snarkjs"><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#install-snarkjs">Install Snarkjs</a></h3>
+<p>You can install <code>snarkjs</code> with the following command:</p>
+<pre data-lang="shell" style="background-color:#fefbec;color:#6e6b5e;" class="language-shell "><code class="language-shell" data-lang="shell"><span>npm install -g snarkjs
+</span></code></pre>
+<h2 id="implementing-circom-circuit-for-the-dotproduct-of-two-vectors"><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#implementing-circom-circuit-for-the-dotproduct-of-two-vectors">Implementing Circom Circuit for the Dotproduct of Two Vectors</a></h2>
+<p>To implement the dotproduct of two vectors in Circom, we can follow the steps below:</p>
+<ol>
+<li>Define the two vectors <code>A</code> and <code>B</code> of size <code>N</code>.</li>
+<li>Define a variable to store the dot product.</li>
+<li>Calculate the dot product by multiplying the corresponding components of <code>A</code> and <code>B</code> and adding them together.</li>
+<li>Output the dot product.</li>
+</ol>
+<p>Here's what the code would look like in Circom:</p>
+<pre data-lang="circom" style="background-color:#fefbec;color:#6e6b5e;" class="language-circom "><code class="language-circom" data-lang="circom"><span>
+</span><span>template DotProduct(N: number) {
+</span><span>    signal A[N];
+</span><span>    signal B[N];
+</span><span>    signal result;
+</span><span>
+</span><span>    component multiply[N];
+</span><span>    component add[N-1];
+</span><span>
+</span><span>    for (i = 0; i &lt; N; i++) {
+</span><span>        multiply[i] A[i] * B[i] -&gt; add[i];
+</span><span>    }
+</span><span>
+</span><span>    for (i = 0; i &lt; N-1; i++) {
+</span><span>        add[i] + add[i+1] -&gt; add[i+1];
+</span><span>    }
+</span><span>
+</span><span>    add[N-2] -&gt; result;
+</span><span>}
+</span><span>
+</span></code></pre>
+<p>In the above code, we define two input signals <code>A</code> and <code>B</code> of size <code>N</code>, which represent the two vectors. We also define an output signal <code>result</code>, which will store the dot product.</p>
+<p>We then define two components, <code>multiply</code> and <code>add</code>. The <code>multiply</code> component multiplies the corresponding components of <code>A</code> and <code>B</code>, while the <code>add</code> component adds them together. We use a loop to connect the outputs of the <code>multiply</code> components to the inputs of the <code>add</code> components. We also use a loop to connect the outputs of the <code>add</code> components to each other, until we reach the final output signal <code>result</code>.</p>
+<p>To use this template, we can simply instantiate it and provide values for the <code>A</code> and <code>B</code> signals:</p>
+<pre data-lang="circom" style="background-color:#fefbec;color:#6e6b5e;" class="language-circom "><code class="language-circom" data-lang="circom"><span>
+</span><span>template Main() {
+</span><span>    signal A[4] = [3, -5, 4, 2];
+</span><span>    signal B[4] = [2, 6, 5, 1];
+</span><span>    signal result;
+</span><span>
+</span><span>    DotProduct(4)()
+</span><span>        .A(A)
+</span><span>        .B(B)
+</span><span>        .result(result);
+</span><span>
+</span><span>    print(result);
+</span><span>}
+</span><span>
+</span></code></pre>
+<p>In the above code, we define the two input signals <code>A</code> and <code>B</code> of size <code>4</code>, and an output signal <code>result</code>. We then instantiate the <code>DotProduct</code> template with a size of <code>4</code>, and connect its <code>A</code> and <code>B</code> signals to the corresponding input signals. We also connect its <code>result</code> signal to our output signal. Finally, we print the <code>result</code> signal.</p>
+<h1 id="halo2-circuit-for-dotproduct-of-two-vectors"><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#halo2-circuit-for-dotproduct-of-two-vectors">Halo2 Circuit for Dotproduct of Two Vectors</a></h1>
+<p>In this example we will investigate how to write a Halo2 circuit for the dotproduct of two vectors, create a Zero Knowledge Proof and verify the proof without revealing any additional information.</p>
+<h2 id="halo2-setup-and-installation"><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#halo2-setup-and-installation">Halo2 Setup and Installation</a></h2>
+<p>Halo2 requires the latest Rust. You can find more about developing using Halo2 at the official <a href="https://zcash.github.io/halo2/index.html">halo2 documentation</a>.</p>
+<h2 id="implementing-halo2-circuit-for-the-dotproduct-of-two-vectors"><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#implementing-halo2-circuit-for-the-dotproduct-of-two-vectors">Implementing Halo2 Circuit for the Dotproduct of Two Vectors</a></h2>
+<p>To implement the dotproduct of two vectors in Halo2, we first need to define our circuit in Halo2. Here is the code for this:</p>
+<pre data-lang="rust" style="background-color:#fefbec;color:#6e6b5e;" class="language-rust "><code class="language-rust" data-lang="rust"><span>
+</span><span style="color:#b854d4;">use </span><span>halo2::{
+</span><span>    circuit::{Layouter, SimpleFloorPlanner},
+</span><span>    plonk::{Circuit, ConstraintSystem, Error},
+</span><span>    poly::Rotation,
+</span><span>};
+</span><span>
+</span><span style="color:#999580;">// Define the circuit struct
+</span><span>#[</span><span style="color:#d73737;">derive</span><span>(Debug)]
+</span><span style="color:#b854d4;">struct </span><span>DotProduct&lt;</span><span style="color:#b854d4;">&#39;a</span><span>&gt; {
+</span><span>    </span><span style="color:#d73737;">a</span><span>: &amp;</span><span style="color:#b854d4;">&#39;a</span><span> [</span><span style="color:#b854d4;">u64</span><span>],
+</span><span>    </span><span style="color:#d73737;">b</span><span>: &amp;</span><span style="color:#b854d4;">&#39;a</span><span> [</span><span style="color:#b854d4;">u64</span><span>],
+</span><span>    </span><span style="color:#d73737;">result</span><span>: &amp;</span><span style="color:#b854d4;">&#39;a mut</span><span> [</span><span style="color:#b854d4;">u64</span><span>],
+</span><span>}
+</span><span>
+</span><span style="color:#999580;">// Implement the Circuit trait for our circuit
+</span><span style="color:#b854d4;">impl</span><span>&lt;</span><span style="color:#b854d4;">&#39;a</span><span>&gt; Circuit&lt;SimpleFloorPlanner&gt; </span><span style="color:#b854d4;">for </span><span>DotProduct&lt;</span><span style="color:#b854d4;">&#39;a</span><span>&gt; {
+</span><span>    </span><span style="color:#b854d4;">type </span><span>Config = ();
+</span><span>    </span><span style="color:#b854d4;">type </span><span>FloorPlanner = SimpleFloorPlanner;
+</span><span>
+</span><span>    </span><span style="color:#b854d4;">fn </span><span style="color:#6684e1;">without_witnesses</span><span>(&amp;</span><span style="color:#d73737;">self</span><span>) -&gt; </span><span style="color:#b854d4;">Self </span><span>{
+</span><span>        DotProduct {
+</span><span>            a: </span><span style="color:#d73737;">self</span><span>.a,
+</span><span>            b: </span><span style="color:#d73737;">self</span><span>.b,
+</span><span>            result: &amp;</span><span style="color:#b854d4;">mut </span><span>[</span><span style="color:#b65611;">0</span><span>; N],
+</span><span>        }
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#b854d4;">fn </span><span style="color:#6684e1;">configure</span><span>(
+</span><span>        </span><span style="color:#d73737;">_config</span><span>: </span><span style="color:#b854d4;">Self::</span><span>Config,
+</span><span>        </span><span style="color:#d73737;">meta</span><span>: &amp;</span><span style="color:#b854d4;">mut </span><span>ConstraintSystem&lt;SimpleFloorPlanner&gt;,
+</span><span>    ) -&gt; Result&lt;(), Error&gt; {
+</span><span>        </span><span style="color:#999580;">// Define the input signals A and B
+</span><span>        </span><span style="color:#b854d4;">let</span><span> a = meta.</span><span style="color:#1fad83;">advice_column</span><span>();
+</span><span>        </span><span style="color:#b854d4;">let</span><span> b = meta.</span><span style="color:#1fad83;">advice_column</span><span>();
+</span><span>
+</span><span>        </span><span style="color:#999580;">// Define the intermediate signals for multiplication
+</span><span>        </span><span style="color:#b854d4;">let</span><span> mul = (</span><span style="color:#b65611;">0</span><span>..N)
+</span><span>            .</span><span style="color:#1fad83;">map</span><span>(|_| meta.</span><span style="color:#1fad83;">advice_column</span><span>())
+</span><span>            .collect::&lt;Vec&lt;_&gt;&gt;();
+</span><span>
+</span><span>        </span><span style="color:#999580;">// Define the intermediate signals for addition
+</span><span>        </span><span style="color:#b854d4;">let</span><span> add = (</span><span style="color:#b65611;">0</span><span>..N - </span><span style="color:#b65611;">1</span><span>)
+</span><span>            .</span><span style="color:#1fad83;">map</span><span>(|_| meta.</span><span style="color:#1fad83;">advice_column</span><span>())
+</span><span>            .collect::&lt;Vec&lt;_&gt;&gt;();
+</span><span>
+</span><span>        </span><span style="color:#999580;">// Define the output signal result
+</span><span>        </span><span style="color:#b854d4;">let</span><span> result = meta.</span><span style="color:#1fad83;">advice_column</span><span>();
+</span><span>
+</span><span>        </span><span style="color:#999580;">// Constrain the input signals to the values provided
+</span><span>        </span><span style="color:#b854d4;">for </span><span>(i, &amp;value) in </span><span style="color:#d73737;">self</span><span>.a.</span><span style="color:#1fad83;">iter</span><span>().</span><span style="color:#1fad83;">enumerate</span><span>() {
+</span><span>            meta.</span><span style="color:#1fad83;">enable_constant</span><span>(a[i], value.</span><span style="color:#1fad83;">into</span><span>())?;
+</span><span>        }
+</span><span>        </span><span style="color:#b854d4;">for </span><span>(i, &amp;value) in </span><span style="color:#d73737;">self</span><span>.b.</span><span style="color:#1fad83;">iter</span><span>().</span><span style="color:#1fad83;">enumerate</span><span>() {
+</span><span>            meta.</span><span style="color:#1fad83;">enable_constant</span><span>(b[i], value.</span><span style="color:#1fad83;">into</span><span>())?;
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#999580;">// Constrain the multiplication signals to the product 
+</span><span>        </span><span style="color:#999580;">// of the corresponding components of A and B
+</span><span>        </span><span style="color:#b854d4;">for</span><span> i in </span><span style="color:#b65611;">0</span><span>..N {
+</span><span>            meta.</span><span style="color:#1fad83;">multiply</span><span>(
+</span><span>                Rotation::prev(),
+</span><span>                &amp;[a[i], b[i]],
+</span><span>                mul[i],
+</span><span>            )?;
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#999580;">// Constrain the addition signals to the sum of the 
+</span><span>        </span><span style="color:#999580;">// corresponding multiplication signals
+</span><span>        </span><span style="color:#b854d4;">for</span><span> i in </span><span style="color:#b65611;">0</span><span>..N - </span><span style="color:#b65611;">1 </span><span>{
+</span><span>            meta.</span><span style="color:#1fad83;">add</span><span>(
+</span><span>                Rotation::cur(),
+</span><span>                &amp;[mul[i], mul[i + </span><span style="color:#b65611;">1</span><span>]],
+</span><span>                add[i],
+</span><span>            )?;
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#999580;">// Constrain the output signal to the last addition signal
+</span><span>        meta.</span><span style="color:#1fad83;">copy</span><span>(
+</span><span>            Rotation::cur(),
+</span><span>            add[N - </span><span style="color:#b65611;">2</span><span>],
+</span><span>            result,
+</span><span>        )?;
+</span><span>
+</span><span>        </span><span style="color:#999580;">// Constrain the output signal to the value provided
+</span><span>        </span><span style="color:#b854d4;">for </span><span>(i, &amp;value) in </span><span style="color:#d73737;">self</span><span>.result.</span><span style="color:#1fad83;">iter</span><span>().</span><span style="color:#1fad83;">enumerate</span><span>() {
+</span><span>            meta.</span><span style="color:#1fad83;">constrain_equal</span><span>(result, value.</span><span style="color:#1fad83;">into</span><span>())?;
+</span><span>        }
+</span><span>
+</span><span>        Ok(())
+</span><span>    }
+</span><span>}
+</span><span>
+</span></code></pre>
+<p>In this code, we define our circuit struct <code>DotProduct</code>, which contains the input signals <code>a</code> and <code>b</code>, and an output signal <code>result</code>. We also implement the <code>Circuit</code> trait for our circuit, which defines how the circuit should be constructed and constrained.</p>
+<p>We define the input signals <code>a</code> and <code>b</code> using <code>meta.advice_column()</code>, which creates a new advice column in the circuit. We also define the intermediate signals <code>mul</code> and <code>add</code>, which will be used to perform the multiplication and addition operations. Finally, we define the output signal <code>result</code>.</p>
+<p>We constrain the input signals to the values provided using <code>meta.enable_constant()</code>, which constrains the advice column to a constant value. We then constrain the multiplication signals using <code>meta.multiply()</code>, which constrains the product of the corresponding components of <code>a</code> and <code>b</code> to the corresponding multiplication signal. We then constrain the addition signals using <code>meta.add()</code>, which constrains the sum of the corresponding multiplication signals to the corresponding addition signal. Finally, we constrain the output signal to the last addition signal using <code>meta.copy()</code>, and constrain it to the value provided using <code>meta.constrain_equal()</code>.</p>
+<p>To use this circuit, we can instantiate it with the values for <code>a</code> and <code>b</code>, and an empty vector for <code>result</code>. We can then create a proof using <code>Prover::prove()</code>, and verify the proof using <code>Verifier::verify()</code>. Here's an example:</p>
+<pre data-lang="rust" style="background-color:#fefbec;color:#6e6b5e;" class="language-rust "><code class="language-rust" data-lang="rust"><span>
+</span><span style="color:#b854d4;">use </span><span>halo2::{
+</span><span>    dev::MockProver,
+</span><span>    plonk::{Circuit, ConstraintSystem, Verifier},
+</span><span>};
+</span><span>
+</span><span style="color:#999580;">// Define the size of our vectors
+</span><span style="color:#b854d4;">const</span><span> N: </span><span style="color:#b854d4;">usize </span><span>= </span><span style="color:#b65611;">4</span><span>;
+</span><span>
+</span><span style="color:#999580;">// Define our main function
+</span><span style="color:#b854d4;">fn </span><span style="color:#6684e1;">main</span><span>() {
+</span><span>    </span><span style="color:#999580;">// Define the input signals A and B
+</span><span>    </span><span style="color:#b854d4;">let</span><span> a = [</span><span style="color:#b65611;">3</span><span>, </span><span style="color:#b65611;">5</span><span>, </span><span style="color:#b65611;">4</span><span>, </span><span style="color:#b65611;">2</span><span>];
+</span><span>    </span><span style="color:#b854d4;">let</span><span> b = [</span><span style="color:#b65611;">2</span><span>, </span><span style="color:#b65611;">6</span><span>, </span><span style="color:#b65611;">5</span><span>, </span><span style="color:#b65611;">1</span><span>];
+</span><span>
+</span><span>    </span><span style="color:#999580;">// Define the output signal result
+</span><span>    </span><span style="color:#b854d4;">let mut</span><span> result = [</span><span style="color:#b65611;">0</span><span>; N];
+</span><span>
+</span><span>    </span><span style="color:#999580;">// Instantiate the circuit
+</span><span>    </span><span style="color:#b854d4;">let</span><span> circuit = DotProduct {
+</span><span>        a: &amp;a,
+</span><span>        b: &amp;b,
+</span><span>        result: &amp;</span><span style="color:#b854d4;">mut</span><span> result,
+</span><span>    };
+</span><span>
+</span><span>    </span><span style="color:#999580;">// Create a proof
+</span><span>    </span><span style="color:#b854d4;">let</span><span> prover = MockProver::run(N, &amp;circuit, vec![]).</span><span style="color:#1fad83;">unwrap</span><span>();
+</span><span>    </span><span style="color:#b854d4;">let</span><span> proof = prover.proof;
+</span><span>
+</span><span>    </span><span style="color:#999580;">// Verify the proof
+</span><span>    </span><span style="color:#b854d4;">let</span><span> verifier = Verifier::new(N, &amp;circuit, &amp;proof).</span><span style="color:#1fad83;">unwrap</span><span>();
+</span><span>    assert!(verifier.</span><span style="color:#1fad83;">verify</span><span>().</span><span style="color:#1fad83;">is_ok</span><span>());
+</span><span>
+</span><span>    </span><span style="color:#999580;">// Print the result
+</span><span>    println!(&quot;</span><span style="color:#b65611;">{:?}</span><span>&quot;, result);
+</span><span>}
+</span><span>
+</span></code></pre>
+<p>In this code, we define the input signals <code>a</code> and <code>b</code> and the output signal <code>result</code>. We then instantiate the <code>DotProduct</code> circuit with these values. We create a proof using <code>MockProver::run()</code>, which simulates the circuit execution and generates a proof. We then verify the proof using <code>Verifier::new()</code> and <code>verify()</code>. Finally, we print the <code>result</code>.</p>
+<p>Note that in this example, we use <code>MockProver</code> to generate a proof and verify it. In a real-world application, we would use a trusted setup to generate the proving and verifying keys, and use those keys to generate and verify proofs. We would also need to ensure that the inputs and outputs of the circuit are properly encrypted and decrypted to prevent information leakage. However, these details are beyond the scope of this example.</p>
+<h2 id="what-is-a-trusted-setup-and-why-is-it-necessary-in-a-real-world-application"><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#what-is-a-trusted-setup-and-why-is-it-necessary-in-a-real-world-application">What is a trusted setup and why is it necessary in a real-world application?</a></h2>
+<p>A trusted setup is a process used in some zero-knowledge proof systems, including Halo2, to generate the proving and verifying keys that are used to generate and verify proofs. The trusted setup involves a group of trusted individuals or entities who collectively generate and destroy a secret value that is used to generate the keys. The secret value is destroyed after the keys are generated, so that no one can learn it and use it to generate fake proofs.</p>
+<p>The trusted setup is necessary in a real-world application because it ensures that the proving and verifying keys are generated in a way that is secure and unbiased. Without a trusted setup, an attacker could potentially generate their own keys and use them to generate fake proofs that are accepted by the system. The trusted setup ensures that the keys are generated in a way that is independent of the attacker, and that the attacker cannot learn the secret value used to generate the keys.</p>
+<p>In Halo2, the trusted setup involves generating a random permutation of the circuit's columns, and using this permutation to generate the keys. The permutation is generated using a multiparty computation protocol, where each participant contributes a random value that is combined to generate the final permutation. The permutation ensures that the circuit's columns are mixed together in a way that prevents an attacker from learning anything about the circuit by observing the keys.</p>
+<p>Once the trusted setup is complete, the proving and verifying keys are distributed to the users of the system, who can use them to generate and verify proofs. The users do not need to trust each other or the system, because the keys were generated in a way that is secure and unbiased. However, the users must ensure that the inputs and outputs of the circuit are properly encrypted and decrypted, to prevent information leakage.</p>
+<p>In summary, a trusted setup is a process used to generate the proving and verifying keys for a zero-knowledge proof system, and is necessary in a real-world application to ensure that the keys are generated in a way that is secure and unbiased.</p>
+<h1 id="noir-circuit-for-dotproduct-of-two-vectors"><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#noir-circuit-for-dotproduct-of-two-vectors">Noir Circuit for Dotproduct of Two Vectors</a></h1>
+<p>In this example we will investigate how to write a Noir circuit for the dotproduct of two vectors, create a Zero Knowledge Proof and verify the proof without revealing any additional information.</p>
+<p>For more details about Noir programming language, visit the <a href="https://github.com/noir-lang/noir">official documentation</a>.</p>
+<h2 id="installing-noir"><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#installing-noir">Installing Noir</a></h2>
+<p>Noir is a Rust based language. You can visit the official documentation for <a href="https://noir-lang.org/getting_started/nargo/nargo_installation/">installation instructions</a>.</p>
+<h2 id="implementing-noir-circuit-for-the-dotproduct-of-two-vectors"><a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#implementing-noir-circuit-for-the-dotproduct-of-two-vectors">Implementing Noir Circuit for the Dotproduct of Two Vectors</a></h2>
+<p>To implement the dotproduct of two vectors in Noir, we first need to define our circuit in Noir. Here is the code for this:</p>
+<pre data-lang="rust" style="background-color:#fefbec;color:#6e6b5e;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#999580;">// Noir does not have a built-in dot product function, so we create one
+</span><span style="color:#b854d4;">fn </span><span style="color:#6684e1;">dot_product</span><span>(</span><span style="color:#d73737;">vect_A</span><span>: [field], </span><span style="color:#d73737;">vect_B</span><span>: [field]) -&gt; field {
+</span><span>    </span><span style="color:#b854d4;">let mut</span><span> result: field = </span><span style="color:#b65611;">0</span><span>;
+</span><span>    </span><span style="color:#b854d4;">let</span><span> N = vect_A.</span><span style="color:#1fad83;">len</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#b854d4;">for</span><span> i in </span><span style="color:#b65611;">0</span><span>..N {
+</span><span>        result += vect_A[i] * vect_B[i];
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#b854d4;">return</span><span> result;
+</span><span>}
+</span><span>
+</span><span style="color:#999580;">// Example usage
+</span><span style="color:#b854d4;">fn </span><span style="color:#6684e1;">main</span><span>() {
+</span><span>    </span><span style="color:#b854d4;">let</span><span> vect_A: [field] = [</span><span style="color:#b65611;">1</span><span>, </span><span style="color:#b65611;">2</span><span>, </span><span style="color:#b65611;">3</span><span>, </span><span style="color:#b65611;">4</span><span>];
+</span><span>    </span><span style="color:#b854d4;">let</span><span> vect_B: [field] = [</span><span style="color:#b65611;">5</span><span>, </span><span style="color:#b65611;">6</span><span>, </span><span style="color:#b65611;">7</span><span>, </span><span style="color:#b65611;">8</span><span>];
+</span><span>
+</span><span>    </span><span style="color:#b854d4;">let</span><span> result: field = </span><span style="color:#1fad83;">dot_product</span><span>(vect_A, vect_B);
+</span><span>
+</span><span>    </span><span style="color:#999580;">// The result should be 70 (1*5 + 2*6 + 3*7 + 4*8)
+</span><span>    assert_eq!(result, </span><span style="color:#b65611;">70</span><span>);
+</span><span>}
+</span><span>
+</span></code></pre>
+<ol>
+<li>The <code>dot_product</code> function is defined with two input parameters, <code>vect_A</code> and <code>vect_B</code>, both of which are arrays of fields (a field is a type in Noir representing a finite field element). The function returns a field.</li>
+<li>Inside the <code>dot_product</code> function, a mutable variable result is initialized with a value of <code>0</code>, and the length of <code>vect_A</code> is stored in the variable <code>N</code>.</li>
+<li>A for loop iterates through the indices of both input arrays, from <code>0</code> to <code>N-1</code>. In each iteration, the corresponding elements of the two arrays are multiplied and added to the <code>result</code>.</li>
+<li>The <code>result</code> is returned as the output of the <code>dot_product</code> function.</li>
+<li>The main function demonstrates how to use the <code>dot_product</code> function. Two arrays, <code>vect_A</code> and <code>vect_B</code>, are defined, and their dot product is calculated using the <code>dot_product</code> function.</li>
+<li>Finally, an assertion checks that the <code>result</code> is equal to <code>70</code>, which is the expected dot product value <code>(15 + 26 + 37 + 48)</code>.</li>
+</ol>
+<p>The following steps will build the ZKP program and creates proofs and verifies the proof without any additional information.</p>
+<ul>
+<li>Build: <code>nargo check</code> </li>
+<li>Prove: Enter the inputs in <code>Prover.toml</code> and run <code>nargo prove p -v</code>. Or, <code>nargo prove --show-output p</code> to show println logs. </li>
+<li>Verify: <code>nargo verify p</code></li>
+</ul>
+
+  </div>
+
+	
+
+  <div class="pagination">
+  	
+		<a href="#" class="top">Top</a>
+		
+  </div>
+
+  </main>
+
+  
+  <footer>
+    <span>&copy; <time datetime="2023-08-16T02:23:16.322029258+00:00">2022-2024</time> 0xnagu. </span>
+  </footer>
+  
+</body>
+</html>

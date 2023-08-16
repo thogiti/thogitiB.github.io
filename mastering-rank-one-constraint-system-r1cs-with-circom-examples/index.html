@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+<title>Mastering Rank One Constraint System R1CS with Circom Examples | Dare to Know - AI, Machine Learning, and Blockchain Technology Insights</title>
+
+
+
+<meta property="og:title" content="Mastering Rank One Constraint System R1CS with Circom Examples">
+
+
+
+<meta name="author" content="0xnagu">
+
+
+<meta property="og:locale" content="en_US">
+
+
+
+
+<link rel="canonical" href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/">
+<meta property="og:url" content="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/">
+
+
+
+<meta property="og:site_name" content="Dare to Know - AI, Machine Learning, and Blockchain Technology Insights" />
+
+
+
+  <meta property="og:image" content="https://thogiti.github.io/assets/favicon.jpg">
+  
+  
+
+
+
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="2023-08-14T00:00:00+00:00">
+
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image"">
+  <meta property="twitter:image" content="https://thogiti.github.io/assets/favicon.jpg">
+
+
+
+  <meta property="twitter:title" content="Mastering Rank One Constraint System R1CS with Circom Examples">
+
+
+
+  <meta name="twitter:site" content="@0xnagu">
+  
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "author": {
+    "@type":"Person",
+	  "name":"0xnagu"
+  },
+  "description": "",
+  "url": "https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/",
+  "@context":"https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Mastering Rank One Constraint System R1CS with Circom Examples"
+  
+    
+    
+      "datePublished":"2023-08-14T00:00:00+00:00",
+    
+    ,
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/"
+    }
+  
+}
+</script>
+
+  <link rel="stylesheet" href="https://thogiti.github.io/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://thogiti.github.io/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://thogiti.github.io/assets/favicon-16x16.png">
+
+  
+    <link type="application/atom+xml" rel="alternate" href="https://thogiti.github.io/atom.xml" title="Dare to Know - AI, Machine Learning, and Blockchain Technology Insights" />
+  
+
+  
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1DVQM7WJ3Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-1DVQM7WJ3Q');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W7CGC8T');</script>
+    <!-- End Google Tag Manager -->
+
+
+  
+
+  
+  
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+                                                                                                                                                                                                            
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                renderMathInElement(document.body, {
+                  // customised options
+                  // • auto-render specific keys, e.g.:
+                  delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false},
+                        {left: "\\(", right: "\\)", display: false},
+                        {left: "\\begin{equation}", right: "\\end{equation}", display: true},
+                        {left: "\\begin{align}", right: "\\end{align}", display: true},
+                        {left: "\\begin{alignat}", right: "\\end{alignat}", display: true},
+                        {left: "\\begin{gather}", right: "\\end{gather}", display: true},
+                        {left: "\\begin{CD}", right: "\\end{CD}", display: true},
+                        {left: "\\begin{matrix}", right: "\\end{matrix}", display: true},
+                        {left: "\\begin{bmatrix}", right: "\\end{bmatrix}", display: true},
+                        {left: "\\begin{pmatrix}", right: "\\end{pmatrix}", display: true},
+                        {left: "\\begin{array}", right: "\\end{array}", display: true},
+                        {left: "\\[", right: "\\]", display: true}
+                        ],
+                  // • rendering keys, e.g.:
+                  throwOnError : false
+                });
+            });
+        </script>
+
+
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-1DVQM7WJ3Q"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7CGC8T"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="https://thogiti.github.io/">
+        <h2 class="nav-title">Dare to Know - AI, Machine Learning, and Blockchain Technology Insights</h2>
+      </a>
+      <ul>
+        
+          
+            <li><a href="https://thogiti.github.io">Blog</a></li>
+          
+            <li><a href="https://thogiti.github.io/tags">Tags</a></li>
+          
+            <li><a href="https://thogiti.github.io/about">About</a></li>
+          
+        
+      </ul>
+    </div>
+  </nav>
+  
+
+  <main>
+    
+  <div class="post">
+  	<div class="post-info">
+  		<time datetime="2023-08-14">August 14, 2023</time>
+  	</div>
+  	<h1 class="post-title">Mastering Rank One Constraint System R1CS with Circom Examples</h1>
+  	<div class="post-line"></div>
+  	<ul>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#overview">Overview</a>
+<ul>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#understanding-the-role-of-r1cs-in-zk-protocols">Understanding the Role of R1CS in ZK Protocols</a></li>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#definition-and-explanation-of-r1cs">Definition and Explanation of R1CS</a></li>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#relation-to-circuits-of-logical-gates">Relation to Circuits of Logical Gates</a></li>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#constructing-r1cs-for-zero-knowledge-proofs">Constructing R1CS for Zero Knowledge Proofs</a></li>
+</ul>
+</li>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#circom-r1cs-examples">Circom R1CS Examples</a>
+<ul>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#example-1">Example 1</a>
+<ul>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex1-r1cs-constraint-explanation">Ex1 R1CS Constraint Explanation</a></li>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex1-sagemath-implementation">Ex1 Sagemath Implementation</a></li>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex1-circom-circuit-implementation">Ex1 Circom Circuit Implementation</a></li>
+</ul>
+</li>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#example-2">Example 2</a>
+<ul>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex2-r1cs-constraint-explanation">Ex2 R1CS Constraint Explanation</a></li>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#method-2-r1cs-constraint-explanation">Method 2 R1CS Constraint Explanation</a></li>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex2-sagemath-implementation">Ex2 Sagemath Implementation</a></li>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex2-circom-circuit-implementation">Ex2 Circom Circuit Implementation</a></li>
+</ul>
+</li>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#example-3">Example 3</a>
+<ul>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex3-r1cs-constraint-explanation">Ex3 R1CS Constraint Explanation</a></li>
+</ul>
+</li>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#example-4">Example 4</a>
+<ul>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex4-r1cs-constraint-explanation">Ex4 R1CS Constraint Explanation</a></li>
+</ul>
+</li>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#example-5">Example 5</a>
+<ul>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex5-r1cs-constraint-explanation">Ex5 R1CS Constraint Explanation</a></li>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex5-sagemath-implementation">Ex5 Sagemath Implementation</a></li>
+<li><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex5-circom-circuit-implementation">Ex5 Circom Circuit Implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="overview"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#overview">Overview</a></h1>
+<p>Rank-1 Constraint Systems, or R1CS, are a critical component in cryptographic protocols, especially those related to zero-knowledge proofs such as zk-SNARKS. They are a system of equations used to represent computations, and are particularly useful in scenarios where we want to prove that a certain computation was done correctly, without revealing any other information about the inputs or the computation itself.</p>
+<p>In the context of zk-SNARKS, an arithmetic circuit is converted into a R1CS. Each constraint in the R1CS corresponds to one logic gate in the circuit. The &quot;rank-1&quot; refers to the rank of the matrix produced in this conversion process.</p>
+<p>In the <a href="https://thogiti.github.io/writing-zero-knowledge-proofs-and-circuits-in-four-languages/#process-flow-of-a-zero-knowledge-proof">previous</a> blog post, we saw a process flow of creating a Zero Knowledge Proof system. Here is the high level view of this flow:</p>
+<p><img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230313/zkp-process-flow-diagram-2023-04-13-150046.png" alt="Zero Knowledge Proof Process Flow" /></p>
+<p>Constraint systems are collections of arithmetic constraints over a set of variables. They play an essential role in computational problems, particularly in the realm of cryptographic protocols and zero-knowledge proofs. In a constraint system, there are two types of variables: high-level variables (the secret inputs) and low-level variables (the internal inputs and outputs of the multiplication gates).</p>
+<h2 id="understanding-the-role-of-r1cs-in-zk-protocols"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#understanding-the-role-of-r1cs-in-zk-protocols">Understanding the Role of R1CS in ZK Protocols</a></h2>
+<p>Zero-Knowledge (ZK) protocols, which are commonly used in cryptography, require provers to demonstrate that they know a solution to a computational problem. This problem is often expressed as a Rank-1 Constraint System (R1CS). </p>
+<p>An R1CS is essentially a collection of non-linear arithmetic constraints over a set of variables, also referred to as signals. The security of an R1CS primarily relies on its non-linear components, as these are the parts of the system that are challenging for an attacker to solve. </p>
+<p>In contrast, the linear (additive) constraints, despite being part of the system, do not significantly contribute to its security. This is because these constraints are relatively straightforward to solve, making them less effective as a defense against potential attacks.</p>
+<h2 id="definition-and-explanation-of-r1cs"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#definition-and-explanation-of-r1cs">Definition and Explanation of R1CS</a></h2>
+<p>A Rank-1 Constraint System (R1CS) is a specific type of constraint system. It consists of two sets of constraints: multiplicative constraints and linear constraints. Each multiplicative constraint takes the form <code>a_L * a_R = a_O</code>, while each linear constraint takes the form<code> W_L * a_L + W_R * a_R + W_O * a_O = W_V * (v + c)</code>. Here, <code>a_L</code>, <code>a_R</code>, and <code>a_O</code> represent the left input, right input, and output of each gate in the circuit. <code>W_L</code>, <code>W_R</code>, <code>W_O</code>, and <code>W_V</code> are weights applied to their respective inputs and outputs.</p>
+<h2 id="relation-to-circuits-of-logical-gates"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#relation-to-circuits-of-logical-gates">Relation to Circuits of Logical Gates</a></h2>
+<p>In the context of zk-SNARKs, an arithmetic circuit is converted into an R1CS. Each constraint corresponds to one logic gate in the circuit. This conversion is crucial because zk-SNARKs require computational problems to be expressed as a set of quadratic constraints, which are closely related to circuits of logical gates.</p>
+<h2 id="constructing-r1cs-for-zero-knowledge-proofs"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#constructing-r1cs-for-zero-knowledge-proofs">Constructing R1CS for Zero Knowledge Proofs</a></h2>
+<p>We'll delve into numerous examples illustrating how to construct Rank-1 Constraint Systems (R1CS) for given polynomial equations or statements, particularly when creating Zero Knowledge Proofs. </p>
+<p>We'll utilize <code>Circom</code> and <code>snarkjs</code>, two powerful tools that facilitate the representation and handling of non-linear and linear constraints. These will help us understand how circuits are compiled and how a witness is created.</p>
+<p>Please note, to follow along with this tutorial, you need to have <code>snarkjs</code> and <code>Circom</code> installed. You can install them using Node.js as follows:</p>
+<pre data-lang="bash" style="background-color:#fefbec;color:#6e6b5e;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#d73737;">npm</span><span> install snarkjs
+</span></code></pre>
+<p>For Circom installation, follow the official documentation at <a href="https://docs.circom.io/getting-started/installation/#installing-dependencies">docs.circom.io</a>.</p>
+<h1 id="circom-r1cs-examples"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#circom-r1cs-examples">Circom R1CS Examples</a></h1>
+<p>Before we can create an r1cs, our polynomials and constraints need to be of the form</p>
+<p><img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/r1cs-eq1.jpg" alt="r1cs-form" /></p>
+<p>Also, Circom expects the constraints to be of the form $Aw * Bw - Cw = 0$, where $A$ is the left hand side of matrix, $B$ is the right hand side of matrix and $C$ is the output matrix forms. The variable $w$ is witness vector. Here the witness $w$ will be of the form $[1, out, x, y, ...]$</p>
+<p>The matrices $A$, $B$, and $C$ have the same number of columns as the witness venctor $w$, and each column represents the same variable the index is using.</p>
+<p>We will see and verify this form by Circom when we compiled the Circom circuits and see the info on the constraints.</p>
+<h2 id="example-1"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#example-1">Example 1</a></h2>
+<p><strong>Circuit</strong> $out = x*y$</p>
+<h3 id="ex1-r1cs-constraint-explanation"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex1-r1cs-constraint-explanation">Ex1 R1CS Constraint Explanation</a></h3>
+<p>Since our equation is already in the form of quadratic constraint, $out = x * y$  or $A*B-C=0$, where $x$ is the left hand side matrix $A$, $y$ is the right hand side matrix $B$ and $out$ is the results matrix.</p>
+<p>The witness $w$ will be $[1, out, x, y]$.</p>
+<p>Remember that the matrices $A$, $B$, and $C$ will share the same columns as the witness vector $w$.</p>
+<p>$A$ is [0, 0, 1, 0], because only $x$ is present, and no other variables in the polynomial.
+$B$ is [0, 0, 0, 1] because the variables in the right hand side are just $y$.
+$C$ is [0, 1, 0, 0] because we only have the $out$ variable.</p>
+<p>Now, we can verify that $Aw * Bw - Cw = 0$.</p>
+<h3 id="ex1-sagemath-implementation"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex1-sagemath-implementation">Ex1 Sagemath Implementation</a></h3>
+<p>You can verify the above calculations of the matrices by running the below sagemath code.</p>
+<pre data-lang="python" style="background-color:#fefbec;color:#6e6b5e;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#999580;"># define the matrices
+</span><span>C = </span><span style="color:#d73737;">matrix</span><span>(</span><span style="color:#d73737;">ZZ</span><span>, [[</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>]])
+</span><span>A = </span><span style="color:#d73737;">matrix</span><span>(</span><span style="color:#d73737;">ZZ</span><span>, [[</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">0</span><span>]])
+</span><span>B = </span><span style="color:#d73737;">matrix</span><span>(</span><span style="color:#d73737;">ZZ</span><span>, [[</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>]])
+</span><span>
+</span><span>x = </span><span style="color:#d73737;">randint</span><span>(</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">100000</span><span>)
+</span><span>y = </span><span style="color:#d73737;">randint</span><span>(</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">100000</span><span>)
+</span><span>out = x * y
+</span><span>
+</span><span style="color:#999580;"># witness vector
+</span><span>witness = </span><span style="color:#d73737;">vector</span><span>([</span><span style="color:#b65611;">1</span><span>, out, x, y])
+</span><span>
+</span><span style="color:#999580;"># Calculate the results
+</span><span>A_witness = A * witness
+</span><span>B_witness = B * witness
+</span><span>C_witness = C * witness
+</span><span>AB_witness = </span><span style="color:#d73737;">vector</span><span>([A_witness.</span><span style="color:#d73737;">dot_product</span><span>(B_witness)])
+</span><span>
+</span><span style="color:#999580;"># Print the results
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">A * witness = </span><span>{A_witness}&quot;)
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">B * witness = </span><span>{B_witness}&quot;)
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">C * witness = </span><span>{C_witness}&quot;)
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">(A * witness) * (B * witness) = </span><span>{AB_witness}&quot;)
+</span><span>
+</span><span style="color:#999580;"># Check the equality
+</span><span>result = C_witness == AB_witness
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">result: </span><span>&quot;,result)
+</span><span>
+</span><span style="color:#999580;"># Check that the equality is true
+</span><span style="color:#b854d4;">assert </span><span>result, &quot;</span><span style="color:#60ac39;">result contains an inequality</span><span>&quot;
+</span><span>
+</span></code></pre>
+<p>The output will look like below:</p>
+<pre style="background-color:#fefbec;color:#6e6b5e;"><code><span>A * witness = (15189)
+</span><span>B * witness = (90533)
+</span><span>C * witness = (1375105737)
+</span><span>(A * witness) * (B * witness) = (1375105737)
+</span><span>result:  True
+</span><span>
+</span></code></pre>
+<h3 id="ex1-circom-circuit-implementation"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex1-circom-circuit-implementation">Ex1 Circom Circuit Implementation</a></h3>
+<p>The Circom circuit template for this will look like below:</p>
+<pre data-lang="circom" style="background-color:#fefbec;color:#6e6b5e;" class="language-circom "><code class="language-circom" data-lang="circom"><span>pragma circom 2.1.4;
+</span><span>
+</span><span>template Multiply2() {
+</span><span>    signal input x;
+</span><span>    signal input y;
+</span><span>    signal output out;
+</span><span>
+</span><span>    out &lt;== x * y;
+</span><span> }
+</span><span>
+</span><span>component main = Multiply2();
+</span><span>
+</span><span>/* INPUT = {
+</span><span>    &quot;X&quot;: &quot;5&quot;,
+</span><span>    &quot;y&quot;: &quot;77&quot;
+</span><span>} */
+</span></code></pre>
+<p>Let's compile this file with Circom compiler and create r1cs file. Run the below commands at the terminal.</p>
+<pre data-lang="shell" style="background-color:#fefbec;color:#6e6b5e;" class="language-shell "><code class="language-shell" data-lang="shell"><span>circom multiply2.circom --r1cs --sym
+</span><span>snarkjs r1cs print multiply2.r1cs
+</span></code></pre>
+<p>Here is the output from the above commands:</p>
+<p><img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/multiply2-r1cs-output.png" alt="multiply2-r1cs" /></p>
+<p>We should be expecting the constraints in the form of  $ A * B - C = 0$. </p>
+<ul>
+<li>Why do we see this very big number <code>21888242871839275222246405745257275088548364400416034343698204186575808495616</code>?</li>
+<li>What is this number?</li>
+</ul>
+<p>In Circom, math is done modulo <code>21888242871839275222246405745257275088548364400416034343698204186575808495617</code>. The above number <code>21888242871839275222246405745257275088548364400416034343698204186575808495616</code> is equivalent to <code>-1</code> in Circom. </p>
+<pre data-lang="python" style="background-color:#fefbec;color:#6e6b5e;" class="language-python "><code class="language-python" data-lang="python"><span>p = </span><span style="color:#b65611;">21888242871839275222246405745257275088548364400416034343698204186575808495617
+</span><span>
+</span><span style="color:#999580;"># 1 - 2 = -1
+</span><span>(</span><span style="color:#b65611;">1 </span><span>- </span><span style="color:#b65611;">2</span><span>) % p
+</span></code></pre>
+<p>The output is as below:</p>
+<pre data-lang="python" style="background-color:#fefbec;color:#6e6b5e;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b65611;">21888242871839275222246405745257275088548364400416034343698204186575808495616
+</span></code></pre>
+<p>So, the <code>snarkjs</code> command output is equivalent to $out - x*y =0$.</p>
+<p>Our matrices are:</p>
+<p>$A = [0, 0, -1, 0]$, $B = [0, 0,  0, 1]$, $C = [0, -1, 0, 0]$</p>
+<p>Let’s recompile our circuit with a wasm solver:</p>
+<pre data-lang="shell" style="background-color:#fefbec;color:#6e6b5e;" class="language-shell "><code class="language-shell" data-lang="shell"><span>circom multiply2.circom --r1cs --wasm --sym
+</span><span>
+</span><span>cd multiply2_js
+</span></code></pre>
+<p>We create the <code>input.json</code> file:</p>
+<pre data-lang="shell" style="background-color:#fefbec;color:#6e6b5e;" class="language-shell "><code class="language-shell" data-lang="shell"><span>echo &#39;{&quot;x&quot;: &quot;11&quot;, &quot;y&quot;: &quot;9&quot;}&#39; &gt; input.json
+</span></code></pre>
+<p>Now, compute the witness:</p>
+<pre data-lang="shell" style="background-color:#fefbec;color:#6e6b5e;" class="language-shell "><code class="language-shell" data-lang="shell"><span>node generate_witness.js multiply2.wasm input.json witness.wtns
+</span><span>
+</span><span>snarkjs wtns export json witness.wtns witness.json
+</span><span>
+</span><span>cat witness.json
+</span></code></pre>
+<p>We can check that circom is using the same column layout for witness $w$ we have been using: $[1, out, x, y]$, as $x$ was set to <code>11</code> and $y$ to <code>9</code> in our <code>input.json</code>.</p>
+<p><img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/multiply2-r1cs-wasm-witness-output.png" alt="multiply2-r1cs-wasm-witness" /></p>
+<p>In <code>multiplier2</code> circuit we took <code>x</code> and <code>y</code> (<code>2</code> wires) connected it with the signal <code>out</code> (+1 wire) and another (+1 wire) for the output of <code>out</code>, and checked the only <code>1</code> constraint when <code>out &lt;== x * y</code>. Hence, we have <code>4</code> wires and <code>1</code> constraint.</p>
+<p>We can manually check our matrices if they satisfy the constraint $Aw*Bw = Cw$.</p>
+<p>$w = [1, 99, 11, 9]$, $A = [0, 0, -1, 0]$, $B = [0, 0,  0, 1]$, $C = [0, -1, 0, 0]$</p>
+<p>$Aw = -11$, $Bw = 9$, $Cw = -99$, $Aw*Bw = -99$.</p>
+<h2 id="example-2"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#example-2">Example 2</a></h2>
+<p><strong>Circuit</strong> $out = {x * y * u * v}$</p>
+<h3 id="ex2-r1cs-constraint-explanation"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex2-r1cs-constraint-explanation">Ex2 R1CS Constraint Explanation</a></h3>
+<p>Remember that in R1CS, you can only have at most one multiplication in the constraint. The above equation has three multiplications. We use intermediate variables to <em>flatten</em> the polynomial like below.</p>
+<p>$$u1 = x * y$$
+$$u2 = u * v$$
+$$out = u1 * u2$$</p>
+<p>The witness vector will be $[1, out, x, y, u, v, u1, u2]$. This makes our matrices $A$, $B$, and $C$ will have eight columns, the same columns as $w$. </p>
+<p>We have three constraints, hene we will have three rows in the matrices $A$, $B$, and $C$. Each row representing the corresponding constraint as written above.</p>
+<p><img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/r1cs-ex2.jpg" alt="r1cs-ex2" /></p>
+<p><strong>Constructing Matrix A from left hand terms</strong></p>
+<p>The witness vector is $[1, out, x, y, u, v, u1, u2]$.</p>
+<p>The matrix A will be of the form:</p>
+<pre data-lang="math" style="background-color:#fefbec;color:#6e6b5e;" class="language-math "><code class="language-math" data-lang="math"><span>A_{3,8} = 
+</span><span>\begin{pmatrix}
+</span><span>a_{1,1} &amp; a_{1,2} &amp; a_{1,3} &amp; a_{1,4} &amp; a_{1,5} &amp; a_{1,6} &amp; a_{1,7} &amp; a_{1,8} \\
+</span><span>
+</span><span>a_{2,1} &amp; a_{2,2} &amp; a_{2,3} &amp; a_{2,4} &amp; a_{2,5} &amp; a_{2,6} &amp; a_{2,7} &amp; a_{2,8} \\
+</span><span>
+</span><span>a_{3,1} &amp; a_{3,2} &amp; a_{3,3} &amp; a_{3,4} &amp; a_{3,5} &amp; a_{3,6} &amp; a_{3,7} &amp; a_{3,8} 
+</span><span>\end{pmatrix}
+</span></code></pre>
+<p>Now, let's fill the matrix $A$ for the first row (first constraint). </p>
+<p>$$u1 = x * y$$</p>
+<p>Since, there is only $x$ in the left hand terms. the first row of A will $[0, 0, 1, 0, 0, 0, 0, 0]$.</p>
+<p>Hence, after the first constraint, we get</p>
+<pre data-lang="math" style="background-color:#fefbec;color:#6e6b5e;" class="language-math "><code class="language-math" data-lang="math"><span>A_{3,8} = 
+</span><span>\begin{pmatrix}
+</span><span>0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+</span><span>
+</span><span>a_{2,1} &amp; a_{2,2} &amp; a_{2,3} &amp; a_{2,4} &amp; a_{2,5} &amp; a_{2,6} &amp; a_{2,7} &amp; a_{2,8} \\
+</span><span>
+</span><span>a_{3,1} &amp; a_{3,2} &amp; a_{3,3} &amp; a_{3,4} &amp; a_{3,5} &amp; a_{3,6} &amp; a_{3,7} &amp; a_{3,8} 
+</span><span>\end{pmatrix}
+</span></code></pre>
+<p>Now, let's fill the matrix $A$ for the second row (second constraint). </p>
+<p>$$u2 = u * v$$</p>
+<p>Since there is $u$ in the left hand side term, we get the second row of A to be $[0, 0, 0, 0, 1, 0, 0, 0]$.</p>
+<p>Hence, after the second constraint, we get</p>
+<pre data-lang="math" style="background-color:#fefbec;color:#6e6b5e;" class="language-math "><code class="language-math" data-lang="math"><span>A_{3,8} = 
+</span><span>\begin{pmatrix}
+</span><span>0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+</span><span>
+</span><span>0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+</span><span>
+</span><span>a_{3,1} &amp; a_{3,2} &amp; a_{3,3} &amp; a_{3,4} &amp; a_{3,5} &amp; a_{3,6} &amp; a_{3,7} &amp; a_{3,8} 
+</span><span>\end{pmatrix}
+</span></code></pre>
+<p>Now, let's fill the matrix $A$ for the third row (third constraint). </p>
+<p>$$out = u1 * u2$$</p>
+<p>Since there is $u1$ in the left hand side term, we get the third row of A to be $[0, 0, 0, 0, 0, 0, 1, 0]$.</p>
+<p>Hence, after the third constraint, we get the final form of matrix $A$.</p>
+<pre data-lang="math" style="background-color:#fefbec;color:#6e6b5e;" class="language-math "><code class="language-math" data-lang="math"><span>A = 
+</span><span>\begin{array}{c}
+</span><span>\begin{matrix}
+</span><span>1&amp;out &amp; x &amp; y &amp; u &amp; v &amp; u1 &amp; u2
+</span><span>\end{matrix}\\
+</span><span>\begin{bmatrix}
+</span><span>    0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+</span><span>    0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+</span><span>    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 
+</span><span>\end{bmatrix}
+</span><span>\color{red}\begin{matrix}R_1\\R_2\\R_3\end{matrix}\hspace{-1em}\\
+</span><span>\end{array}
+</span></code></pre>
+<p>Here is the final matrix A in the tabular form:</p>
+<table><thead><tr><th></th><th>1</th><th>out</th><th>x</th><th>y</th><th>u</th><th>v</th><th>u1</th><th>u2</th></tr></thead><tbody>
+<tr><td>R1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>R2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>R3</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+</tbody></table>
+<h3 id="method-2-r1cs-constraint-explanation"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#method-2-r1cs-constraint-explanation">Method 2 R1CS Constraint Explanation</a></h3>
+<p>Alternatively, we can express the left hand side terms in the three constraints as a linear combination of the witness vector. </p>
+<p>$$u1 = x * y$$
+$$u2 = u * v$$
+$$out = u1 * u2$$</p>
+<p>Here we can expand the left hand side terms using the witness vector $w$ and form the matrix $A$ as below.</p>
+<p>$$u1 = (0.1 + 0.out + 1.x + 0.y + 0.u + 0.v + 0.u1 + 0.u2) * y$$
+$$u2 = (0.1 + 0.out + 0.x + 0.y + 1.u + 0.v + 0.u1 + 0.u2)  * v$$
+$$out = (0.1 + 0.out + 0.x + 0.y + 0.u + 0.v + 1.u1 + 0.u2)  * u2$$</p>
+<p>Hence, the matrix $A$ can be written as </p>
+<pre data-lang="math" style="background-color:#fefbec;color:#6e6b5e;" class="language-math "><code class="language-math" data-lang="math"><span>A = 
+</span><span>\begin{bmatrix}
+</span><span>    0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+</span><span>    0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+</span><span>    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 
+</span><span>\end{bmatrix}
+</span></code></pre>
+<p><strong>Constructing Matrix B from right hand terms</strong></p>
+<p>We can follow the above steps but now we reduce the rhight hand side terms.</p>
+<p>$$u1 = x * (0.1 + 0.out + 0.x + 1.y + 0.u + 0.v + 0.u1 + 0.u2)$$
+$$u2 = u * (0.1 + 0.out + 0.x + 0.y + 0.u + 1.v + 0.u1 + 0.u2)$$
+$$out = u1 * (0.1 + 0.out + 0.x + 0.y + 0.u + 0.v + 0.u1 + 1.u2)$$</p>
+<p>Hence, the matrix $B$ will as follows:</p>
+<pre data-lang="math" style="background-color:#fefbec;color:#6e6b5e;" class="language-math "><code class="language-math" data-lang="math"><span>B = 
+</span><span>\begin{bmatrix}
+</span><span>    0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+</span><span>    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+</span><span>    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 
+</span><span>\end{bmatrix}
+</span></code></pre>
+<p><strong>Constructing Matrix C from output terms</strong></p>
+<p>We can follow the above steps but now we reduce the output terms.</p>
+<p>$$(0.1 + 0.out + 0.x + 0.y + 0.u + 0.v + 1.u1 + 0.u2) = x * y$$
+$$(0.1 + 0.out + 0.x + 0.y + 0.u + 0.v + 0.u1 + 1.u2) = u * v$$
+$$(0.1 + 1.out + 0.x + 0.y + 0.u + 0.v + 0.u1 + 0.u2) = u1 * u2$$</p>
+<p>Hence, the matrix $B$ will as follows:</p>
+<pre data-lang="math" style="background-color:#fefbec;color:#6e6b5e;" class="language-math "><code class="language-math" data-lang="math"><span>C = 
+</span><span>\begin{bmatrix}
+</span><span>    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+</span><span>    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+</span><span>    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 
+</span><span>\end{bmatrix}
+</span></code></pre>
+<h3 id="ex2-sagemath-implementation"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex2-sagemath-implementation">Ex2 Sagemath Implementation</a></h3>
+<p>We can verify the above using the below sagemath code:</p>
+<pre data-lang="python" style="background-color:#fefbec;color:#6e6b5e;" class="language-python "><code class="language-python" data-lang="python"><span>
+</span><span style="color:#999580;"># define the matrices
+</span><span>A = </span><span style="color:#d73737;">matrix</span><span>([[</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>],
+</span><span>            [</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>],
+</span><span>            [</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">0</span><span>]])
+</span><span>
+</span><span>B = </span><span style="color:#d73737;">matrix</span><span>([[</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>],
+</span><span>            [</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>],
+</span><span>            [</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>]])
+</span><span>
+</span><span>C = </span><span style="color:#d73737;">matrix</span><span>([[</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">0</span><span>],
+</span><span>            [</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>],
+</span><span>            [</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>]])
+</span><span>
+</span><span>x = </span><span style="color:#d73737;">randint</span><span>(</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">100000</span><span>)
+</span><span>y = </span><span style="color:#d73737;">randint</span><span>(</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">100000</span><span>)
+</span><span>z = </span><span style="color:#d73737;">randint</span><span>(</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">100000</span><span>)
+</span><span>u = </span><span style="color:#d73737;">randint</span><span>(</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">100000</span><span>)
+</span><span>
+</span><span style="color:#999580;"># reductions
+</span><span>out = x * y * z * u
+</span><span>v1 = x * y
+</span><span>v2 = z * u
+</span><span>
+</span><span>
+</span><span style="color:#999580;"># witness vector
+</span><span>witness = </span><span style="color:#d73737;">vector</span><span>([</span><span style="color:#b65611;">1</span><span>, out, x, y, z, u, v1, v2])
+</span><span>
+</span><span>
+</span><span style="color:#999580;"># Calculate the results
+</span><span>A_witness = A*witness
+</span><span>B_witness = B*witness
+</span><span>C_witness = C*witness
+</span><span>AB_witness = A_witness.</span><span style="color:#d73737;">pairwise_product</span><span>(B_witness)
+</span><span>
+</span><span style="color:#999580;"># Print the results
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">A * witness = </span><span>{A_witness}&quot;)
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">B * witness = </span><span>{B_witness}&quot;)
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">C * witness = </span><span>{C_witness}&quot;)
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">(A * witness) * (B * witness) = </span><span>{AB_witness}&quot;)
+</span><span>
+</span><span style="color:#999580;"># Check the equality
+</span><span>result = C_witness == AB_witness
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">result: </span><span>&quot;,result)
+</span><span>
+</span><span style="color:#999580;"># Check that the equality is true
+</span><span style="color:#b854d4;">assert </span><span>result, &quot;</span><span style="color:#60ac39;">result contains an inequality</span><span>&quot;
+</span><span>
+</span></code></pre>
+<p>The output will look like below:</p>
+<pre style="background-color:#fefbec;color:#6e6b5e;"><code><span>A * witness = (85530, 65887, 6198615690)
+</span><span>B * witness = (72473, 49454, 3258375698)
+</span><span>C * witness = (6198615690, 3258375698, 20197418725537501620)
+</span><span>(A * witness) * (B * witness) = (6198615690, 3258375698, 20197418725537501620)
+</span><span>result:  True
+</span></code></pre>
+<h3 id="ex2-circom-circuit-implementation"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex2-circom-circuit-implementation">Ex2 Circom Circuit Implementation</a></h3>
+<p>Here is the Circom Circuit for this example:</p>
+<pre data-lang="circom" style="background-color:#fefbec;color:#6e6b5e;" class="language-circom "><code class="language-circom" data-lang="circom"><span>pragma circom 2.1.4;
+</span><span>
+</span><span>template Multiply4() {
+</span><span>    signal input x;
+</span><span>    signal input y;
+</span><span>    signal input u;
+</span><span>    signal input v;
+</span><span>    
+</span><span>    signal u1;
+</span><span>    signal u2;
+</span><span>    
+</span><span>    signal out;
+</span><span>    
+</span><span>    u1 &lt;== x * y;
+</span><span>    u2 &lt;== u * v;   
+</span><span>    out &lt;== u1 * u2;
+</span><span>}
+</span><span>
+</span><span>component main = Multiply4();
+</span><span>
+</span><span>/* INPUT = {
+</span><span>    &quot;X&quot;: &quot;5&quot;,
+</span><span>    &quot;y&quot;: &quot;10&quot;,
+</span><span>    &quot;u&quot;: &quot;3&quot;,
+</span><span>    &quot;v&quot;: &quot;4&quot;,
+</span><span>} */
+</span><span>
+</span></code></pre>
+<p>Let's compile this and generate a witness.</p>
+<pre data-lang="shell" style="background-color:#fefbec;color:#6e6b5e;" class="language-shell "><code class="language-shell" data-lang="shell"><span>circom multiply4.circom --r1cs --wasm --sym
+</span><span>
+</span><span>snarkjs r1cs print multiply4.r1cs
+</span><span>
+</span><span>cd multiply4_js
+</span><span>
+</span><span>echo &#39;{&quot;x&quot;: &quot;5&quot;, &quot;y&quot;: &quot;10&quot;, &quot;u&quot;: &quot;3&quot;, &quot;v&quot;: &quot;4&quot;}&#39; &gt; input.json
+</span><span>
+</span><span>node generate_witness.js multiply4.wasm input.json witness.wtns
+</span><span>
+</span><span>snarkjs wtns export json witness.wtns witness.json
+</span><span>
+</span><span>cat witness.json
+</span><span>
+</span></code></pre>
+<p>We get the following output.</p>
+<p><img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/multiply4-r1cs-wasm-witness-output.png" alt="multiply4-r1cs-wasm-witness-output" /></p>
+<p>In <code>multiplier4</code> circuit we took <code>x</code>, <code>y</code>, <code>u</code> and <code>v</code> (4 wires) and <code>u1</code>, <code>u2</code> (+2 wires) connected it with the signal <code>out</code> (+1 wire) and another (+1 wire) for the output of <code>out</code>, and checked the  <code>3</code> constraints when <code>u1 &lt;== x * y</code>, <code>u2 &lt;== u * v</code>, and <code>out &lt;== u1 * u2</code>. Hence, we have <code>8</code> wires and <code>3</code> constraints.</p>
+<h2 id="example-3"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#example-3">Example 3</a></h2>
+<p><strong>Circuit</strong> $out = x*y + 2$</p>
+<h3 id="ex3-r1cs-constraint-explanation"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex3-r1cs-constraint-explanation">Ex3 R1CS Constraint Explanation</a></h3>
+<p>We can repeat the above reduction process and get the matrices. We write the matrices for $out-2=x*y$. We have one constraint and witness vector will be $w = [1, out, x, y]$.</p>
+<p>$A = [0, 0, 1, 0]$, $B = [0, 0, 0, 1], $C = [-2, 1, 0, 0]</p>
+<h2 id="example-4"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#example-4">Example 4</a></h2>
+<p><strong>Circuit</strong> $out = 2x^2 + y$</p>
+<h3 id="ex4-r1cs-constraint-explanation"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex4-r1cs-constraint-explanation">Ex4 R1CS Constraint Explanation</a></h3>
+<p>We write the matrices for $out-y=2x^2$. We have one constraint and witness vector will be $w = [1, out, x, y]$. </p>
+<p>$A = [0, 0, 2, 0]$, $B = [0, 0, 1, 0], $C = [0, 1, 0, -1]</p>
+<h2 id="example-5"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#example-5">Example 5</a></h2>
+<p><strong>Circuit</strong> $out = 3x^2y + 5xy - x - 2y + 3$</p>
+<h3 id="ex5-r1cs-constraint-explanation"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex5-r1cs-constraint-explanation">Ex5 R1CS Constraint Explanation</a></h3>
+<p>We can reduce the equations to below:</p>
+<p>$$u1 = 3<em>x</em>x$$
+$$u2 = u1*y$$
+$$x+2y-3-u2+out = 5xy$$</p>
+<p>We have three constraints. Our witness vector will be $w = [1, out, x, y, u1, u2]$.</p>
+<p>Hence, the our matrices $A$, $B$, and $C$ can be written as </p>
+<pre data-lang="math" style="background-color:#fefbec;color:#6e6b5e;" class="language-math "><code class="language-math" data-lang="math"><span>A = 
+</span><span>\begin{bmatrix}
+</span><span>    0 &amp; 0 &amp; 3 &amp; 0 &amp; 0 &amp; 0  \\
+</span><span>    0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0  \\
+</span><span>    0 &amp; 0 &amp; 5 &amp; 0 &amp; 0 &amp; 0 
+</span><span>\end{bmatrix}
+</span></code></pre>
+<pre data-lang="math" style="background-color:#fefbec;color:#6e6b5e;" class="language-math "><code class="language-math" data-lang="math"><span>B = 
+</span><span>\begin{bmatrix}
+</span><span>    0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0  \\
+</span><span>    0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0  \\
+</span><span>    0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 
+</span><span>\end{bmatrix}
+</span></code></pre>
+<pre data-lang="math" style="background-color:#fefbec;color:#6e6b5e;" class="language-math "><code class="language-math" data-lang="math"><span>C = 
+</span><span>\begin{bmatrix}
+</span><span>    0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0  \\
+</span><span>    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1  \\
+</span><span>    -3 &amp; 1 &amp; 1 &amp; 2 &amp; 0 &amp; -1 
+</span><span>\end{bmatrix}
+</span></code></pre>
+<h3 id="ex5-sagemath-implementation"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex5-sagemath-implementation">Ex5 Sagemath Implementation</a></h3>
+<p>We can check these matrices with below sagemath code:</p>
+<pre data-lang="python" style="background-color:#fefbec;color:#6e6b5e;" class="language-python "><code class="language-python" data-lang="python"><span>
+</span><span style="color:#999580;"># define the matrices
+</span><span>
+</span><span>A = </span><span style="color:#d73737;">matrix</span><span>([[</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">3</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>],
+</span><span>               [</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">0</span><span>],
+</span><span>               [</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>]])
+</span><span>
+</span><span>B = </span><span style="color:#d73737;">matrix</span><span>([[</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>],
+</span><span>               [</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>],
+</span><span>               [</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">5</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>]])
+</span><span>
+</span><span>C = </span><span style="color:#d73737;">matrix</span><span>([[</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">0</span><span>],
+</span><span>               [</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">0</span><span>,</span><span style="color:#b65611;">1</span><span>],
+</span><span>               [-</span><span style="color:#b65611;">3</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">2</span><span>,</span><span style="color:#b65611;">0</span><span>,-</span><span style="color:#b65611;">1</span><span>]])
+</span><span>
+</span><span>x = </span><span style="color:#d73737;">randint</span><span>(</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">100000</span><span>)
+</span><span>y = </span><span style="color:#d73737;">randint</span><span>(</span><span style="color:#b65611;">1</span><span>,</span><span style="color:#b65611;">100000</span><span>)
+</span><span>
+</span><span>
+</span><span style="color:#999580;"># reductions
+</span><span>out = </span><span style="color:#b65611;">3 </span><span>* x * x * y + </span><span style="color:#b65611;">5 </span><span>* x * y - x- </span><span style="color:#b65611;">2</span><span>*y + </span><span style="color:#b65611;">3
+</span><span style="color:#999580;"># the intermediate variables
+</span><span>u1 = </span><span style="color:#b65611;">3</span><span>*x*x
+</span><span>u2 = u1 * y
+</span><span>
+</span><span>
+</span><span style="color:#999580;"># witness vector
+</span><span>witness = </span><span style="color:#d73737;">vector</span><span>([</span><span style="color:#b65611;">1</span><span>, out, x, y, u1, u2])
+</span><span>
+</span><span>
+</span><span style="color:#999580;"># Calculate the results
+</span><span>A_witness = A*witness
+</span><span>B_witness = B*witness
+</span><span>C_witness = C*witness
+</span><span>AB_witness = A_witness.</span><span style="color:#d73737;">pairwise_product</span><span>(B_witness)
+</span><span>
+</span><span style="color:#999580;"># Print the results
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">A * witness = </span><span>{A_witness}&quot;)
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">B * witness = </span><span>{B_witness}&quot;)
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">C * witness = </span><span>{C_witness}&quot;)
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">(A * witness) * (B * witness) = </span><span>{AB_witness}&quot;)
+</span><span>
+</span><span style="color:#999580;"># Check the equality
+</span><span>result = C_witness == AB_witness
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">result: </span><span>&quot;,result)
+</span><span>
+</span><span style="color:#999580;"># Check that the equality is true
+</span><span style="color:#b854d4;">assert </span><span>result, &quot;</span><span style="color:#60ac39;">result contains an inequality</span><span>&quot;
+</span></code></pre>
+<p>We will see the output:</p>
+<pre data-lang="shell" style="background-color:#fefbec;color:#6e6b5e;" class="language-shell "><code class="language-shell" data-lang="shell"><span>A * witness = (133875, 5974171875, 44625)
+</span><span>B * witness = (44625, 61540, 307700)
+</span><span>C * witness = (5974171875, 367650537187500, 13731112500)
+</span><span>(A * witness) * (B * witness) = (5974171875, 367650537187500, 13731112500)
+</span><span>result:  True
+</span></code></pre>
+<h3 id="ex5-circom-circuit-implementation"><a href="https://thogiti.github.io/mastering-rank-one-constraint-system-r1cs-with-circom-examples/#ex5-circom-circuit-implementation">Ex5 Circom Circuit Implementation</a></h3>
+<p>Here is the Circom circuit:</p>
+<pre data-lang="circom" style="background-color:#fefbec;color:#6e6b5e;" class="language-circom "><code class="language-circom" data-lang="circom"><span>pragma circom 2.1.4;
+</span><span>
+</span><span>template Example5() {
+</span><span>    signal input x;
+</span><span>    signal input y;
+</span><span>    signal output out;
+</span><span>
+</span><span>    signal u1;
+</span><span>    signal u2;
+</span><span>
+</span><span>    u1 &lt;== 3 * x * x;
+</span><span>    u2 &lt;== u1 * y;
+</span><span>    out &lt;== 5 * x * y + u2 - x - 2*y +3;
+</span><span> }
+</span><span>
+</span><span>
+</span><span>component main = Example5();
+</span><span>
+</span><span>/* INPUT = {
+</span><span>    &quot;X&quot;: &quot;5&quot;,
+</span><span>    &quot;y&quot;: &quot;10&quot;
+</span><span>} */
+</span><span>
+</span></code></pre>
+<p>Let's compile this and generate a witness.</p>
+<pre data-lang="shell" style="background-color:#fefbec;color:#6e6b5e;" class="language-shell "><code class="language-shell" data-lang="shell"><span>circom Example5.circom --r1cs --wasm --sym
+</span><span>
+</span><span>snarkjs r1cs print Example5.r1cs
+</span><span>
+</span><span>cd Example5_js
+</span><span>
+</span><span>echo &#39;{&quot;x&quot;: &quot;5&quot;, &quot;y&quot;: &quot;10&quot;}&#39; &gt; input.json
+</span><span>
+</span><span>node generate_witness.js Example5.wasm input.json witness.wtns
+</span><span>
+</span><span>snarkjs wtns export json witness.wtns witness.json
+</span><span>
+</span><span>cat witness.json
+</span><span>
+</span></code></pre>
+<p>We get the following output.</p>
+<p><img src="https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/Example5-r1cs-wasm-witness-output.png" alt="Example5-r1cs-wasm-witness-output" /></p>
+<p>In <code>Example5</code> circuit we took <code>x</code>, and <code>y</code> (2 wires) and <code>u1</code>, <code>u2</code> (+2 wires) connected it with the signal <code>out</code> (+1 wire) and another (+1 wire) for the output of <code>out</code>, and checked the  <code>3</code> constraints when <code>u1 &lt;== 3 * x * x</code>, <code>u2 &lt;== u1 * y</code>, and <code>out &lt;== 5 * x * y + u2 - x - 2*y +3</code>. Hence, we have <code>6</code> wires and <code>3</code> constraints.</p>
+<p><strong>Note</strong> Circom compiler by default only displays non-linear constraints (quadratic constraints). If you want to see all linear constraints, you can do this using CLI options like below:</p>
+<pre data-lang="shell" style="background-color:#fefbec;color:#6e6b5e;" class="language-shell "><code class="language-shell" data-lang="shell"><span>circom Example5.circom --r1cs --O0 --wasm --sym 
+</span><span>
+</span></code></pre>
+
+  </div>
+
+	
+
+  <div class="pagination">
+  	
+		<a href="#" class="top">Top</a>
+		
+  </div>
+
+  </main>
+
+  
+  <footer>
+    <span>&copy; <time datetime="2023-08-16T02:23:16.320845452+00:00">2022-2024</time> 0xnagu. </span>
+  </footer>
+  
+</body>
+</html>

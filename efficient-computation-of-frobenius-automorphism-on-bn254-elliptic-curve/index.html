@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+<title>Efficient Computation of Frobenius Automorphism on BN254 Elliptic Curve | Dare to Know - AI, Machine Learning, and Blockchain Technology Insights</title>
+
+
+
+<meta property="og:title" content="Efficient Computation of Frobenius Automorphism on BN254 Elliptic Curve">
+
+
+
+<meta name="author" content="0xnagu">
+
+
+<meta property="og:locale" content="en_US">
+
+
+
+
+<link rel="canonical" href="https://thogiti.github.io/efficient-computation-of-frobenius-automorphism-on-bn254-elliptic-curve/">
+<meta property="og:url" content="https://thogiti.github.io/efficient-computation-of-frobenius-automorphism-on-bn254-elliptic-curve/">
+
+
+
+<meta property="og:site_name" content="Dare to Know - AI, Machine Learning, and Blockchain Technology Insights" />
+
+
+
+  <meta property="og:image" content="https://thogiti.github.io/assets/favicon.jpg">
+  
+  
+
+
+
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="2023-04-30T00:00:00+00:00">
+
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image"">
+  <meta property="twitter:image" content="https://thogiti.github.io/assets/favicon.jpg">
+
+
+
+  <meta property="twitter:title" content="Efficient Computation of Frobenius Automorphism on BN254 Elliptic Curve">
+
+
+
+  <meta name="twitter:site" content="@0xnagu">
+  
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "author": {
+    "@type":"Person",
+	  "name":"0xnagu"
+  },
+  "description": "",
+  "url": "https://thogiti.github.io/efficient-computation-of-frobenius-automorphism-on-bn254-elliptic-curve/",
+  "@context":"https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Efficient Computation of Frobenius Automorphism on BN254 Elliptic Curve"
+  
+    
+    
+      "datePublished":"2023-04-30T00:00:00+00:00",
+    
+    ,
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://thogiti.github.io/efficient-computation-of-frobenius-automorphism-on-bn254-elliptic-curve/"
+    }
+  
+}
+</script>
+
+  <link rel="stylesheet" href="https://thogiti.github.io/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://thogiti.github.io/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://thogiti.github.io/assets/favicon-16x16.png">
+
+  
+    <link type="application/atom+xml" rel="alternate" href="https://thogiti.github.io/atom.xml" title="Dare to Know - AI, Machine Learning, and Blockchain Technology Insights" />
+  
+
+  
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1DVQM7WJ3Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-1DVQM7WJ3Q');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W7CGC8T');</script>
+    <!-- End Google Tag Manager -->
+
+
+  
+
+  
+  
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+                                                                                                                                                                                                            
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                renderMathInElement(document.body, {
+                  // customised options
+                  // • auto-render specific keys, e.g.:
+                  delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false},
+                        {left: "\\(", right: "\\)", display: false},
+                        {left: "\\begin{equation}", right: "\\end{equation}", display: true},
+                        {left: "\\begin{align}", right: "\\end{align}", display: true},
+                        {left: "\\begin{alignat}", right: "\\end{alignat}", display: true},
+                        {left: "\\begin{gather}", right: "\\end{gather}", display: true},
+                        {left: "\\begin{CD}", right: "\\end{CD}", display: true},
+                        {left: "\\begin{matrix}", right: "\\end{matrix}", display: true},
+                        {left: "\\begin{bmatrix}", right: "\\end{bmatrix}", display: true},
+                        {left: "\\begin{pmatrix}", right: "\\end{pmatrix}", display: true},
+                        {left: "\\begin{array}", right: "\\end{array}", display: true},
+                        {left: "\\[", right: "\\]", display: true}
+                        ],
+                  // • rendering keys, e.g.:
+                  throwOnError : false
+                });
+            });
+        </script>
+
+
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-1DVQM7WJ3Q"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7CGC8T"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="https://thogiti.github.io/">
+        <h2 class="nav-title">Dare to Know - AI, Machine Learning, and Blockchain Technology Insights</h2>
+      </a>
+      <ul>
+        
+          
+            <li><a href="https://thogiti.github.io">Blog</a></li>
+          
+            <li><a href="https://thogiti.github.io/tags">Tags</a></li>
+          
+            <li><a href="https://thogiti.github.io/about">About</a></li>
+          
+        
+      </ul>
+    </div>
+  </nav>
+  
+
+  <main>
+    
+  <div class="post">
+  	<div class="post-info">
+  		<time datetime="2023-04-30">April 30, 2023</time>
+  	</div>
+  	<h1 class="post-title">Efficient Computation of Frobenius Automorphism on BN254 Elliptic Curve</h1>
+  	<div class="post-line"></div>
+  	<p>In this blog post, we will explore an efficient method to compute the Frobenius automorphism for the BN254 elliptic curve. The BN254 curve is a pairing-friendly elliptic curve that is widely used in cryptographic applications <a href="https://hackmd.io/@jpw/bn254">hackmd.io/@jpw</a>. We will exploit the fact that $(p−1)/2$ is odd to compute the Frobenius automorphism efficiently.</p>
+<h1 id="what-is-frobenius-automorphism"><a href="https://thogiti.github.io/efficient-computation-of-frobenius-automorphism-on-bn254-elliptic-curve/#what-is-frobenius-automorphism">What is Frobenius Automorphism?</a></h1>
+<p>The Frobenius automorphism is an endomorphism that maps a point $(x,y)$ on an elliptic curve defined over a prime field $F_p$ to $(x^p,y^p)$. It is an important property of elliptic curves over finite fields and has various applications in cryptography <a href="https://math.stackexchange.com/questions/4377341/explanation-of-frobenius-endomorphism-on-elliptic-curves">math.stackexchange.com</a>.</p>
+<h1 id="efficient-computation-using-exponentiation-by-squaring"><a href="https://thogiti.github.io/efficient-computation-of-frobenius-automorphism-on-bn254-elliptic-curve/#efficient-computation-using-exponentiation-by-squaring">Efficient Computation Using Exponentiation by Squaring</a></h1>
+<p>To compute the Frobenius automorphism efficiently, we will use the exponentiation by squaring technique. This method allows us to compute $x^p$ and $y^p$ more efficiently by exploiting the fact that $(p−1)/2$ is odd.</p>
+<p>Let's walk through the implementation step by step:</p>
+<h2 id="step-1-define-the-prime-p-and-the-curve-constant-b">Step 1: Define the prime $p$ and the curve constant $b$</h2>
+<p>We first define the prime $p$ and the curve constant $b$, which are the parameters for the BN254 elliptic curve.</p>
+<pre data-lang="python" style="background-color:#fefbec;color:#6e6b5e;" class="language-python "><code class="language-python" data-lang="python"><span>p = </span><span style="color:#b65611;">16798108731015832284940804142231733909889187121439069848933715426072753864723
+</span><span>b = </span><span style="color:#b65611;">3
+</span></code></pre>
+<h2 id="step-2-construct-the-elliptic-curve-e-over-f-p">Step 2: Construct the elliptic curve $E$ over $F_p$</h2>
+<p>Next, we construct the elliptic curve $E$ over the finite field $F_p$.</p>
+<pre data-lang="python" style="background-color:#fefbec;color:#6e6b5e;" class="language-python "><code class="language-python" data-lang="python"><span>F_p = </span><span style="color:#d73737;">GF</span><span>(p)
+</span><span>E = </span><span style="color:#d73737;">EllipticCurve</span><span>(F_p, [</span><span style="color:#b65611;">0</span><span>, b])
+</span></code></pre>
+<h2 id="step-3-frobenius-automorphism-using-exponentiation-by-squaring-technique">Step 3: Frobenius automorphism using exponentiation by squaring technique</h2>
+<p>We define the Frobenius automorphism by using the property of the prime field and the exponentiation by squaring technique. The <code>exponentiation_by_squaring</code> function computes the result of $x^n % mod$ efficiently.</p>
+<pre data-lang="python" style="background-color:#fefbec;color:#6e6b5e;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b854d4;">def </span><span style="color:#6684e1;">exponentiation_by_squaring</span><span>(</span><span style="color:#d73737;">x</span><span>, </span><span style="color:#d73737;">n</span><span>, </span><span style="color:#d73737;">mod</span><span>):
+</span><span>    result = </span><span style="color:#b65611;">1
+</span><span>    </span><span style="color:#b854d4;">while </span><span>n &gt; </span><span style="color:#b65611;">0</span><span>:
+</span><span>        </span><span style="color:#b854d4;">if </span><span>n % </span><span style="color:#b65611;">2 </span><span>== </span><span style="color:#b65611;">1</span><span>:
+</span><span>            result = (result * x) % mod
+</span><span>        x = (x * x) % mod
+</span><span>        n //= </span><span style="color:#b65611;">2
+</span><span>    </span><span style="color:#b854d4;">return </span><span>result
+</span><span>
+</span><span style="color:#b854d4;">def </span><span style="color:#6684e1;">frobenius_on_curve_efficient</span><span>(</span><span style="color:#d73737;">P</span><span>):
+</span><span>    x, y = P.</span><span style="color:#d73737;">xy</span><span>()
+</span><span>    x_frob = </span><span style="color:#d73737;">exponentiation_by_squaring</span><span>(x, p, p)
+</span><span>    y_frob = </span><span style="color:#d73737;">exponentiation_by_squaring</span><span>(y, p, p)
+</span><span>    </span><span style="color:#b854d4;">return </span><span>E.</span><span style="color:#d73737;">point</span><span>([x_frob, y_frob])
+</span></code></pre>
+<h2 id="step-4-apply-the-frobenius-automorphism-to-a-point-on-the-curve">Step 4: Apply the Frobenius automorphism to a point on the curve</h2>
+<p>Finally, we apply the Frobenius automorphism to a random point $P$ on the elliptic curve.</p>
+<pre data-lang="python" style="background-color:#fefbec;color:#6e6b5e;" class="language-python "><code class="language-python" data-lang="python"><span>P = E.</span><span style="color:#d73737;">random_point</span><span>()
+</span><span>frob_P_efficient = </span><span style="color:#d73737;">frobenius_on_curve_efficient</span><span>(P)
+</span><span>
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">Point P: </span><span>{P}&quot;)
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">Frobenius(P) (efficient): </span><span>{frob_P_efficient}&quot;)
+</span></code></pre>
+<p>Here is the complete code <a href="https://github.com/thogiti/ECC-BN254-Frobenius/blob/main/ECC-BN254-Frobenius.sage">github.com/thogiti</a> for the efficient computation of Frobenius Automorphism on BN254 elliptic curve:</p>
+<pre data-lang="python" style="background-color:#fefbec;color:#6e6b5e;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#999580;"># BN254 curve is a pairing-friendly curve defined over a prime field $F_p$, where $p$ is a 254-bit prime. 
+</span><span style="color:#999580;"># The curve equation is $y^2=x^3+b$, where $b$ is a curve constant.
+</span><span>
+</span><span style="color:#999580;"># Define the prime $p$ and the curve constant $b$
+</span><span>p = </span><span style="color:#b65611;">16798108731015832284940804142231733909889187121439069848933715426072753864723
+</span><span>b = </span><span style="color:#b65611;">3
+</span><span>
+</span><span style="color:#999580;"># Construct the elliptic curve $E$ over $F_p$
+</span><span>F_p = </span><span style="color:#d73737;">GF</span><span>(p)
+</span><span>E = </span><span style="color:#d73737;">EllipticCurve</span><span>(F_p, [</span><span style="color:#b65611;">0</span><span>, b])
+</span><span>
+</span><span style="color:#999580;"># Define the Frobenius automorphism for the elliptic curve using the property of the prime field and the exponentiation by squaring technique
+</span><span style="color:#b854d4;">def </span><span style="color:#6684e1;">exponentiation_by_squaring</span><span>(</span><span style="color:#d73737;">x</span><span>, </span><span style="color:#d73737;">n</span><span>, </span><span style="color:#d73737;">mod</span><span>):
+</span><span>    result = </span><span style="color:#b65611;">1
+</span><span>    </span><span style="color:#b854d4;">while </span><span>n &gt; </span><span style="color:#b65611;">0</span><span>:
+</span><span>        </span><span style="color:#b854d4;">if </span><span>n % </span><span style="color:#b65611;">2 </span><span>== </span><span style="color:#b65611;">1</span><span>:
+</span><span>            result = (result * x) % mod
+</span><span>        x = (x * x) % mod
+</span><span>        n //= </span><span style="color:#b65611;">2
+</span><span>    </span><span style="color:#b854d4;">return </span><span>result
+</span><span>
+</span><span style="color:#b854d4;">def </span><span style="color:#6684e1;">frobenius_on_curve_efficient</span><span>(</span><span style="color:#d73737;">P</span><span>):
+</span><span>    x, y = P.</span><span style="color:#d73737;">xy</span><span>()
+</span><span>    x_frob = </span><span style="color:#d73737;">exponentiation_by_squaring</span><span>(x, p, p)
+</span><span>    y_frob = </span><span style="color:#d73737;">exponentiation_by_squaring</span><span>(y, p, p)
+</span><span>    </span><span style="color:#b854d4;">return </span><span>E.</span><span style="color:#d73737;">point</span><span>([x_frob, y_frob])
+</span><span>
+</span><span style="color:#999580;"># Apply the Frobenius automorphism to a point on the curve
+</span><span>P = E.</span><span style="color:#d73737;">random_point</span><span>()
+</span><span>frob_P_efficient = </span><span style="color:#d73737;">frobenius_on_curve_efficient</span><span>(P)
+</span><span>
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">Point P: </span><span>{P}&quot;)
+</span><span style="color:#1fad83;">print</span><span>(</span><span style="color:#b854d4;">f</span><span>&quot;</span><span style="color:#60ac39;">Frobenius(P) (efficient): </span><span>{frob_P_efficient}&quot;)
+</span><span>
+</span></code></pre>
+<p>Here is the link to the github repo which implements the efficient computation of Frobenius Automorphism on BN254 Elliptic Curve, the complete code, explanations and instructions <a href="https://github.com/thogiti/ECC-BN254-Frobenius">github.com/thogiti</a>.</p>
+
+  </div>
+
+	
+
+  <div class="pagination">
+  	
+		<a href="#" class="top">Top</a>
+		
+  </div>
+
+  </main>
+
+  
+  <footer>
+    <span>&copy; <time datetime="2023-08-16T02:23:16.321539056+00:00">2022-2024</time> 0xnagu. </span>
+  </footer>
+  
+</body>
+</html>
