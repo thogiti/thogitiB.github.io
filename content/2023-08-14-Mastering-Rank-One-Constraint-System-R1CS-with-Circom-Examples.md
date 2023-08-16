@@ -263,6 +263,8 @@ We can check that circom is using the same column layout for witness $w$ we have
 ![multiply2-r1cs-wasm-witness](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/multiply2-r1cs-wasm-witness-output.png)
 
 
+In `multiplier2` circuit we took `x` and `y` (`2` wires) connected it with the signal `out` (+1 wire) and another (+1 wire) for the output of `out`, and checked the only `1` constraint when `out <== x * y`. Hence, we have `4` wires and `1` constraint.
+
 We can manually check our matrices if they satisfy the constraint $Aw*Bw = Cw$.
 
 $w = [1, 99, 11, 9]$, $A = [0, 0, -1, 0]$, $B = [0, 0,  0, 1]$, $C = [0, -1, 0, 0]$
@@ -582,6 +584,9 @@ We get the following output.
 ![multiply4-r1cs-wasm-witness-output](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/multiply4-r1cs-wasm-witness-output.png)
 
 
+In `multiplier4` circuit we took `x`, `y`, `u` and `v` (4 wires) and `u1`, `u2` (+2 wires) connected it with the signal `out` (+1 wire) and another (+1 wire) for the output of `out`, and checked the  `3` constraints when `u1 <== x * y`, `u2 <== u * v`, and `out <== u1 * u2`. Hence, we have `8` wires and `3` constraint.
+
+    
 
 ## [Example 3](#example-3)
 
@@ -769,10 +774,15 @@ cat witness.json
 
 We get the following output.
 
-![multiply4-r1cs-wasm-witness-output](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/Example5-r1cs-wasm-witness-output.png)
+![Example5-r1cs-wasm-witness-output](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/Example5-r1cs-wasm-witness-output.png)
+
+
+In `Example5` circuit we took `x`, and `y` (2 wires) and `u1`, `u2` (+2 wires) connected it with the signal `out` (+1 wire) and another (+1 wire) for the output of `out`, and checked the  `3` constraints when `u1 <== 3 * x * x`, `u2 <== u1 * y`, and `out <== 5 * x * y + u2 - x - 2*y +3`. Hence, we have `6` wires and `3` constraint.
+
 
 
 **Note** Circom compiler by default only displays non-linear constraints (quadratic constraints). If you want to see all linear constraints, you can do this using CLI options like below:
+
 
 ```shell
 circom Example5.circom --r1cs --O0 --wasm --sym 
