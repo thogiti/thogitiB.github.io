@@ -9,6 +9,31 @@ katex = true
 
 +++
 
+- [Overview](#overview)
+  - [Understanding the Role of R1CS in ZK Protocols](#understanding-the-role-of-r1cs-in-zk-protocols)
+  - [Definition and Explanation of R1CS](#definition-and-explanation-of-r1cs)
+  - [Relation to Circuits of Logical Gates](#relation-to-circuits-of-logical-gates)
+  - [Constructing R1CS for Zero Knowledge Proofs](#constructing-r1cs-for-zero-knowledge-proofs)
+- [Circom R1CS Examples](#circom-r1cs-examples)
+  - [Example 1](#example-1)
+    - [Ex1 R1CS Constraint Explanation](#ex1-r1cs-constraint-explanation)
+    - [Ex1 Sagemath Implementation](#ex1-sagemath-implementation)
+    - [Ex1 Circom Circuit Implementation](#ex1-circom-circuit-implementation)
+  - [Example 2](#example-2)
+    - [Ex2 R1CS Constraint Explanation](#ex2-r1cs-constraint-explanation)
+    - [Method 2 R1CS Constraint Explanation](#method-2-r1cs-constraint-explanation)
+    - [Ex2 Sagemath Implementation](#ex2-sagemath-implementation)
+    - [Ex2 Circom Circuit Implementation](#ex2-circom-circuit-implementation)
+  - [Example 3](#example-3)
+    - [Ex3 R1CS Constraint Explanation](#ex3-r1cs-constraint-explanation)
+  - [Example 4](#example-4)
+    - [Ex4 R1CS Constraint Explanation](#ex4-r1cs-constraint-explanation)
+  - [Example 5](#example-5)
+    - [Ex5 R1CS Constraint Explanation](#ex5-r1cs-constraint-explanation)
+    - [Ex5 Sagemath Implementation](#ex5-sagemath-implementation)
+    - [Ex5 Circom Circuit Implementation](#ex5-circom-circuit-implementation)
+
+
 
 # [Overview](#overview)
 
@@ -24,7 +49,7 @@ In the [previous](https://thogiti.github.io/writing-zero-knowledge-proofs-and-ci
 Constraint systems are collections of arithmetic constraints over a set of variables. They play an essential role in computational problems, particularly in the realm of cryptographic protocols and zero-knowledge proofs. In a constraint system, there are two types of variables: high-level variables (the secret inputs) and low-level variables (the internal inputs and outputs of the multiplication gates).
 
 
-## [Understanding the Role of R1CS in Zero-Knowledge Protocols]
+## [Understanding the Role of R1CS in ZK Protocols](#understanding-the-role-of-r1cs-in-zk-protocols)
 
 Zero-Knowledge (ZK) protocols, which are commonly used in cryptography, require provers to demonstrate that they know a solution to a computational problem. This problem is often expressed as a Rank-1 Constraint System (R1CS). 
 
@@ -74,6 +99,10 @@ We will see and verify this form by Circom when we compiled the Circom circuits 
 ## [Example 1](#example-1)
 
 **Circuit** $out = x*y$
+
+
+### [Ex1 R1CS Constraint Explanation](#ex1-r1cs-constraint-explanation)
+
 
 Since our equation is already in the form of quadratic constraint, $out = x * y$  or $A*B-C=0$, where $x$ is the left hand side matrix $A$, $y$ is the right hand side matrix $B$ and $out$ is the results matrix.
 
@@ -247,6 +276,9 @@ $Aw = -11$, $Bw = 9$, $Cw = -99$, $Aw*Bw = -99$.
 
 **Circuit** $out = {x * y * u * v}$
 
+### [Ex2 R1CS Constraint Explanation](#ex2-r1cs-constraint-explanation)
+
+
 Remember that in R1CS, you can only have at most one multiplication in the constraint. The above equation has three multiplications. We use intermediate variables to *flatten* the polynomial like below.
 
 $$u1 = x * y$$
@@ -358,7 +390,7 @@ Here is the final matrix A in the tabular form:
 
 
 
-### [Method 2](#method-2)
+### [Method 2 R1CS Constraint Explanation](#method-2-r1cs-constraint-explanation)
 
 Alternatively, we can express the left hand side terms in the three constraints as a linear combination of the witness vector. 
 
@@ -555,6 +587,8 @@ We get the following output.
 
 **Circuit** $out = x*y + 2$
 
+### [Ex3 R1CS Constraint Explanation](#ex3-r1cs-constraint-explanation)
+
 We can repeat the above reduction process and get the matrices. We write the matrices for $out-2=x*y$. We have one constraint and witness vector will be $w = [1, out, x, y]$.
 
 $A = [0, 0, 1, 0]$, $B = [0, 0, 0, 1], $C = [-2, 1, 0, 0]
@@ -565,6 +599,8 @@ $A = [0, 0, 1, 0]$, $B = [0, 0, 0, 1], $C = [-2, 1, 0, 0]
 
 **Circuit** $out = 2x^2 + y$
 
+### [Ex4 R1CS Constraint Explanation](#ex4-r1cs-constraint-explanation)
+
 We write the matrices for $out-y=2x^2$. We have one constraint and witness vector will be $w = [1, out, x, y]$. 
 
 $A = [0, 0, 2, 0]$, $B = [0, 0, 1, 0], $C = [0, 1, 0, -1]
@@ -574,6 +610,9 @@ $A = [0, 0, 2, 0]$, $B = [0, 0, 1, 0], $C = [0, 1, 0, -1]
 ## [Example 5](#example-5)
 
 **Circuit** $out = 3x^2y + 5xy - x - 2y + 3$
+
+### [Ex5 R1CS Constraint Explanation](#ex5-r1cs-constraint-explanation)
+
 
 We can reduce the equations to below:
 
