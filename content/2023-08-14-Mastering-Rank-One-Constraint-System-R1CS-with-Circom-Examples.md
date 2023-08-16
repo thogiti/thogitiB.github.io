@@ -584,7 +584,7 @@ We get the following output.
 ![multiply4-r1cs-wasm-witness-output](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/multiply4-r1cs-wasm-witness-output.png)
 
 
-In `multiplier4` circuit we took `x`, `y`, `u` and `v` (4 wires) and `u1`, `u2` (+2 wires) connected it with the signal `out` (+1 wire) and another (+1 wire) for the output of `out`, and checked the  `3` constraints when `u1 <== x * y`, `u2 <== u * v`, and `out <== u1 * u2`. Hence, we have `8` wires and `3` constraint.
+In `multiplier4` circuit we took `x`, `y`, `u` and `v` (4 wires) and `u1`, `u2` (+2 wires) connected it with the signal `out` (+1 wire) and another (+1 wire) for the output of `out`, and checked the  `3` constraints when `u1 <== x * y`, `u2 <== u * v`, and `out <== u1 * u2`. Hence, we have `8` wires and `3` constraints.
 
     
 
@@ -777,7 +777,7 @@ We get the following output.
 ![Example5-r1cs-wasm-witness-output](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/Example5-r1cs-wasm-witness-output.png)
 
 
-In `Example5` circuit we took `x`, and `y` (2 wires) and `u1`, `u2` (+2 wires) connected it with the signal `out` (+1 wire) and another (+1 wire) for the output of `out`, and checked the  `3` constraints when `u1 <== 3 * x * x`, `u2 <== u1 * y`, and `out <== 5 * x * y + u2 - x - 2*y +3`. Hence, we have `6` wires and `3` constraint.
+In `Example5` circuit we took `x`, and `y` (2 wires) and `u1`, `u2` (+2 wires) connected it with the signal `out` (+1 wire) and another (+1 wire) for the output of `out`, and checked the  `3` constraints when `u1 <== 3 * x * x`, `u2 <== u1 * y`, and `out <== 5 * x * y + u2 - x - 2*y +3`. Hence, we have `6` wires and `3` constraints.
 
 
 
