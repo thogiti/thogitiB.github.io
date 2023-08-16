@@ -771,3 +771,11 @@ We get the following output.
 
 ![multiply4-r1cs-wasm-witness-output](https://raw.githubusercontent.com/thogiti/thogiti.github.io/master/content/images/20230814/Example5-r1cs-wasm-witness-output.png)
 
+
+**Note** Circom compiler by default only displays non-linear constraints (quadratic constraints). If you want to see all linear constraints, you can do this using CLI options like below:
+
+```shell
+circom Example5.circom --r1cs --O0 --wasm --sym 
+
+```
+
